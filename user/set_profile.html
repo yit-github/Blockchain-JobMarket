@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="windows-1252">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<body>
+
+
+              <div id = "app"></div>
+              <div class="container">
+
+            <h1>Update Profile</h1>
+
+              <hr>
+              <br>
+            <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+
+            <label for="rate" class="col-lg-2 control-label">hourlyRate</label>
+            <input id="rate" type="text">
+              <br>
+            <label for="description" class="col-lg-2 control-label">description</label>
+            <input id="description" type="text">
+
+
+            <button id="sbutton">Update</button>
+
+              <br>
+              <br>
+              <hr>
+
+              <table style="width:100%">
+              <tr>
+               <td>HourlyRate</td>
+               <td id="ra"></td>
+              </tr>
+              <tr>
+               <td>Description</td>
+               <td id="de"></td>
+               </tr>
+               <tr>
+               <td>Skill</td>
+               <td >
+                 <span id="s0"></span>
+                 <br>
+               <span id="s1"></span>
+               <br>
+              <span id="s2"></span>
+              </td>
+              </tr>
+              <br>
+              <br>
+              </table>
+
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+</body>
+
+<script src="app.js"></script>
+</html>
