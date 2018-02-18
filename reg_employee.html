@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="windows-1252">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+<div id = "app1"></div>
+<div class="container"  >
+
+
+  <h1><center>Register as employee</center></h1>
+  <center><img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
+
+  <form class="form-horizontal" >
+  <fieldset>
+
+
+    <!-- Text input-->
+    <div class="form-group" >
+      <label class="col-md-4 control-label" for="e_id">EmployeeID</label>
+      <div class="col-md-4">
+      <input id="id" name="zip" type="text" placeholder="EmployeeID" class="form-control input-md" required="">
+
+      </div>
+    </div>
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="fName">First name</label>
+    <div class="col-md-4">
+    <input id="fName" name="fn" type="text" placeholder="first name" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="lName">Last name</label>
+    <div class="col-md-4">
+    <input id="lName" name="ln" type="text" placeholder="last name" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
+
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="email">Email</label>
+    <div class="col-md-4">
+    <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="city">City</label>
+    <div class="col-md-4">
+    <input id="city" name="city" type="text" placeholder="city" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
+
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="ctry">Country</label>
+    <div class="col-md-4">
+    <input id="ctry" name="ctry" type="text" placeholder="Country" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="phone">Text InputPhone</label>
+    <div class="col-md-4">
+    <input id="phone" name="phone" type="text" placeholder="Phone#" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
+
+
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
+    <div class="col-md-4">
+      <select id="selectbasic" name="selectbasic" class="form-control input-md">
+        <option>Option one</option>
+        <option>Option two</option>
+      </select>
+    </div>
+  </div>
+
+
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="submit"></label>
+    <div class="col-md-4">
+    </div>
+  </div>
+
+  </fieldset>
+  </form>
+
+<center><button id="button" name="submit" class="btn btn-primary">SUBMIT</button></center>
+
+
+
+</div>
+
+
+
+<br>
+<hr>
+<br>
+<table style="width:100%">
+ <tr>
+   <td>Employee id</td>
+   <td id="emp_id"></td>
+ </tr>
+ <tr>
+   <td>Firstname</td>
+   <td id="emp_fn"></td>
+   </tr>
+ <tr>
+   <td>Lastname</td>
+   <td id="emp_ln"></td>
+ </tr>
+
+ <tr>
+   <td>Skill</td>
+   <td >
+     <span id="s0"></span>
+     <br>
+   <span id="s1"></span>
+   <br>
+ <span id="s2"></span>
+</td>
+ </tr>
+<br>
+<br>
+</table>
+<span id="countIns"></span>
+
+<span id="insTrans"></span>
+<h2 id="employee"></h2>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+
+
+</body>
+
+<script src="app.js"></script>
+</html>
