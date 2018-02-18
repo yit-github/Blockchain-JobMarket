@@ -53,9 +53,6 @@ contract Employees is Owned {
     }
 
 
-
-
-
     function getEmployees() view public returns(address[]) {
         return EmployeeList;
     }
