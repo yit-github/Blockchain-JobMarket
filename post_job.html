@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
   <meta charset="windows-1252">
@@ -12,68 +10,65 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="main.css">
-
     <script src="./node_modules/web3/dist/web3.min.js"></script>
 
 </head>
 <body>
-  <div id = "app1"></div>
- <div class="container">
-
-        <h1>Post Job</h1>
 
 
-        <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
 
-        <label for="e_id" class="col-lg-2 control-label">Hourly Rate</label>
-        <input id="erate" type="text">
+<div class="container2">
 
-        <label for="fName" class="col-lg-2 control-label">JobTitle</label>
-        <input id="ejobtitle" type="text">
+<form class="form-horizontal">
 
-        <label for="lName" class="col-lg-2 control-label">Description</label>
-        <input id="edescrip" type="text">
 
-        <button id="pbutton">Post</button>
-        <br>
-        <a href="list_job.html">List Job</a>
-        <br>
+<!-- Form Name -->
+<legend><center><b>Post a job</b></center></legend>
 
+<center> <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
+<div class="form-group">
+<label class="col-md-4 " for="job" >What work do you need to have done?</label>
 <br>
+<input id="ejobtitle" name="fn" type="text" placeholder="eg: theme development" class="form-control input-md">
+</div>
 <hr>
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-4 " for="ln">Provide more details:</label>
 <br>
-<table style="width:100%">
- <tr>
-   <td>rate</td>
-   <td id="r"></td>
- </tr>
- <tr>
-   <td>job</td>
-   <td id="j"></td>
-   </tr>
- <tr>
-   <td>description</td>
-   <td id="d"></td>
- </tr>
-
-
+<textarea  id="edescrip" class="form-control" rows="5" placeholder="enter your description"></textarea>
+<div class="x">
+<button id="addfile" name="submit" class="btn btn-primary">add file</button>
+</div>
+</div>
+<hr>
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-4 " for="rate">What's your budget?</label>
 <br>
-<br>
-</table>
-<span id="countIns"></span>
-
-<span id="insTrans"></span>
+<input id="erate" name="rate" type="text" placeholder="hourly rate" class="form-control input-md" >
+</div>
 
 
+<hr>
+
+  <center><button id="pbutton" name="submit" class="btn btn-primary">SUBMIT</button></center>
+
+</form>
+</div>
+
+
+
+
+<hr>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-
-
-
 </body>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="app.js"></script>
 </html>
