@@ -8,25 +8,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign up</title>
+    <title>Document</title>
 
-      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="./node_modules/web3/dist/web3.min.js"></script>
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
-
 <body>
 
-<div class="container1" >
+<div id = "app1"></div>
+<div class="container"  >
+
+
+  <h1><center>Register as employee</center></h1>
+  <center><img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
+
   <form class="form-horizontal" >
-    <legend><center><b>Sign up for free today!</b></center></legend>
-
-    <center><img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
-
-
+  <fieldset>
 
 
     <!-- Text input-->
@@ -66,14 +69,13 @@
     </div>
   </div>
 
-  <!-- Select Basic -->
+
+  <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
+    <label class="col-md-4 control-label" for="city">City</label>
     <div class="col-md-4">
-      <select id="selectbasic" name="selectbasic" class="form-control input-md">
-        <option>Option one</option>
-        <option>Option two</option>
-      </select>
+    <input id="city" name="city" type="text" placeholder="city" class="form-control input-md" required="">
+
     </div>
   </div>
 
@@ -99,10 +101,32 @@
 
 
 
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
+    <div class="col-md-4">
+      <select id="selectbasic" name="selectbasic" class="form-control input-md">
+        <option>Option one</option>
+        <option>Option two</option>
+      </select>
+    </div>
+  </div>
+
+
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="submit"></label>
+    <div class="col-md-4">
+    </div>
+  </div>
+
+  </fieldset>
+  </form>
 
 <center><button id="button" name="submit" class="btn btn-primary">SUBMIT</button></center>
 
-  </form>
+
 
 </div>
 
@@ -143,10 +167,14 @@
 <span id="insTrans"></span>
 <h2 id="employee"></h2>
 
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
 
 
 </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
 <script src="app.js"></script>
 </html>
