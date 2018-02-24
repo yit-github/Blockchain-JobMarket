@@ -12,6 +12,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "ipfs-mini": "^1.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "slim-select": "^1.8.1",
