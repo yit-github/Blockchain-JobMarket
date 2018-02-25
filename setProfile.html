@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <script src="https://wzrd.in/standalone/buffer"></script>
+        <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+        integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+        crossorigin="anonymous"></script>
+
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -38,61 +44,62 @@
   <!-- Text input-->
 
 
-  <div class="form-group">
-  <label class="col-md-4 " for="rate">Skill</label>
-  <br>
-  <div id="skill" >
-  <div class="">
+    <div class="form-group">
+    <label class="col-md-4 " for="rate">Skill</label>
+    <br>
+    <div id="skill" >
+      <br>
+    <div class="form-box">
 
-      <select id="products"></select>
-      <div class="x">
-      <button id="add" name="submit" class="btn btn-primary">add</button>
-      </div>
+        <select id="products"></select>
+        <div class="x">
+        <button id="add" name="submit" class="btn btn-primary">add</button>
+        </div>
 
-      <script>
-   $(document).ready(function() {
-       $("#products").kendoMultiSelect({
-           placeholder: "Select products...",
-           dataTextField: "ProductName",
-           dataValueField: "ProductID",
-           autoBind: false,
-           dataSource: {
-               type: "odata",
-               serverFiltering: true,
-               transport: {
-                   read: {
-                       url: "",
-                   }
-               }
-           },
-           value: [
-               { ProductName: "Java", ProductID: 2 },
-               { ProductName: "PHP", ProductID: 7 }
+        <script>
+     $(document).ready(function() {
+         $("#products").kendoMultiSelect({
+             placeholder: "Select products...",
+             dataTextField: "ProductName",
+             dataValueField: "ProductID",
+             autoBind: false,
+             dataSource: {
+                 type: "odata",
+                 serverFiltering: true,
+                 transport: {
+                     read: {
+                         url: "",
+                     }
+                 }
+             },
+             value: [
+                 { ProductName: "Java", ProductID: 2 },
+                 { ProductName: "PHP", ProductID: 7 }
 
-           ]
-       });
+             ]
+         });
 
-       $("#getMultiValues").on("click", function() {
-         var multi = $("#products").getKendoMultiSelect(),
-             multiDataItems = multi.dataItems(),
-             selectedProducts = [];
+         $("#getMultiValues").on("click", function() {
+           var multi = $("#products").getKendoMultiSelect(),
+               multiDataItems = multi.dataItems(),
+               selectedProducts = [];
 
-         for(var i = 0; i < multiDataItems.length; i += 1) {
-           var currentProduct = multiDataItems[i];
+           for(var i = 0; i < multiDataItems.length; i += 1) {
+             var currentProduct = multiDataItems[i];
 
-           selectedProducts.push({
-             ProductID: currentProduct.ProductID,
-             ProductName: currentProduct.ProductName
-           })
-         }
+             selectedProducts.push({
+               ProductID: currentProduct.ProductID,
+               ProductName: currentProduct.ProductName
+             })
+           }
 
-         console.log(selectedProducts);
-       });
-   });
-</script>
+           console.log(selectedProducts);
+         });
+     });
+  </script>
+    </div>
+    </div>
   </div>
-  </div>
-
   <hr>
 
   <div class="form-group">
@@ -103,6 +110,20 @@
 
     <hr>
 
+    <div class="form-group">
+    <label class="col-md-4 " for="ln">Upload your CV</label>
+    <br><br>
+    <div class="form-box">
+      <input type="file" name="photo"  id="photo">
+              <div class="x">
+        <button type="button" onclick="upload()" class="btn btn-primary" padding="2px">Upload</button>
+        </div>
+        </div>
+      </div>
+
+
+
+<hr>
     <center><button id="sbutton" name="submit" class="btn btn-primary">UPDATE</button></center>
 
   </form>
@@ -111,6 +132,14 @@
 </div>
 
 
+
+
+</br>
+   </br>
+   <a id="url"></a>
+   </br>
+   </br>
+   <img id="output">
 
 
 

@@ -31,7 +31,12 @@
      border-width: 2px;
     border-color:#D6DBDF  ;
 }
-
+.form-box{
+  width: 800px;
+   height: 150px;
+   border: 1px solid #D6DBDF;
+   margin-left: 20px;
+}
 .form-control {
  width: 85%;
 margin-left: 20px;
@@ -39,10 +44,9 @@ margin-left: 20px;
 .x
 {margin-left: 30px;}
 
-.form-group
-{
- align:left;
-}
+.ch
+{margin-left: 30px;}
+
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #45BCCF;
