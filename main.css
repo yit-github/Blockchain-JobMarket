@@ -31,11 +31,25 @@
      border-width: 2px;
     border-color:#D6DBDF  ;
 }
+::-webkit-file-upload-button {
+  background: #45BCCF;
+  border: 1px solid grey;
+  -webkit-border-radius: 5px;
+  color:white;
+  padding: 0.75em;
+}
+
 .form-box{
   width: 800px;
    height: 150px;
    border: 1px solid #D6DBDF;
-   margin-left: 20px;
+   margin-left: 25px;
+}
+.form-box1{
+  width: 800px;
+   height: 100px;
+   border: 1px solid #D6DBDF;
+   margin-left: 30px;
 }
 .form-control {
  width: 85%;

@@ -477,26 +477,6 @@ employee_profile.setprofile(web3.eth.defaultAccount, $("#rate").val(), $("#descr
 
 
 
-function upload() {
-      const reader = new FileReader();
-      reader.onloadend = function() {
-        const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
-        const buf = buffer.Buffer(reader.result) // Convert data into buffer
-        ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
-          if(err) {
-            console.error(err)
-            return
-          }
-          let url = `https://ipfs.io/ipfs/${result[0].hash}`
-          console.log(`Url --> ${url}`)
-          document.getElementById("url").innerHTML= url
-          document.getElementById("url").href= url
-          document.getElementById("output").src = url
-        })
-      }
-      const photo = document.getElementById("photo");
-      reader.readAsArrayBuffer(photo.files[0]); // Read Provided File
-    }
 
 var jobContract = web3.eth.contract([
 	{
@@ -691,6 +671,10 @@ var jobContract = web3.eth.contract([
 			{
 				"name": "_skill",
 				"type": "bytes32[]"
+			},
+			{
+				"name": "_hash",
+				"type": "bytes32"
 			}
 		],
 		"name": "setprofile",
@@ -772,6 +756,11 @@ var jobContract = web3.eth.contract([
 				"indexed": false,
 				"name": "skills",
 				"type": "bytes32[]"
+			},
+			{
+				"indexed": false,
+				"name": "hash",
+				"type": "bytes32"
 			}
 		],
 		"name": "set_profile",
@@ -927,10 +916,31 @@ Job.getApplications("employer_address1",(error, result) => {
     });
   }
 
+var url;
+  function upload() {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
+          const buf = buffer.Buffer(reader.result) // Convert data into buffer
+          ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
+            if(err) {
+              console.error(err)
+              return
+            }
+            url = `https://ipfs.io/ipfs/${result[0].hash}`
+            console.log(`Url --> ${url}`)
+            document.getElementById("url").innerHTML= url
+            document.getElementById("url").href=url
+            document.getElementById("output").src = url
+          })
+        }
+        const photo = document.getElementById("photo");
+        reader.readAsArrayBuffer(photo.files[0]); // Read Provided File
+      }
 
 $("#sbutton").click(function() {
 $("#loader").show();
-Job.setprofile('employee_address1', $("#rate").val(), $("#description").val(),["java","PHP"], (err, res) => {
+Job.setprofile('employee_address1', $("#rate").val(), $("#description").val(),["java","PHP"],"QmVWdfFnyDHNQJ1ZmYjzv45J57USt8GXBv8PaCcy5vtQ4h", (err, res) => {
   if (err) {
       $("#loader").hide();
   }

@@ -1,10 +1,8 @@
-
 pragma solidity ^0.4.18;
-/**import "employee_profile.sol";**/
 
 contract Job{
 
-        struct jobs {
+    struct jobs {
 
         bytes16 JobTitle;
         uint256 hourlyRate;
@@ -14,7 +12,7 @@ contract Job{
         uint256 employees_id;
         address[] applyList ;
         address[] freelancerList ;
-
+        bytes32 hash;
     }
 
     mapping (address => jobs) job;
@@ -26,7 +24,6 @@ contract Job{
        bytes16 JobTitle,
        bytes16 Description,
        bytes32[] required_skills
-
     );
 
     event ApplyJob(
@@ -34,11 +31,11 @@ contract Job{
     );
 
     event AcceptFreelancers(
-        address[] freelancerList
-        );
+      address[] freelancerList
+    );
 
 
-     function setpostJob(address _address, uint256 _hourlyRate, bytes16 _JobTitle, bytes16 _Description,bytes32[] _skill) public {
+   function setpostJob(address _address, uint256 _hourlyRate, bytes16 _JobTitle, bytes16 _Description,bytes32[] _skill) public {
         var postJob = job[_address];
 
         postJob.hourlyRate = _hourlyRate;
@@ -51,11 +48,10 @@ contract Job{
            }
 
         JobList.push(_address) -1;
-
         PostJob(_hourlyRate,_JobTitle, _Description,_skill);
     }
 
- function getpostJobs() view public returns(address[]) {
+  function getpostJobs() view public returns(address[]) {
         return JobList;
     }
 
@@ -63,12 +59,11 @@ contract Job{
         return (job[JobList[i]].hourlyRate, job[JobList[i]].JobTitle, job[JobList[i]].Description,job[JobList[i]].required_skills);
     }
 
-
     function ApplyJobs(uint256 i,address _employeeAddress, address[] list) public {
-       var Apply_Job = job[JobList[i]];
+        var Apply_Job = job[JobList[i]];
 
         Apply_Job.applyList.push(_employeeAddress);
-            ApplyJob( list);
+        ApplyJob( list);
     }
 
 
@@ -79,8 +74,8 @@ contract Job{
     function AcceptJobs(address _address,uint256 i, address[] _list) public {
        var accept_Job = job[_address];
 
-        accept_Job.freelancerList.push( job[_address].applyList[i]);
-             AcceptFreelancers( _list);
+       accept_Job.freelancerList.push( job[_address].applyList[i]);
+       AcceptFreelancers( _list);
     }
 
 
@@ -92,28 +87,25 @@ contract Job{
  struct profiles {
      uint256 hourlyRate;
      bytes16 description;
-      bytes32[] skills;
-
+     bytes32[] skills;
     }
 
     mapping (address => profiles) emp_pro;
     address[] public profileList;
 
     event set_profile(
-         uint256 hourlyRate,
-       bytes16 description,
-
-       bytes32[] skills
-
+        uint256 hourlyRate,
+        bytes16 description,
+        bytes32[] skills,
+        bytes32 hash
     );
 
-     function setprofile(address _address, uint256 _hourlyRate, bytes16 _description, bytes32[] _skill) public {
+    function setprofile(address _address, uint256 _hourlyRate, bytes16 _description, bytes32[] _skill, bytes32 _hash) public {
 
         var profile = emp_pro[_address];
 
         profile.hourlyRate = _hourlyRate;
         profile.description = _description;
-
 
         for(uint i = 0; i <_skill.length; i++)
            {
@@ -121,8 +113,7 @@ contract Job{
            }
 
         profileList.push(_address) -1;
-
-        set_profile(_hourlyRate,_description, _skill);
+        set_profile(_hourlyRate,_description, _skill,_hash);
     }
 
 
@@ -135,7 +126,4 @@ contract Job{
         return (emp_pro[_address].hourlyRate, emp_pro[_address].description,emp_pro[_address].skills);
     }
 
-
-
-
-   }
+}

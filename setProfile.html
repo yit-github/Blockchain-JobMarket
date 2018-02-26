@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <script src="https://wzrd.in/standalone/buffer"></script>
-        <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+    <script src="https://wzrd.in/standalone/buffer"></script>
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
         integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
         crossorigin="anonymous"></script>
 
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="./node_modules/web3/dist/web3.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="main.css">
 
@@ -22,42 +22,37 @@
     <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/kendo.all.min.js"></script>
 </head>
+
 <body>
 
-  <div class="container2">
+<div class="container2">
+    <form class="form-horizontal">
 
-  <form class="form-horizontal">
-
-
-  <!-- Form Name -->
-  <legend><center><b>Update Profile</b></center></legend>
-
-  <center> <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
-
-
-  <div class="form-group">
-  <label class="col-md-4 " for="job" >Personal Statement</label>
-  <br>
-    <textarea  id="rate" class="form-control" rows="5" placeholder="type here.."></textarea>
-    </div>
-  <hr>
-  <!-- Text input-->
-
+    <legend><center><b>Update Profile</b></center></legend>
+    <center> <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
 
     <div class="form-group">
-    <label class="col-md-4 " for="rate">Skill</label>
-    <br>
+      <label class="col-md-4 " for="job" >Personal Statement</label>
+      <br>
+      <textarea  id="rate" class="form-control" rows="5" placeholder="type here.."></textarea>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+      <label class="col-md-4 " for="rate">Skill</label>
+      <br>
     <div id="skill" >
       <br>
-    <div class="form-box">
+      <div class="form-box">
 
-        <select id="products"></select>
-        <div class="x">
-        <button id="add" name="submit" class="btn btn-primary">add</button>
-        </div>
+          <select id="products"></select>
+          <div class="x">
+            <button id="add" name="submit" class="btn btn-primary">add</button>
+          </div>
 
         <script>
-     $(document).ready(function() {
+        $(document).ready(function() {
          $("#products").kendoMultiSelect({
              placeholder: "Select products...",
              dataTextField: "ProductName",
@@ -95,94 +90,53 @@
 
            console.log(selectedProducts);
          });
-     });
-  </script>
+       });
+       </script>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
-  <hr>
-
-  <div class="form-group">
-  <label class="col-md-4 " for="ln">Hourly Rate</label>
-  <input id="description" name="fn" type="text" placeholder="rate" class="form-control input-md">
-  <br>
-  </div>
 
     <hr>
 
     <div class="form-group">
-    <label class="col-md-4 " for="ln">Upload your CV</label>
-    <br><br>
-    <div class="form-box">
-      <input type="file" name="photo"  id="photo">
-              <div class="x">
-        <button type="button" onclick="upload()" class="btn btn-primary" padding="2px">Upload</button>
+      <label class="col-md-4 " for="ln">Upload your CV</label>
+      <br><br>
+      <div class="row">
+      <div class="form-box1">
+        <div class="col-sm-8" >
+        <input type="file" name="photo" id="photo">
         </div>
+        <div class="col-sm-4" >
+          <div class="x">
+            <button type="button" onclick="upload()" class="btn btn-primary" >Upload</button>
+          </div>
         </div>
       </div>
+      </div>
+    </div>
 
+      <hr>
 
-
-<hr>
-    <center><button id="sbutton" name="submit" class="btn btn-primary">UPDATE</button></center>
-
-  </form>
+  <div class="form-group">
+      <label class="col-md-4 " for="ln">Hourly Rate</label>
+      <input id="description" name="fn" type="text" placeholder="rate" class="form-control input-md">
+      <br>
   </div>
 
+    <hr>
+
+  <center><button id="sbutton" onclick="upload()" class="btn btn-primary">UPDATE</button></center>
+
+  </form>
 </div>
 
 
-
-
-</br>
-   </br>
+<br>
+<hr>
    <a id="url"></a>
    </br>
    </br>
    <img id="output">
-
-
-
-
-
-
-
-
-
-
-
-<hr>
-              <br>
-              <br>
-
-
-
-
-
-
-              <table style="width:100%">
-              <tr>
-               <td>Employee</td>
-               <td id="ra"></td>
-              </tr>
-              <tr>
-               <td>Description</td>
-               <td id="de"></td>
-               </tr>
-               <tr>
-               <td>Skill</td>
-               <td >
-                 <span id="s0"></span>
-                 <br>
-               <span id="s1"></span>
-               <br>
-              <span id="s2"></span>
-              </td>
-              </tr>
-              <br>
-              <br>
-              </table>
-
 
 </body>
 
