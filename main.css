@@ -22,6 +22,9 @@
      border-width: 2px;
     border-color:#D6DBDF  ;
 }
+.form-group{
+  margin-left: 10px;
+  margin-right: 80px;}
 
 .container3 {
    background-color:white  ;
@@ -38,18 +41,28 @@
   color:white;
   padding: 0.75em;
 }
-
-.form-box{
+.pro_pic{
+  background-color:white
   width: 800px;
+   height: 350px;
+   border: 1px solid #D6DBDF;
+   margin-left: 10px;
+   margin-right: 80px;
+}
+.form-box{
+  width: 820px;
    height: 150px;
    border: 1px solid #D6DBDF;
-   margin-left: 25px;
+   margin-left: 30px;
+   margin-right: 50px;
+
 }
 .form-box1{
-  width: 800px;
+  width: 820px;
    height: 100px;
    border: 1px solid #D6DBDF;
    margin-left: 30px;
+
 }
 .form-control {
  width: 85%;
@@ -57,6 +70,11 @@ margin-left: 20px;
 }
 .x
 {margin-left: 30px;}
+.xy
+{margin-top: 15px;}
+
+.px
+{margin-left: 100px;}
 
 .ch
 {margin-left: 30px;}
@@ -65,7 +83,6 @@ margin-left: 20px;
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #45BCCF;
 }
-
 
 body {
     background-color:#f2f2f2;
@@ -82,6 +99,7 @@ label {
     display:block;
     margin-bottom:10px;
 }
+
 input {
     padding:10px;
     width: 50%;
@@ -97,6 +115,7 @@ button {
 .btn-primary{
 background-color:#45BCCF
 }
+
 #instructor {
     padding:1em;
     background-color:#fff;
@@ -106,6 +125,7 @@ background-color:#45BCCF
     width: 100px;
     display:none;
 }
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;

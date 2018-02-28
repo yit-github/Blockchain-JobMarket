@@ -88,6 +88,7 @@ contract Job{
      uint256 hourlyRate;
      bytes16 description;
      bytes32[] skills;
+     bytes32 hash;
     }
 
     mapping (address => profiles) emp_pro;
@@ -106,7 +107,7 @@ contract Job{
 
         profile.hourlyRate = _hourlyRate;
         profile.description = _description;
-
+        profile.hash = _hash;
         for(uint i = 0; i <_skill.length; i++)
            {
                profile.skills.push(_skill[i]);
@@ -122,8 +123,8 @@ contract Job{
         return profileList;
     }
 
-    function getprofile(address _address) view public returns (uint256, bytes16,bytes32[]) {
-        return (emp_pro[_address].hourlyRate, emp_pro[_address].description,emp_pro[_address].skills);
+    function getprofile(address _address) view public returns (uint256, bytes16,bytes32[],bytes32) {
+        return (emp_pro[_address].hourlyRate, emp_pro[_address].description,emp_pro[_address].skills,emp_pro[_address].hash);
     }
 
 }

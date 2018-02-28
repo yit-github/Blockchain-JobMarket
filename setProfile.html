@@ -10,14 +10,12 @@
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
         integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
         crossorigin="anonymous"></script>
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="./node_modules/web3/dist/web3.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="main.css">
-
+    <link rel="stylesheet" type="text/css" href="profile.css">
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1018/styles/kendo.default-v2.min.css" />
     <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/kendo.all.min.js"></script>
@@ -30,6 +28,60 @@
 
     <legend><center><b>Update Profile</b></center></legend>
     <center> <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
+  <label class="col-md-4 " for="job" >Upload your profile picture</label>
+    <br>
+      <br>
+    <div class="pro_pic">
+  <div class=row>
+      <div class="col-sm-8" >
+    <div class="profile">
+      <div class="photo">
+          <input type="file" accept="image/*">
+          <div class="photo__helper">
+              <div class="photo__frame photo__frame--circle">
+                  <canvas class="photo__canvas"></canvas>
+                  <div class="message is-empty">
+                      <p class="message--desktop">Drop your photo here or browse your computer.</p>
+                      <p class="message--mobile">Tap here to select your picture.</p>
+                  </div>
+                  <div class="message is-loading">
+                      <i class="fa fa-2x fa-spin fa-spinner"></i>
+                  </div>
+                  <div class="message is-dragover">
+                      <i class="fa fa-2x fa-cloud-upload"></i>
+                      <p>Drop your photo</p>
+                  </div>
+                  <div class="message is-wrong-file-type">
+                      <p>Only images allowed.</p>
+                      <p class="message--desktop">Drop your photo here or browse your computer.</p>
+                      <p class="message--mobile">Tap here to select your picture.</p>
+                  </div>
+                  <div class="message is-wrong-image-size">
+                      <p>Your photo must be larger than 350px.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="photo__options hide">
+              <div class="photo__zoom">
+                  <input type="range" class="zoom-handler">
+              </div><a href="javascript:;" class="remove"><i class="fa fa-trash"></i></a>
+          </div>
+      </div>
+  </div>
+<div class="px">
+<button type="button" id="previewBtn" class="btn btn-primary" >Preview</button>
+  </div></div>
+    <div class="col-sm-4" >
+  <img src="" alt="" class="preview">
+  <img src="" alt="" class="preview preview--rounded">
+</div>
+</div>
+</div>
+
+<br>
+<hr>
+
 
     <div class="form-group">
       <label class="col-md-4 " for="job" >Personal Statement</label>
@@ -48,7 +100,7 @@
 
           <select id="products"></select>
           <div class="x">
-            <button id="add" name="submit" class="btn btn-primary">add</button>
+
           </div>
 
         <script>
@@ -104,7 +156,9 @@
       <div class="row">
       <div class="form-box1">
         <div class="col-sm-8" >
+            <div class="xy">
         <input type="file" name="photo" id="photo">
+              </div>
         </div>
         <div class="col-sm-4" >
           <div class="x">
@@ -122,6 +176,7 @@
       <input id="description" name="fn" type="text" placeholder="rate" class="form-control input-md">
       <br>
   </div>
+
 
     <hr>
 
@@ -141,4 +196,5 @@
 </body>
 
 <script src="app.js"></script>
+<script src="profile.js"></script>
 </html>
