@@ -1,7 +1,8 @@
 pragma solidity  ^0.4.18;
 
 contract Market {
-    //Runs out of gas
+    //Runs out of gas when findEmployeesForSender() is executed
+    //Chrome browser goes unresponsive if gas limit is increased
 
     enum Skill {JAVA, JS, SCALA, KOTLIN, OTHER}
 
