@@ -5,7 +5,7 @@ contract Market {
 
     struct Employee {
         string name;
-        uint[] skills;
+        uint[] skillsInUint;
     }
 
     struct Employer {
@@ -38,21 +38,22 @@ contract Market {
 
     function setSkill(bytes32 _skill) public {
         uint skillInUint = _skillInUint(_skill);
-        employeeMap[msg.sender].skills.push(skillInUint);
+        employeeMap[msg.sender].skillsInUint.push(skillInUint);
     }
 
     function getSkills() view public returns(uint[]) {
-        return (employeeMap[msg.sender].skills);
+        return (employeeMap[msg.sender].skillsInUint);
     }
 
     function findSkillful(bytes32 _wanted) view public returns(address[] addresses) {
         uint _wantedInUint = _skillInUint(_wanted);
         address[] codes;
         for(uint i=0; i<employeeCodes.length; i++) {
-            uint[] skills = employeeMap[employeeCodes[i]].skills;
-            for(uint j=0; j<skills.length; j++) {
-                if(_wantedInUint == skills[j]) {
+            uint[] skillsInUint = employeeMap[employeeCodes[i]].skillsInUint;
+            for(uint j=0; j<skillsInUint.length; j++) {
+                if(_wantedInUint == skillsInUint[j]) {
                     codes.push(employeeCodes[i]);
+                    break;
                 }
             }
         }
