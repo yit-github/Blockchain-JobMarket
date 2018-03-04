@@ -1,4 +1,4 @@
-pragma solidity  ^0.4.18;
+pragma solidity  ^0.4.20;
 
 contract Market {
 
@@ -21,9 +21,8 @@ contract Market {
     address[] employerCodes;
 
     function setEmployee(string _name, uint[] _skills) public {
-        var employee = employeeMap[msg.sender];
-        employee.name = _name;
-        employee.skills = _skills;
+        employeeMap[msg.sender].name = _name;
+        employeeMap[msg.sender].skills = _skills;
         employeeCodes.push(msg.sender) - 1;
     }
     function getEmployee(address _address) view public returns(string, uint[]) {
@@ -34,9 +33,8 @@ contract Market {
     }
 
     function setEmployer(string _name, uint[] _vacants) public {
-        var employer = employerMap[msg.sender];
-        employer.name = _name;
-        employer.vacants = _vacants;
+        employerMap[msg.sender].name = _name;
+        employerMap[msg.sender].vacants = _vacants;
         employerCodes.push(msg.sender) - 1;
     }
     function getEmployer(address _address) view public returns(string, uint[]) {
@@ -116,7 +114,7 @@ contract Market {
         return codes;
     }
 
-    function _skillInUint(bytes32 _skill) internal returns(uint) {
+    function _skillInUint(bytes32 _skill) internal pure returns(uint) {
         uint skillInUint;
         if(_skill == "JAVA") {
             skillInUint = uint(Skill.JAVA);
