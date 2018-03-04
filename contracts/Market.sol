@@ -83,7 +83,7 @@ contract Market {
         return codes;
     }
 
-    function findEmployer(bytes32 _skillInString) view public returns(address[] addresses) {
+    function findEmployers(bytes32 _skillInString) view public returns(address[] addresses) {
         uint _skill = _skillInUint(_skillInString);
         address[] codes;
         for(uint i=0; i<employerCodes.length; i++) {
@@ -97,7 +97,7 @@ contract Market {
         }
         return codes;
     }
-    function findEmployersForSender() view public returns(address[] addresses) {
+    function findEmployers() view public returns(address[] addresses) {
         address[] codes;
         var skills = employeeMap[msg.sender].skills;
         for(uint s=0; s<skills.length; s++) {
@@ -128,6 +128,35 @@ contract Market {
             skillInUint = uint(Skill.OTHER);
         }
         return skillInUint;
+    }
+
+    //test
+    function setEmployees() {
+        var employee1 = employeeMap[0xca35b7d915458ef540ade6068dfe2f44e8fa733c]; //1
+        employee1.name = "e1";
+        employee1.skills = [0,1];                                                //JAVA, JS
+        employeeCodes.push(0xca35b7d915458ef540ade6068dfe2f44e8fa733c) - 1;
+
+        var employee2 = employeeMap[0x14723a09acff6d2a60dcdf7aa4aff308fddc160c]; //2
+        employee2.name = "e2";
+        employee2.skills = [1,2];                                               //JS, SCALA
+        employeeCodes.push(0x14723a09acff6d2a60dcdf7aa4aff308fddc160c) - 1;
+
+        var employee3 = employeeMap[0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db]; //3
+        employee3.name = "e3";
+        employee3.skills = [2,3];                                               //SCALA, SCOTLIN
+        employeeCodes.push(0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db) - 1;
+    }
+    function setEmployers() {
+        var employer1 = employerMap[0x583031d1113ad414f02576bd6afabfb302140225]; //4
+        employer1.name = "r1";
+        employer1.vacants = [0,1];
+        employerCodes.push(0x583031d1113ad414f02576bd6afabfb302140225);
+
+        var employer2 = employerMap[0xdd870fa1b7c4700f2bd7f44238821c26f7392148]; //5
+        employer2.name = "r2";
+        employer2.vacants = [1,2];
+        employerCodes.push(0xdd870fa1b7c4700f2bd7f44238821c26f7392148);
     }
 
 }
