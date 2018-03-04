@@ -23,9 +23,7 @@ contract Market {
     function setEmployee(string _name, uint[] _skills) public {
         var employee = employeeMap[msg.sender];
         employee.name = _name;
-        for(uint i=0; i<_skills.length; i++) {
-            employee.skills.push(_skills[i]);
-        }
+        employee.skills = _skills;
         employeeCodes.push(msg.sender) - 1;
     }
     function getEmployee(address _address) view public returns(string, uint[]) {
@@ -38,9 +36,7 @@ contract Market {
     function setEmployer(string _name, uint[] _vacants) public {
         var employer = employerMap[msg.sender];
         employer.name = _name;
-        for(uint i=0; i<_vacants.length; i++) {
-            employer.vacants.push(_vacants[i]);
-        }
+        employer.vacants = _vacants;
         employerCodes.push(msg.sender) - 1;
     }
     function getEmployer(address _address) view public returns(string, uint[]) {
