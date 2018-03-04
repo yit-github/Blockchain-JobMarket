@@ -121,7 +121,7 @@ contract Market {
         return codes;
     }
 
-    function _skillInUint(bytes32 _skill) view public returns(uint) {
+    function _skillInUint(bytes32 _skill) internal returns(uint) {
         uint skillInUint;
         if(_skill == "JAVA") {
             skillInUint = uint(Skill.JAVA);
