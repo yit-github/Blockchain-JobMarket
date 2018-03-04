@@ -45,7 +45,7 @@ contract Market {
     }
 
     function setEmployeeSkill(bytes32 _skill) public {
-        uint skillInUint = _skillInUint(_skill);
+        uint skillInUint = skillToUint(_skill);
         employeeMap[msg.sender].skills.push(skillInUint);
     }
     function getEmployeeSkills() view public returns(uint[]) {
@@ -53,7 +53,7 @@ contract Market {
     }
 
     function findEmployees(bytes32 _vacantInString) view public returns(address[] addresses) {
-        uint _vacant = _skillInUint(_vacantInString);
+        uint _vacant = skillToUint(_vacantInString);
         address[] codes;
         for(uint i=0; i<employeeCodes.length; i++) {
             uint[] skills = employeeMap[employeeCodes[i]].skills;
@@ -84,7 +84,7 @@ contract Market {
     }
 
     function findEmployers(bytes32 _skillInString) view public returns(address[] addresses) {
-        uint _skill = _skillInUint(_skillInString);
+        uint _skill = skillToUint(_skillInString);
         address[] codes;
         for(uint i=0; i<employerCodes.length; i++) {
             uint[] vacants = employerMap[employerCodes[i]].vacants;
@@ -114,7 +114,7 @@ contract Market {
         return codes;
     }
 
-    function _skillInUint(bytes32 _skill) internal pure returns(uint) {
+    function skillToUint(bytes32 _skill) public pure returns(uint) {
         uint skillInUint;
         if(_skill == "JAVA") {
             skillInUint = uint(Skill.JAVA);
@@ -128,6 +128,20 @@ contract Market {
             skillInUint = uint(Skill.OTHER);
         }
         return skillInUint;
+    }
+
+    function uintToSkill(uint _skill) public pure returns(string) {
+        if(_skill == uint(Skill.JAVA)) {
+            return "JAVA";
+        } else if(_skill == uint(Skill.JS)) {
+            return "JS";
+        }  else if(_skill == uint(Skill.SCALA)) {
+            return "SCALA";
+        } else if(_skill == uint(Skill.KOTLIN)) {
+            return "KOTLIN";
+        } else {
+            return "OTHER";
+        }
     }
 
     //test
