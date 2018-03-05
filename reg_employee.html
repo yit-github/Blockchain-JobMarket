@@ -19,21 +19,23 @@
 <div class="container1" >
   <form class="form-horizontal" >
     <legend><center><b>Sign up for free today!</b></center></legend>
-
+    <br>
     <center><img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
-
-
-
-
-    <!-- Text input-->
-    <div class="form-group" >
-      <label class="col-md-4 control-label" for="e_id">EmployeeID</label>
-      <div class="col-md-4">
-      <input id="id" name="zip" type="text" placeholder="EmployeeID" class="form-control input-md" required="">
-
+    <br>
+    <div class="form-group" id="user" >
+        <div class="col-md-4">
+        <div class="opbut">
+        <center><input type="radio" name="yes_no" checked>Freelancer</input></center>
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="opbut">
+        <center><input id="" type="radio" name="yes_no">Employer</input></center>
+        </div>
+        </div>
       </div>
-    </div>
-  <!-- Text input-->
+
+  <br>
   <div class="form-group">
     <label class="col-md-4 control-label" for="fName">First name</label>
     <div class="col-md-4">
@@ -63,25 +65,16 @@
   </div>
 
 
-
   <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="ctry">Country</label>
-    <div class="col-md-4">
-    <input id="ctry" name="ctry" type="text" placeholder="Country" class="form-control input-md" required="">
-
-    </div>
-  </div>
-
-  <!-- Text input-->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="phone">Text InputPhone</label>
+    <label class="col-md-4 control-label" for="phone">PhoneNo</label>
     <div class="col-md-4">
     <input id="phone" name="phone" type="text" placeholder="Phone#" class="form-control input-md" required="">
 
     </div>
   </div>
 
+  <!-- Text input-->
 
 
 
@@ -98,7 +91,7 @@
 <br>
 <table style="width:100%">
  <tr>
-   <td>Employee id</td>
+   <td>User type</td>
    <td id="emp_id"></td>
  </tr>
  <tr>
@@ -109,17 +102,15 @@
    <td>Lastname</td>
    <td id="emp_ln"></td>
  </tr>
-
  <tr>
-   <td>Skill</td>
-   <td >
-     <span id="s0"></span>
-     <br>
-   <span id="s1"></span>
-   <br>
- <span id="s2"></span>
-</td>
+   <td>mail</td>
+   <td id="mail"></td>
  </tr>
+ <tr>
+   <td>phoneNo</td>
+   <td id="ph"></td>
+ </tr>
+
 <br>
 <br>
 </table>

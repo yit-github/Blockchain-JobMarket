@@ -35,7 +35,11 @@ var EmployeeContract = web3.eth.contract([
 			},
 			{
 				"name": "",
-				"type": "bytes32[]"
+				"type": "bytes16"
+			},
+			{
+				"name": "",
+				"type": "bytes16"
 			}
 		],
 		"payable": false,
@@ -76,8 +80,12 @@ var EmployeeContract = web3.eth.contract([
 				"type": "bytes16"
 			},
 			{
-				"name": "_skill",
-				"type": "bytes32[]"
+				"name": "email",
+				"type": "bytes16"
+			},
+			{
+				"name": "phoneNo",
+				"type": "bytes16"
 			}
 		],
 		"name": "setEmployee",
@@ -125,8 +133,13 @@ var EmployeeContract = web3.eth.contract([
 			},
 			{
 				"indexed": false,
-				"name": "skills",
-				"type": "bytes32[]"
+				"name": "email",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "phoneNo",
+				"type": "bytes16"
 			}
 		],
 		"name": "employeeReg",
@@ -134,7 +147,7 @@ var EmployeeContract = web3.eth.contract([
 	}
 ]
 );
-var Employees = EmployeeContract.at('0xe3f314ecef61bb6f04bc703e14d3c222a6c0a918');
+var Employees = EmployeeContract.at('0xe79bb7e5a76631eb4971ce97c2cc6916432541f4');
 
 var EmployeeEvent = Employees.employeeReg({},'latest');
 EmployeeEvent.watch(function (err, result) {
@@ -146,12 +159,8 @@ $("#insTrans").html('Block hash: ' +result.blockHash);
 $("#emp_id").html('0'+result.args.id);
 $("#emp_fn").html(web3.toAscii(result.args.fName));
 $("#emp_ln").html(web3.toAscii(result.args.lName));
-
-
-for (var i = 0; i < 5; i++) {
-
-    $("#s"+i).html(web3.toAscii(result.args.skills[i]));
-}
+$("#mail").html(web3.toAscii(result.args.email));
+$("#ph").html(web3.toAscii(result.args.phoneNo));
 
 } else {
 $("#loader").hide();
@@ -162,8 +171,8 @@ $("#loader").hide();
 
 $("#button").click(function() {
 $("#loader").show();
-
-Employees.setEmployee(web3.eth.defaultAccount, $("#id").val(), $("#fName").val(), $("#lName").val(),["java","PHP","javascript"], (err, res) => {
+var user=1;
+Employees.setEmployee(web3.eth.defaultAccount,user, $("#fName").val(), $("#lName").val(),$("#email").val(),$("#phone").val(), (err, res) => {
   if (err) {
       $("#loader").hide();
   }
@@ -281,7 +290,7 @@ var EmployerContract = web3.eth.contract([
 	}
 ]
 );
-var Employer = EmployerContract.at('0xd78e9e47386d689a0cb7391a129e668e552f180c');
+var Employer = EmployerContract.at('0x516f5b882839ffbe3990aa9e920fd53a4ac841b7');
 var EmployerEvent = Employer.employerReg({},'latest');
 
 EmployerEvent.watch(function (err, result) {
@@ -311,24 +320,21 @@ $("#loader").show();
   });
 });
 
-
-
-
-
-var url;
+  var x;
   function upload() {
         const reader = new FileReader();
         reader.onloadend = function() {
-          const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
-          const buf = buffer.Buffer(reader.result) // Convert data into buffer
-          ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
-            if(err) {
+        const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
+        const buf = buffer.Buffer(reader.result) // Convert data into buffer
+        ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
+        if(err)
+            {
               console.error(err)
               return
             }
-            xy=result[0];
-          var url = `https://ipfs.io/ipfs/${result[0].hash}`
-            console.log(`Url --> ${url}`)
+        var url = `https://ipfs.io/ipfs/${result[0].hash}`
+        x=`${result[0].hash}`
+        console.log(`Url --> ${url}`)
             document.getElementById("url").innerHTML= url
             document.getElementById("url").href=url
             document.getElementById("output").src = url
@@ -336,7 +342,7 @@ var url;
         }
         const photo = document.getElementById("photo");
         reader.readAsArrayBuffer(photo.files[0]); // Read Provided File
-      }
+  }
 
 var jobContract = web3.eth.contract([
 	{
@@ -396,41 +402,11 @@ var jobContract = web3.eth.contract([
 			},
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "bytes16"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"name": "_hourlyRate",
-				"type": "uint256"
-			},
-			{
-				"name": "_description",
-				"type": "bytes16"
-			},
-			{
-				"name": "_skill",
-				"type": "bytes32[]"
-			},
-			{
-				"name": "_hash",
-				"type": "bytes32"
-			}
-		],
-		"name": "setprofile",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -505,19 +481,19 @@ var jobContract = web3.eth.contract([
 				"type": "uint256"
 			},
 			{
-				"name": "_JobTitle",
-				"type": "bytes16"
-			},
-			{
-				"name": "_Description",
+				"name": "_description",
 				"type": "bytes16"
 			},
 			{
 				"name": "_skill",
 				"type": "bytes32[]"
+			},
+			{
+				"name": "_hash",
+				"type": "bytes16"
 			}
 		],
-		"name": "setpostJob",
+		"name": "setprofile",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -580,7 +556,7 @@ var jobContract = web3.eth.contract([
 			},
 			{
 				"name": "",
-				"type": "bytes32[]"
+				"type": "bytes16"
 			}
 		],
 		"payable": false,
@@ -610,6 +586,36 @@ var jobContract = web3.eth.contract([
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"name": "_hourlyRate",
+				"type": "uint256"
+			},
+			{
+				"name": "_JobTitle",
+				"type": "bytes16"
+			},
+			{
+				"name": "_Description",
+				"type": "bytes16"
+			},
+			{
+				"name": "hashj",
+				"type": "bytes16"
+			}
+		],
+		"name": "setpostJob",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -629,8 +635,8 @@ var jobContract = web3.eth.contract([
 			},
 			{
 				"indexed": false,
-				"name": "required_skills",
-				"type": "bytes32[]"
+				"name": "hashj",
+				"type": "bytes16"
 			}
 		],
 		"name": "PostJob",
@@ -681,7 +687,7 @@ var jobContract = web3.eth.contract([
 			{
 				"indexed": false,
 				"name": "hash",
-				"type": "bytes32"
+				"type": "bytes16"
 			}
 		],
 		"name": "set_profile",
@@ -690,12 +696,12 @@ var jobContract = web3.eth.contract([
 ]
 );
 
-var Job = jobContract.at('0x16650ff34dffac274385c1446b115e206fd95eea');
+var Job = jobContract.at('0x37b0d80c5e9f3e2297e45dd99140f319f62b99ba');
 
 $("#pbutton").click(function() {
 $("#loader").show();
 
-Job.setpostJob(web3.eth.defaultAccount, $("#erate").val(), $("#ejobtitle").val(), $("#edescrip").val(),["dgg","dgh"], (err, res) => {
+Job.setpostJob(web3.eth.defaultAccount, $("#erate").val(), $("#ejobtitle").val(), $("#edescrip").val(),"url", (err, res) => {
   if (err)
     {
         $("#loader").hide();
@@ -708,7 +714,7 @@ for (let i=0; i<7; i++){
   Job.getpostJob(i,(error, result) => {
               if(!error)
                   {
-                      $("#i"+i).html(result[0]+'    '+web3.toAscii(result[1])+'   '+web3.toAscii(result[2]));
+                      $("#i"+i).html(result[0]+'     '+web3.toAscii(result[1])+'     '+web3.toAscii(result[2])+'   '+web3.toAscii(result[3]));
                   }
               else
                   console.error(error);
@@ -720,7 +726,7 @@ for (let i=0; i<7; i++){
 for (let i=0; i<7; i++){
     $("#b"+i).click(function() {
     $("#loader").show();
-      Job.ApplyJobs(i,"0xa5e353f37ccfaaf771df14fc6b60b96b601f52ce",[], (err, res) => {
+      Job.ApplyJobs(i,"0xcb5779273a4f42cb8b2cf0c5241c85c15cbe6972",[], (err, res) => {
           if (err) {
               $("#loader").hide();
           }
@@ -729,7 +735,7 @@ for (let i=0; i<7; i++){
 }
 
 for (let i=0; i<7; i++){
-Job.getApplications("0xad95fb9ed42b7ca0b23cbffea96c98d2aa9a8a38",(error, result) => {
+Job.getApplications("0x516f5b882839ffbe3990aa9e920fd53a4ac841b7",(error, result) => {
             if(!error)
                 {
                 for (let j=0; j<7; j++){
@@ -737,7 +743,7 @@ Job.getApplications("0xad95fb9ed42b7ca0b23cbffea96c98d2aa9a8a38",(error, result)
                 Job.getprofile(x,(error, result) => {
                             if(!error)
                                 {
-                                   $("#application"+j).html(result[0]+"    "+web3.toAscii(result[1]));
+                                   $("#application"+j).html(result[0]);
                                 }
                             else
                                 console.error(error);
@@ -752,7 +758,7 @@ Job.getApplications("0xad95fb9ed42b7ca0b23cbffea96c98d2aa9a8a38",(error, result)
 for (let i=0; i<7; i++){
       $("#acc"+i).click(function() {
       $("#loader").show();
-      Job.AcceptJobs(i,'employer_address1',[], (err, res) => {
+      Job.AcceptJobs(i,web3.eth.defaultAccount,[], (err, res) => {
           if (err) {
               $("#loader").hide();
           }
@@ -763,7 +769,7 @@ for (let i=0; i<7; i++){
 
 $("#sbutton").click(function() {
 $("#loader").show();
-Job.setprofile(web3.eth.defaultAccount, $("#rate").val(), $("#description").val(),["java","PHP"],url, (err, res) => {
+Job.setprofile("0xcb5779273a4f42cb8b2cf0c5241c85c15cbe6972", $("#rate").val(), $("#description").val(),["java","PHP"],"ipfs", (err, res) => {
   if (err) {
       $("#loader").hide();
   }
