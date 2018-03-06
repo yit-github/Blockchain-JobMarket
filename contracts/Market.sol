@@ -1,17 +1,31 @@
-pragma solidity  ^0.4.20;
+pragma solidity  ^0.4.21;
 
 contract Market {
 
+    enum Status {ACTIVE, INACTIVE, VACANT, OFFERED, CANCELLED}
     enum Skill {JAVA, JS, SCALA, KOTLIN, OTHER}
 
+    uint public jobId = 1;
+
     struct Employee {
+        address code;
         string name;
-        uint[] skills;
+        Skill[] skills;
+        Status status;
     }
 
     struct Employer {
+        address code;
         string name;
-        uint[] vacants;
+        Status status;
+    }
+
+    struct Job {
+        uint id;
+        address employerCode;
+        address employeeCode;
+        Skill[] requiredSkills;
+        Status status;
     }
 
     mapping (address => Employee) employeeMap;
@@ -20,38 +34,113 @@ contract Market {
     mapping(address => Employer) employerMap;
     address[] employerCodes;
 
-    function setEmployee(string _name, uint[] _skills) public {
-        employeeMap[msg.sender].name = _name;
-        employeeMap[msg.sender].skills = _skills;
-        employeeCodes.push(msg.sender) - 1;
+    mapping(uint => Job) jobMap;
+    uint[] jobIds;
+
+    function setEmployee(string _name, Skill[] _skills) public {
+        setEmployee(msg.sender, _name, _skills);
     }
-    function getEmployee(address _address) view public returns(string, uint[]) {
+    function setEmployee(address _address, string _name, Skill[] _skills) public {
+        Employee storage employee = employeeMap[_address];
+        employee.code = _address;
+        employee.name = _name;
+        employee.skills = _skills;
+        employeeCodes.push(_address);
+    }
+    function getEmployee(address _address) view public returns(string, Skill[]) {
         return(employeeMap[_address].name, employeeMap[_address].skills);
     }
     function getEmployees() view public returns(address[]) {
         return employeeCodes;
     }
 
-    function setEmployer(string _name, uint[] _vacants) public {
-        employerMap[msg.sender].name = _name;
-        employerMap[msg.sender].vacants = _vacants;
-        employerCodes.push(msg.sender) - 1;
+    function setEmployer(string _name) public {
+        setEmployer(msg.sender, _name);
     }
-    function getEmployer(address _address) view public returns(string, uint[]) {
-        return (employerMap[_address].name, employerMap[_address].vacants);
+    function setEmployer(address _address, string _name) public {
+        Employer storage employer = employerMap[_address];
+        employer.code = _address;
+        employer.name = _name;
+        employerCodes.push(_address);
+    }
+    function getEmployer(address _address) view public returns(string) {
+        return (employerMap[_address].name);
     }
     function getEmployers() view public returns(address[]) {
         return employerCodes;
     }
 
-    function setEmployeeSkill(bytes32 _skill) public {
-        uint skillInUint = skillToUint(_skill);
-        employeeMap[msg.sender].skills.push(skillInUint);
+    function setJob(address _employerCode, Skill[] _requiredSkills) public {
+        uint _jobId = jobId;
+        job.id = _jobId;
+        Job storage job = jobMap[_jobId];
+        job.employerCode = _employerCode;
+        job.requiredSkills = _requiredSkills;
+        jobIds.push(_jobId);
+        jobId++;
     }
-    function getEmployeeSkills() view public returns(uint[]) {
-        return (employeeMap[msg.sender].skills);
+    function setEmployeeToJob(uint _jobId, address _employeeCode) {
+        jobMap[_jobId].employeeCode = _employeeCode;
+    }
+    function getJob(uint _id) view public returns(address, Skill[]) {
+        return(jobMap[_id].employerCode, jobMap[_id].requiredSkills);
+    }
+    function getJobIds() view public returns(uint[]) {
+        return jobIds;
     }
 
+    //test
+    function setEmployees() public {
+        address address1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
+        Employee storage employee1 = employeeMap[address1];
+        employee1.code = address1;
+        employee1.name = "e1";
+        employee1.skills = [Skill.JAVA, Skill.JS];
+        employeeCodes.push(address1);
+    }
+    function setEmployers() {
+
+    }
+
+
+
+
+
+
+/*
+    function skillToUint(bytes32 _skill) public pure returns(uint) {
+        uint skillInUint;
+        if(_skill == "JAVA") {
+            skillInUint = uint(Skill.JAVA);
+        } else if(_skill == "JS") {
+            skillInUint = uint(Skill.JS);
+        } else if(_skill == "SCALA") {
+            skillInUint = uint(Skill.SCALA);
+        } else if(_skill == "KOTLIN") {
+            skillInUint = uint(Skill.KOTLIN);
+        } else {
+            skillInUint = uint(Skill.OTHER);
+        }
+        return skillInUint;
+    }
+
+    function uintToSkill(uint _skill) public pure returns(string) {
+        if(_skill == uint(Skill.JAVA)) {
+            return "JAVA";
+        } else if(_skill == uint(Skill.JS)) {
+            return "JS";
+        }  else if(_skill == uint(Skill.SCALA)) {
+            return "SCALA";
+        } else if(_skill == uint(Skill.KOTLIN)) {
+            return "KOTLIN";
+        } else {
+            return "OTHER";
+        }
+    }
+
+*/
+
+ /*
     function findEmployees(bytes32 _vacantInString) view public returns(address[] addresses) {
         uint _vacant = skillToUint(_vacantInString);
         address[] codes;
@@ -113,64 +202,6 @@ contract Market {
         }
         return codes;
     }
-
-    function skillToUint(bytes32 _skill) public pure returns(uint) {
-        uint skillInUint;
-        if(_skill == "JAVA") {
-            skillInUint = uint(Skill.JAVA);
-        } else if(_skill == "JS") {
-            skillInUint = uint(Skill.JS);
-        } else if(_skill == "SCALA") {
-            skillInUint = uint(Skill.SCALA);
-        } else if(_skill == "KOTLIN") {
-            skillInUint = uint(Skill.KOTLIN);
-        } else {
-            skillInUint = uint(Skill.OTHER);
-        }
-        return skillInUint;
-    }
-
-    function uintToSkill(uint _skill) public pure returns(string) {
-        if(_skill == uint(Skill.JAVA)) {
-            return "JAVA";
-        } else if(_skill == uint(Skill.JS)) {
-            return "JS";
-        }  else if(_skill == uint(Skill.SCALA)) {
-            return "SCALA";
-        } else if(_skill == uint(Skill.KOTLIN)) {
-            return "KOTLIN";
-        } else {
-            return "OTHER";
-        }
-    }
-
-    //test
-    function setEmployees() {
-        var employee1 = employeeMap[0xca35b7d915458ef540ade6068dfe2f44e8fa733c]; //1
-        employee1.name = "e1";
-        employee1.skills = [0,1];                                                //JAVA, JS
-        employeeCodes.push(0xca35b7d915458ef540ade6068dfe2f44e8fa733c) - 1;
-
-        var employee2 = employeeMap[0x14723a09acff6d2a60dcdf7aa4aff308fddc160c]; //2
-        employee2.name = "e2";
-        employee2.skills = [1,2];                                               //JS, SCALA
-        employeeCodes.push(0x14723a09acff6d2a60dcdf7aa4aff308fddc160c) - 1;
-
-        var employee3 = employeeMap[0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db]; //3
-        employee3.name = "e3";
-        employee3.skills = [2,3];                                               //SCALA, SCOTLIN
-        employeeCodes.push(0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db) - 1;
-    }
-    function setEmployers() {
-        var employer1 = employerMap[0x583031d1113ad414f02576bd6afabfb302140225]; //4
-        employer1.name = "r1";
-        employer1.vacants = [0,1];
-        employerCodes.push(0x583031d1113ad414f02576bd6afabfb302140225);
-
-        var employer2 = employerMap[0xdd870fa1b7c4700f2bd7f44238821c26f7392148]; //5
-        employer2.name = "r2";
-        employer2.vacants = [1,2];
-        employerCodes.push(0xdd870fa1b7c4700f2bd7f44238821c26f7392148);
-    }
+*/
 
 }
