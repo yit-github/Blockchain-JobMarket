@@ -82,9 +82,9 @@ contract Job{
 
  struct profiles {
      uint256 hourlyRate;
-     bytes16 description;
+     bytes16 descrip;
      bytes32[] skills;
-     bytes16 hash;
+     bytes16 hashp;
     }
 
     mapping (address => profiles) emp_pro;
@@ -92,25 +92,25 @@ contract Job{
 
     event set_profile(
         uint256 hourlyRate,
-        bytes16 description,
+        bytes16 descrip,
         bytes32[] skills,
-        bytes16 hash
+        bytes16 hashp
     );
 
-    function setprofile(address _address, uint256 _hourlyRate, bytes16 _description, bytes32[] _skill, bytes16 _hash) public {
+    function setprofile(address _address, uint256 _hourlyRate, bytes16 _descrip, bytes32[] _skill, bytes16 _hash) public {
 
         var profile = emp_pro[_address];
 
         profile.hourlyRate = _hourlyRate;
-        profile.description = _description;
-        profile.hash = _hash;
+        profile.descrip = _descrip;
+        profile.hashp = _hash;
         for(uint i = 0; i <_skill.length; i++)
            {
                profile.skills.push(_skill[i]);
            }
 
         profileList.push(_address) -1;
-        set_profile(_hourlyRate,_description, _skill,_hash);
+        set_profile(_hourlyRate,_descrip, _skill,_hash);
     }
 
 
@@ -120,7 +120,7 @@ contract Job{
     }
 
     function getprofile(address _address) view public returns (uint256, bytes16,bytes32[],bytes16) {
-        return (emp_pro[_address].hourlyRate, emp_pro[_address].description,emp_pro[_address].skills,emp_pro[_address].hash);
+        return (emp_pro[_address].hourlyRate, emp_pro[_address].descrip,emp_pro[_address].skills,emp_pro[_address].hashp);
     }
 
 }

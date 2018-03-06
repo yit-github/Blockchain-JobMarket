@@ -320,7 +320,7 @@ $("#loader").show();
   });
 });
 
-  var x;
+  var x="";
   function upload() {
         const reader = new FileReader();
         reader.onloadend = function() {
@@ -333,7 +333,7 @@ $("#loader").show();
               return
             }
         var url = `https://ipfs.io/ipfs/${result[0].hash}`
-        x=`${result[0].hash}`
+
         console.log(`Url --> ${url}`)
             document.getElementById("url").innerHTML= url
             document.getElementById("url").href=url
@@ -481,7 +481,7 @@ var jobContract = web3.eth.contract([
 				"type": "uint256"
 			},
 			{
-				"name": "_description",
+				"name": "_descrip",
 				"type": "bytes16"
 			},
 			{
@@ -676,7 +676,7 @@ var jobContract = web3.eth.contract([
 			},
 			{
 				"indexed": false,
-				"name": "description",
+				"name": "descrip",
 				"type": "bytes16"
 			},
 			{
@@ -686,7 +686,7 @@ var jobContract = web3.eth.contract([
 			},
 			{
 				"indexed": false,
-				"name": "hash",
+				"name": "hashp",
 				"type": "bytes16"
 			}
 		],
@@ -696,12 +696,12 @@ var jobContract = web3.eth.contract([
 ]
 );
 
-var Job = jobContract.at('0x37b0d80c5e9f3e2297e45dd99140f319f62b99ba');
+var Job = jobContract.at('0xa877b7519ab459f78eb1c1b39a64fb5672490b8c');
 
 $("#pbutton").click(function() {
 $("#loader").show();
-
-Job.setpostJob(web3.eth.defaultAccount, $("#erate").val(), $("#ejobtitle").val(), $("#edescrip").val(),"url", (err, res) => {
+x="par";
+Job.setpostJob(web3.eth.defaultAccount, $("#erate").val(), $("#ejobtitle").val(), $("#edescrip").val(),x, (err, res) => {
   if (err)
     {
         $("#loader").hide();
@@ -726,7 +726,7 @@ for (let i=0; i<7; i++){
 for (let i=0; i<7; i++){
     $("#b"+i).click(function() {
     $("#loader").show();
-      Job.ApplyJobs(i,"0xcb5779273a4f42cb8b2cf0c5241c85c15cbe6972",[], (err, res) => {
+      Job.ApplyJobs(i,"0xf19a67c4b76efb014bc6a7df5f3e8cdde1ffeffb",[], (err, res) => {
           if (err) {
               $("#loader").hide();
           }
@@ -735,7 +735,7 @@ for (let i=0; i<7; i++){
 }
 
 for (let i=0; i<7; i++){
-Job.getApplications("0x516f5b882839ffbe3990aa9e920fd53a4ac841b7",(error, result) => {
+Job.getApplications("0x5aadc8404661250699d99f1e98ce7c0aff9dafbe",(error, result) => {
             if(!error)
                 {
                 for (let j=0; j<7; j++){
@@ -743,7 +743,11 @@ Job.getApplications("0x516f5b882839ffbe3990aa9e920fd53a4ac841b7",(error, result)
                 Job.getprofile(x,(error, result) => {
                             if(!error)
                                 {
-                                   $("#application"+j).html(result[0]);
+                                   $("#application"+j+"1").html("0"+result[0]);
+                                   $("#application"+j+"2").html(web3.toAscii(result[1]));
+                                    $("#application"+j+"3").html(web3.toAscii(result[2][0])+','+web3.toAscii(result[2][1]));
+                                   $("#application"+j+"4").html(web3.toAscii(result[3]));
+
                                 }
                             else
                                 console.error(error);
@@ -769,7 +773,7 @@ for (let i=0; i<7; i++){
 
 $("#sbutton").click(function() {
 $("#loader").show();
-Job.setprofile("0xcb5779273a4f42cb8b2cf0c5241c85c15cbe6972", $("#rate").val(), $("#description").val(),["java","PHP"],"ipfs", (err, res) => {
+Job.setprofile("0xf19a67c4b76efb014bc6a7df5f3e8cdde1ffeffb", $("#rate").val(), $("#description").val(),["java","PHP"],"ipfs", (err, res) => {
   if (err) {
       $("#loader").hide();
   }
