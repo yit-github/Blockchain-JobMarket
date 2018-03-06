@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="windows-1252">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+  <script src="https://wzrd.in/standalone/buffer"></script>
+  <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+      integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+      crossorigin="anonymous"></script>
   <title>Document</title>
 
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="main.css">
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="./node_modules/web3/dist/web3.min.js"></script>
 </head>
 
@@ -21,7 +21,7 @@
 
       <form class="form-horizontal">
           <legend><center><b>Post a job</b></center></legend>
-          <center> <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
+
 
           <div class="form-group">
               <label class="col-md-4 " for="job" >What work do you need to have done?</label>
@@ -34,9 +34,21 @@
             <label class="col-md-4 " for="ln">Provide more details:</label>
             <br>
             <textarea  id="edescrip" class="form-control" rows="5" placeholder="enter your description"></textarea>
-              <div class="x">
-                <button id="addfile" name="submit" class="btn btn-primary">add file</button>
+              <hr>
+            <div class="row">
+            <div class="form-box1">
+              <div class="col-sm-8" >
+                  <div class="xy">
+              <input type="file" name="photo" id="photo">
+                    </div>
               </div>
+              <div class="col-sm-4" >
+                <div class="x">
+                  <button type="button" onclick="upload()" class="btn btn-primary" >Upload</button>
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
           <hr>
 
@@ -49,6 +61,16 @@
 
           <center><button id="pbutton" name="submit" class="btn btn-primary">SUBMIT</button></center>
         </form>
+
+
+        <hr>
+           <a id="url"></a>
+           </br>
+           </br>
+           <img id="output">
+
+
+
   </div>
   <hr>
 </body>

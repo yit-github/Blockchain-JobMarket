@@ -1,4 +1,4 @@
-pragma solidity  ^0.4.18;
+pragma solidity  ^0.4.20;
 
 contract Market {
 
@@ -21,11 +21,8 @@ contract Market {
     address[] employerCodes;
 
     function setEmployee(string _name, uint[] _skills) public {
-        var employee = employeeMap[msg.sender];
-        employee.name = _name;
-        for(uint i=0; i<_skills.length; i++) {
-            employee.skills.push(_skills[i]);
-        }
+        employeeMap[msg.sender].name = _name;
+        employeeMap[msg.sender].skills = _skills;
         employeeCodes.push(msg.sender) - 1;
     }
     function getEmployee(address _address) view public returns(string, uint[]) {
@@ -36,11 +33,8 @@ contract Market {
     }
 
     function setEmployer(string _name, uint[] _vacants) public {
-        var employer = employerMap[msg.sender];
-        employer.name = _name;
-        for(uint i=0; i<_vacants.length; i++) {
-            employer.vacants.push(_vacants[i]);
-        }
+        employerMap[msg.sender].name = _name;
+        employerMap[msg.sender].vacants = _vacants;
         employerCodes.push(msg.sender) - 1;
     }
     function getEmployer(address _address) view public returns(string, uint[]) {
@@ -148,6 +142,35 @@ contract Market {
         } else {
             return "OTHER";
         }
+    }
+
+    //test
+    function setEmployees() {
+        var employee1 = employeeMap[0xca35b7d915458ef540ade6068dfe2f44e8fa733c]; //1
+        employee1.name = "e1";
+        employee1.skills = [0,1];                                                //JAVA, JS
+        employeeCodes.push(0xca35b7d915458ef540ade6068dfe2f44e8fa733c) - 1;
+
+        var employee2 = employeeMap[0x14723a09acff6d2a60dcdf7aa4aff308fddc160c]; //2
+        employee2.name = "e2";
+        employee2.skills = [1,2];                                               //JS, SCALA
+        employeeCodes.push(0x14723a09acff6d2a60dcdf7aa4aff308fddc160c) - 1;
+
+        var employee3 = employeeMap[0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db]; //3
+        employee3.name = "e3";
+        employee3.skills = [2,3];                                               //SCALA, SCOTLIN
+        employeeCodes.push(0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db) - 1;
+    }
+    function setEmployers() {
+        var employer1 = employerMap[0x583031d1113ad414f02576bd6afabfb302140225]; //4
+        employer1.name = "r1";
+        employer1.vacants = [0,1];
+        employerCodes.push(0x583031d1113ad414f02576bd6afabfb302140225);
+
+        var employer2 = employerMap[0xdd870fa1b7c4700f2bd7f44238821c26f7392148]; //5
+        employer2.name = "r2";
+        employer2.vacants = [1,2];
+        employerCodes.push(0xdd870fa1b7c4700f2bd7f44238821c26f7392148);
     }
 
 }
