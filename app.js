@@ -155,12 +155,12 @@ if (!err) {
 if (result.blockHash != $("#instrans").html())
     $("#loader").hide();
 
-$("#insTrans").html('Block hash: ' +result.blockHash);
-$("#emp_id").html('0'+result.args.id);
-$("#emp_fn").html(web3.toAscii(result.args.fName));
-$("#emp_ln").html(web3.toAscii(result.args.lName));
-$("#mail").html(web3.toAscii(result.args.email));
-$("#ph").html(web3.toAscii(result.args.phoneNo));
+    $("#insTrans").html('Block hash: ' +result.blockHash);
+    $("#emp_id").html('0'+result.args.id);
+    $("#emp_fn").html(web3.toAscii(result.args.fName));
+    $("#emp_ln").html(web3.toAscii(result.args.lName));
+    $("#mail").html(web3.toAscii(result.args.email));
+    $("#ph").html(web3.toAscii(result.args.phoneNo));
 
 } else {
 $("#loader").hide();
@@ -735,7 +735,7 @@ for (let i=0; i<7; i++){
 }
 
 for (let i=0; i<7; i++){
-Job.getApplications("0x5aadc8404661250699d99f1e98ce7c0aff9dafbe",(error, result) => {
+Job.getApplications(web3.eth.defaultAccount,(error, result) => {
             if(!error)
                 {
                 for (let j=0; j<7; j++){

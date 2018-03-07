@@ -9,8 +9,32 @@
    width: 50%;
    margin: 0 auto;
    border-style: solid;
-     border-width: 2px;
-    border-color:#D6DBDF  ;
+   border-width: 2px;
+   border-color:#D6DBDF  ;
+}
+.employee1{
+width: 220px;
+height: 75px;
+margin-left: 300px;
+margin-top: 370px;
+background-color:#45BCCF;
+border-style: solid;
+border-width: 1px;
+color: #000000;
+}
+.post{
+  margin-top: 1px;
+  margin-left:720px;
+}
+
+.employee2{
+width: 220px;
+height: 75px;
+margin-left: 320px;
+margin-top: 370px;
+background-color:#45BCCF;
+border-style: solid;
+border-width: 1px;
 }
 .opbut{
   width: 120px;

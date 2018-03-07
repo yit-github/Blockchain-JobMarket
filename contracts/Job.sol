@@ -3,12 +3,9 @@ pragma solidity ^0.4.18;
 contract Job{
 
     struct jobs {
-
         bytes16 JobTitle;
         uint256 hourlyRate;
-        uint256 employer_id;
         bytes16 Description;
-        uint256 employees_id;
         address[] applyList ;
         address[] freelancerList ;
         bytes16 hash;
@@ -112,8 +109,6 @@ contract Job{
         profileList.push(_address) -1;
         set_profile(_hourlyRate,_descrip, _skill,_hash);
     }
-
-
 
     function getprofiles() view public returns(address[]) {
         return profileList;
