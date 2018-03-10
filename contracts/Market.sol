@@ -3,10 +3,10 @@ pragma solidity  ^0.4.21;
 contract RegistrationContract {
 
     enum Status {ACTIVE, INACTIVE, VACANT, OFFERED, CANCELLED}
-    enum Skill {JAVA, JS, SCALA, KOTLIN, OTHER}
+    enum Skill {JAVA, JS, SCALA, KOTLIN, MYSQL, MONGO, OTHER}
 
-    uint public profileId = 1;
-    uint public jobId = 1;
+    uint profileId = 1;
+    uint jobId = 1;
 
     mapping (address => Employee) employeeMap;
     address[] employeeCodes;
@@ -62,7 +62,7 @@ contract RegistrationContract {
         employee.status = Status.ACTIVE;
         employeeCodes.push(_address);
     }
-    function getEmployee(address _address) view public returns(string, uint[], Status) {
+    function getEmployee(address _address) view public returns(string name, uint[] profileIds, Status status) {
         Employee memory employee = employeeMap[_address];
         return(employee.name, employee.profileIds, employee.status);
     }
@@ -81,7 +81,7 @@ contract RegistrationContract {
         employer.status = Status.ACTIVE;
         employerCodes.push(_address);
     }
-    function getEmployer(address _address) view public returns(string, uint[], Status) {
+    function getEmployer(address _address) view public returns(string name, uint[] jobIds, Status status) {
         Employer memory employer = employerMap[_address];
         return (employer.name, employer.jobIds, employer.status);
     }
@@ -90,11 +90,11 @@ contract RegistrationContract {
     }
 
 
-    function setProile(string _name, Skill[] _skills) public {
+    function setProfile(string _name, Skill[] _skills) public {
         uint _id = profileId++;
-        setProile(_id, msg.sender, _name, _skills);
+        setProfile(_id, msg.sender, _name, _skills);
     }
-    function setProile(uint _id, address _employeeCode, string _name, Skill[] _skills) public {
+    function setProfile(uint _id, address _employeeCode, string _name, Skill[] _skills) public {
         Profile storage profile = proileMap[_id];
         profile.id = _id;
         profile.employeeCode = _employeeCode;
@@ -105,7 +105,7 @@ contract RegistrationContract {
         Employee storage employee = employeeMap[_employeeCode];
         employee.profileIds.push(_id);
     }
-    function getProfile(uint _id) view public returns(address, string, Skill[], Status) {
+    function getProfile(uint _id) view public returns(address employeeCode, string name, Skill[] skills, Status status) {
         Profile memory profile = proileMap[_id];
         return(profile.employeeCode, profile.name, profile.skills, profile.status);
     }
@@ -127,15 +127,61 @@ contract RegistrationContract {
         job.status = Status.VACANT;
         //appliedEmployeeCodes
         jobIds.push(_id);
-        Employer storage employer = employerMap[msg.sender];
+        Employer storage employer = employerMap[_employerCode];
         employer.jobIds.push(_id);
     }
-    function getJob(uint _id) view public returns(address, string, Skill[], address[], Status) {
+    function getJob(uint _id) view public returns(address employerCode, string name, Skill[] requiredSkills, address[] appliedEmployeeCodes, Status status) {
         Job memory job = jobMap[_id];
         return(job.employerCode, job.name, job.requiredSkills, job.appliedEmployeeCodes, job.status);
     }
     function getJobIds() view public returns(uint[]) {
         return jobIds;
+    }
+
+    //test
+    address employeeCode1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
+    address employeeCode2 = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
+    address employerCode1 = 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db;
+
+    function setInitialData() {
+        setEmployees();
+        setProfiles();
+        setEmployers();
+        setJobs();
+    }
+
+    function setEmployees() internal {
+        setEmployee(employeeCode1, "Mr.Smith");
+        setEmployee(employeeCode2, "Mrs.Smith");
+    }
+
+    function setProfiles() internal {
+        Skill[] memory skills = new Skill[](2);
+        skills[0] = Skill.JAVA;
+        skills[1] = Skill.JS;
+        setProfile(profileId++, employeeCode1, 'developerProile', skills);
+
+        Skill[] memory skills2 = new Skill[](2);
+        skills2[0] = Skill.JS;
+        skills2[1] = Skill.KOTLIN;
+        setProfile(profileId++, employeeCode2, 'developerProile', skills2);
+    }
+
+    function setEmployers() internal {
+        setEmployer(employerCode1, 'Optimus');
+        //setEmployer(employeeCode2, 'Maximus');
+    }
+
+    function setJobs() internal {
+        Skill[] memory skills = new Skill[](2);
+        skills[0] = Skill.JAVA;
+        skills[1] = Skill.MYSQL;
+        setJob(jobId++, employerCode1, 'SE', skills);
+
+        Skill[] memory skills2 = new Skill[](2);
+        skills2[0] = Skill.JS;
+        skills2[1] = Skill.MONGO;
+        setJob(jobId++, employerCode1, 'SSE', skills2);
     }
 
 }
