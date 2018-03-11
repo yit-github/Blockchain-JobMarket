@@ -28,13 +28,12 @@ App = {
 
     bindEvents: function () {
         $(document).on('click', '.employeeRegistrationButtonClass', App.setEmployee);
-        $(document).on('click', '#profileRegistrationButtonId', App.setProfile);
     },
 
     setEmployee: function(event) {
         event.preventDefault();
 
-        var employeeName = $("#employeeNameTextId").val();
+        var employeeName = $("#employeeNameTextId").val().trim();
         console.log("Employee Name: " + employeeName);
 
         var marketInstance;
@@ -59,7 +58,7 @@ App = {
         });
     },
 
-    getEmployeeCodes: function(x, account) {
+    getEmployeeCodes: function(adopters, account) {
         var marketInstance;
 
         App.contracts.Market.deployed().then(function(instance) {
@@ -67,53 +66,9 @@ App = {
             return marketInstance.getEmployeeCodes.call();
         }).then(function(employeeCodes) {
             for (i = 0; i < employeeCodes.length; i++) {
-                console.log("EmployeeCode: " + employeeCodes[i]);
+                console.log("Employee Code: " + employeeCodes[i]);
             }
         }).catch(function(err) {
-            console.log(err.message);
-        });
-    },
-
-    setProfile: function () {
-        event.preventDefault();
-
-        var profileName = $("#profileNameTextId").val();
-        console.log("Profile Name: " + profileName);
-
-        var marketInstance;
-
-        web3.eth.getAccounts(function(error, accounts) {
-            if (error) {
-                console.error("Err while getting accounts");
-                console.log(error);
-            }
-
-            var account = accounts[0];
-
-            App.contracts.Market.deployed().then(function(instance) {
-                marketInstance = instance;
-                return marketInstance.setProfile(profileName, {from: account});
-            }).then(function(result) {
-                return App.getProfileIds();
-            }).catch(function(err) {
-                console.error("Err while setProfile");
-                console.log(err.message);
-            });
-        });
-    },
-
-    getProfileIds: function(x, account) {
-        var marketInstance;
-
-        App.contracts.Market.deployed().then(function(instance) {
-            marketInstance = instance;
-            return marketInstance.getProileIds.call();
-        }).then(function(profileIds) {
-            for (i = 0; i < profileIds.length; i++) {
-                console.log("Profile id: " + profileIds[i]);
-            }
-        }).catch(function(err) {
-            console.error("Err while getProfileIds");
             console.log(err.message);
         });
     }
