@@ -28,6 +28,7 @@ App = {
 
     bindEvents: function () {
         $(document).on('click', '.employeeRegistrationButtonClass', App.setEmployee);
+        $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
     },
 
     setEmployee: function(event) {
@@ -67,6 +68,49 @@ App = {
         }).then(function(employeeCodes) {
             for (i = 0; i < employeeCodes.length; i++) {
                 console.log("Employee Code: " + employeeCodes[i]);
+            }
+        }).catch(function(err) {
+            console.log(err.message);
+        });
+    },
+
+    setProfile: function(event) {
+        event.preventDefault();
+
+        var profileName = $("#profileNameTextId").val().trim();
+        console.log("Profile Name: " + profileName);
+
+        var marketInstance;
+
+        web3.eth.getAccounts(function(error, accounts) {
+            if (error) {
+                console.error("Err while getting accounts");
+                console.log(error);
+            }
+
+            var account = accounts[0];
+
+            App.contracts.Market.deployed().then(function(instance) {
+                marketInstance = instance;
+                return marketInstance.setProfile(profileName, [], {from: account});
+            }).then(function(result) {
+                return App.getProileIds();
+            }).catch(function(err) {
+                console.error("Err while setProfile");
+                console.log(err.message);
+            });
+        });
+    },
+
+    getProileIds: function(a, account) {
+        var marketInstance;
+
+        App.contracts.Market.deployed().then(function(instance) {
+            marketInstance = instance;
+            return marketInstance.getProileIds.call();
+        }).then(function(profileIds) {
+            for (i = 0; i < profileIds.length; i++) {
+                console.log("Profile id: " + profileIds[i]);
             }
         }).catch(function(err) {
             console.log(err.message);
