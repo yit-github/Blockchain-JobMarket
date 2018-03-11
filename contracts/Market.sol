@@ -52,7 +52,15 @@ contract Market {
     }
 
 
-    function setEmployee(address _address, string _name) public {
+    // function setEmployee(address _address, string _name) public {
+    //     Employee storage employee = employeeMap[_address];
+    //     employee.code = _address;
+    //     employee.name = _name;
+    //     employee.status = Status.ACTIVE;
+    //     employeeCodes.push(_address);
+    // }
+    function setEmployee(string _name) public {
+        address _address = msg.sender;
         Employee storage employee = employeeMap[_address];
         employee.code = _address;
         employee.name = _name;
@@ -144,8 +152,8 @@ contract Market {
     }
 
     function setEmployees() internal {
-        setEmployee(employeeCode1, "Mr.Smith");
-        setEmployee(employeeCode2, "Mrs.Smith");
+        // setEmployee(employeeCode1, "Mr.Smith");
+        // setEmployee(employeeCode2, "Mrs.Smith");
     }
 
     function setProfiles() internal {
