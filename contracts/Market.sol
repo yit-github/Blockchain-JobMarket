@@ -52,15 +52,11 @@ contract Market {
     }
 
 
-    // function setEmployee(address _address, string _name) public {
-    //     Employee storage employee = employeeMap[_address];
-    //     employee.code = _address;
-    //     employee.name = _name;
-    //     employee.status = Status.ACTIVE;
-    //     employeeCodes.push(_address);
-    // }
     function setEmployee(string _name) public {
         address _address = msg.sender;
+        setEmployeeWithAddress(_address, _name);
+    }
+    function setEmployeeWithAddress(address _address, string _name) public {
         Employee storage employee = employeeMap[_address];
         employee.code = _address;
         employee.name = _name;
@@ -76,7 +72,11 @@ contract Market {
     }
 
 
-    function setEmployer(address _address, string _name) public {
+    function setEmployer(string _name) public {
+        address _address = msg.sender;
+        setEmployerWithAddress(_address, _name);
+    }
+    function setEmployerWithAddress(address _address, string _name) public {
         Employer storage employer = employerMap[_address];
         employer.code = _address;
         employer.name = _name;
@@ -91,8 +91,12 @@ contract Market {
         return employerCodes;
     }
 
-
-    function setProfile(address _employeeCode, string _name, Skill[] _skills) public {
+    function setProfile(string _name, Skill[] _skills) public {
+        address _employeeCode = msg.sender;
+        setProfileWithAddress(_employeeCode, _name, _skills);
+    }
+    function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills) public {
+        //throw if employee not found
         uint _id = profileId++;
         Profile storage profile = proileMap[_id];
         profile.id = _id;
@@ -112,8 +116,11 @@ contract Market {
         return profileIds;
     }
 
-
-    function setJob(address _employerCode, string _name, Skill[] _requiredSkills) public {
+    function setJob(string _name, Skill[] _requiredSkills) public {
+        address _employerCode = msg.sender;
+        setJobWithAddress(_employerCode, _name, _requiredSkills);
+    }
+    function setJobWithAddress(address _employerCode, string _name, Skill[] _requiredSkills) public {
         uint _id = jobId++;
         Job storage job = jobMap[_id];
         job.id = _id;
@@ -137,52 +144,52 @@ contract Market {
     //test
     //remix 0xca35b7d915458ef540ade6068dfe2f44e8fa733c, 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c, 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db
 
-    address employeeCode1; // = 0xa30ea249288854c80e1498573c9a844deef264d6;
-    address employeeCode2; // = 0x13080693728f49c3e15483a84425c2b42edd3444;
-    address employerCode1; // = 0xe6aaf0e009c677475217c7f30cc3956609603323;
+    // address employeeCode1; // = 0xa30ea249288854c80e1498573c9a844deef264d6;
+    // address employeeCode2; // = 0x13080693728f49c3e15483a84425c2b42edd3444;
+    // address employerCode1; // = 0xe6aaf0e009c677475217c7f30cc3956609603323;
 
-    function setInitialData(address _ad1, address _ad2, address _ad3) public {
-        employeeCode1 = _ad1;
-        employeeCode2 = _ad2;
-        employerCode1 = _ad3;
-        setEmployees();
-        setProfiles();
-        //setEmployers();
-        //setJobs();
-    }
-
-    function setEmployees() internal {
-        // setEmployee(employeeCode1, "Mr.Smith");
-        // setEmployee(employeeCode2, "Mrs.Smith");
-    }
-
-    function setProfiles() internal {
-        Skill[] memory skills = new Skill[](2);
-        skills[0] = Skill.JAVA;
-        skills[1] = Skill.JS;
-        setProfile(employeeCode1, 'developerProile', skills);
-
-        Skill[] memory skills2 = new Skill[](2);
-        skills2[0] = Skill.JS;
-        skills2[1] = Skill.KOTLIN;
-        setProfile(employeeCode2, 'developerProile', skills2);
-    }
-
-    function setEmployers() internal {
-        setEmployer(employerCode1, 'Optimus');
-        //setEmployer(employeeCode2, 'Maximus');
-    }
-
-    function setJobs() internal {
-        Skill[] memory skills = new Skill[](2);
-        skills[0] = Skill.JAVA;
-        skills[1] = Skill.MYSQL;
-        setJob(employerCode1, 'SE', skills);
-
-        Skill[] memory skills2 = new Skill[](2);
-        skills2[0] = Skill.JS;
-        skills2[1] = Skill.MONGO;
-        setJob(employerCode1, 'SSE', skills2);
-    }
+    // function setInitialData(address _ad1, address _ad2, address _ad3) public {
+    //     employeeCode1 = _ad1;
+    //     employeeCode2 = _ad2;
+    //     employerCode1 = _ad3;
+    //     setEmployees();
+    //     setProfiles();
+    //     setEmployers();
+    //     setJobs();
+    // }
+    //
+    // function setEmployees() internal {
+    //     setEmployee(employeeCode1, "Mr.Smith");
+    //     setEmployee(employeeCode2, "Mrs.Smith");
+    // }
+    //
+    // function setProfiles() internal {
+    //     Skill[] memory skills = new Skill[](2);
+    //     skills[0] = Skill.JAVA;
+    //     skills[1] = Skill.JS;
+    //     setProfile(employeeCode1, 'developerProile', skills);
+    //
+    //     Skill[] memory skills2 = new Skill[](2);
+    //     skills2[0] = Skill.JS;
+    //     skills2[1] = Skill.KOTLIN;
+    //     setProfile(employeeCode2, 'developerProile', skills2);
+    // }
+    //
+    // function setEmployers() internal {
+    //     setEmployer(employerCode1, 'Optimus');
+    //     setEmployer(employeeCode2, 'Maximus');
+    // }
+    //
+    // function setJobs() internal {
+    //     Skill[] memory skills = new Skill[](2);
+    //     skills[0] = Skill.JAVA;
+    //     skills[1] = Skill.MYSQL;
+    //     setJob(employerCode1, 'SE', skills);
+    //
+    //     Skill[] memory skills2 = new Skill[](2);
+    //     skills2[0] = Skill.JS;
+    //     skills2[1] = Skill.MONGO;
+    //     setJob(employerCode1, 'SSE', skills2);
+    // }
 
 }
