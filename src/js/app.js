@@ -21,7 +21,6 @@ App = {
             var MarketArtifact = data;
             App.contracts.Market = TruffleContract(MarketArtifact);
             App.contracts.Market.setProvider(App.web3Provider);
-            return App.getEmployeeCodes();
         });
         return App.bindEvents();
     },
@@ -47,30 +46,21 @@ App = {
 
             var account = accounts[0];
 
-            App.contracts.Market.deployed().then(function(instance) {
+            App.contracts.Market.deployed(
+
+            ).then(function(instance) {
                 marketInstance = instance;
                 return marketInstance.setEmployee(employeeName, {from: account});
             }).then(function(result) {
-                return App.getEmployeeCodes();
+                return marketInstance.getEmployeeCodes.call();
+            }).then(function (employeeCodes) {
+                for (i = 0; i < employeeCodes.length; i++) {
+                    console.log("Employee Code: " + employeeCodes[i]);
+                }
             }).catch(function(err) {
                 console.error("Err while setEmployee");
                 console.log(err.message);
             });
-        });
-    },
-
-    getEmployeeCodes: function(adopters, account) {
-        var marketInstance;
-
-        App.contracts.Market.deployed().then(function(instance) {
-            marketInstance = instance;
-            return marketInstance.getEmployeeCodes.call();
-        }).then(function(employeeCodes) {
-            for (i = 0; i < employeeCodes.length; i++) {
-                console.log("Employee Code: " + employeeCodes[i]);
-            }
-        }).catch(function(err) {
-            console.log(err.message);
         });
     },
 
