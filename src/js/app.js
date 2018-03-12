@@ -50,14 +50,19 @@ App = {
             App.contracts.Market.deployed(
 
             ).then(function(instance) {
+                console.log("setEmployee");
                 marketInstance = instance;
                 return marketInstance.setEmployee(employeeName, {from: account});
             }).then(function(result) {
+                console.log("getEmployeeCodes");
                 return marketInstance.getEmployeeCodes.call();
             }).then(function (employeeCodes) {
+                console.log("getEmployee, codes:" + employeeCodes);
                 employeeCode = employeeCodes[employeeCodes.length-1];
+                console.log("code: " + employeeCode);
                 return marketInstance.getEmployee(employeeCode);
             }).then(function (employee) {
+                console.log("set html, employee: " + employee);
                 $("#registeredEmployeeCodeTextId").text(employeeCode);
                 $("#registeredEmployeeNameTextId").text(employee[0]);
             }).catch(function(err) {

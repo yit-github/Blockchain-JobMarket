@@ -63,11 +63,11 @@ contract Market {
         employee.status = Status.ACTIVE;
         employeeCodes.push(_address);
     }
-    function getEmployee(address _address) view public returns(string name, uint[] profileIds, Status status) {
+    function getEmployee(address _address) view public returns(string name, uint[] ids, Status status) {
         Employee memory employee = employeeMap[_address];
         return(employee.name, employee.profileIds, employee.status);
     }
-    function getEmployeeCodes() view public returns(address[] employeeCodes) {
+    function getEmployeeCodes() view public returns(address[] codes) {
         return employeeCodes;
     }
 
@@ -113,7 +113,7 @@ contract Market {
         Profile memory profile = profileMap[_id];
         return(profile.employeeCode, profile.name, profile.skills, profile.status);
     }
-    function getAllProfileIds() view public returns(uint[] allProfileIds) {
+    function getAllProfileIds() view public returns(uint[] ids) {
         return allProfileIds;
     }
 
