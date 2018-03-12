@@ -1,9 +1,9 @@
-pragma solidity  ^0.4.21;
+pragma solidity  ^0.4.18;
 
-contract RegistrationContract {
+contract Market {
 
     enum Status {ACTIVE, INACTIVE, VACANT, OFFERED, CANCELLED}
-    enum Skill {JAVA, JS, SCALA, KOTLIN, MYSQL, MONGO, OTHER}
+    enum Skill {JAVA, JS, MYSQL, MONGO, SCALA, KOTLIN, OTHER}
 
     uint profileId = 1;
     uint jobId = 1;
@@ -14,8 +14,8 @@ contract RegistrationContract {
     mapping(address => Employer) employerMap;
     address[] employerCodes;
 
-    mapping(uint => Profile) proileMap;
-    uint[] profileIds;
+    mapping(uint => Profile) profileMap;
+    uint[] allProfileIds;
 
     mapping(uint => Job) jobMap;
     uint[] jobIds;
@@ -53,28 +53,30 @@ contract RegistrationContract {
 
 
     function setEmployee(string _name) public {
-        setEmployee(msg.sender, _name);
+        address _address = msg.sender;
+        setEmployeeWithAddress(_address, _name);
     }
-    function setEmployee(address _address, string _name) public {
+    function setEmployeeWithAddress(address _address, string _name) public {
         Employee storage employee = employeeMap[_address];
         employee.code = _address;
         employee.name = _name;
         employee.status = Status.ACTIVE;
         employeeCodes.push(_address);
     }
-    function getEmployee(address _address) view public returns(string name, uint[] profileIds, Status status) {
+    function getEmployee(address _address) view public returns(string name, uint[] ids, Status status) {
         Employee memory employee = employeeMap[_address];
         return(employee.name, employee.profileIds, employee.status);
     }
-    function getEmployeeCodes() view public returns(address[]) {
+    function getEmployeeCodes() view public returns(address[] codes) {
         return employeeCodes;
     }
 
 
     function setEmployer(string _name) public {
-        setEmployer(msg.sender, _name);
+        address _address = msg.sender;
+        setEmployerWithAddress(_address, _name);
     }
-    function setEmployer(address _address, string _name) public {
+    function setEmployerWithAddress(address _address, string _name) public {
         Employer storage employer = employerMap[_address];
         employer.code = _address;
         employer.name = _name;
@@ -91,34 +93,36 @@ contract RegistrationContract {
 
 
     function setProfile(string _name, Skill[] _skills) public {
-        uint _id = profileId++;
-        setProfile(_id, msg.sender, _name, _skills);
+        address _employeeCode = msg.sender;
+        setProfileWithAddress(_employeeCode, _name, _skills);
     }
-    function setProfile(uint _id, address _employeeCode, string _name, Skill[] _skills) public {
-        Profile storage profile = proileMap[_id];
+    function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills) public {
+        //throw if employee not found
+        uint _id = profileId++;
+        Profile storage profile = profileMap[_id];
         profile.id = _id;
         profile.employeeCode = _employeeCode;
         profile.name = _name;
         profile.skills = _skills;
         profile.status = Status.ACTIVE;
-        profileIds.push(_id);
+        allProfileIds.push(_id);
         Employee storage employee = employeeMap[_employeeCode];
         employee.profileIds.push(_id);
     }
     function getProfile(uint _id) view public returns(address employeeCode, string name, Skill[] skills, Status status) {
-        Profile memory profile = proileMap[_id];
+        Profile memory profile = profileMap[_id];
         return(profile.employeeCode, profile.name, profile.skills, profile.status);
     }
-    function getProileIds() view public returns(uint[]) {
-        return profileIds;
+    function getAllProfileIds() view public returns(uint[] ids) {
+        return allProfileIds;
     }
-
 
     function setJob(string _name, Skill[] _requiredSkills) public {
-        uint _id = profileId++;
-        setJob(_id, msg.sender, _name, _requiredSkills);
+        address _employerCode = msg.sender;
+        setJobWithAddress(_employerCode, _name, _requiredSkills);
     }
-    function setJob(uint _id, address _employerCode, string _name, Skill[] _requiredSkills) public {
+    function setJobWithAddress(address _employerCode, string _name, Skill[] _requiredSkills) public {
+        uint _id = jobId++;
         Job storage job = jobMap[_id];
         job.id = _id;
         job.employerCode = _employerCode;
@@ -138,50 +142,13 @@ contract RegistrationContract {
         return jobIds;
     }
 
-    //test
-    address employeeCode1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
-    address employeeCode2 = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
-    address employerCode1 = 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db;
 
-    function setInitialData() {
-        setEmployees();
-        setProfiles();
-        setEmployers();
-        setJobs();
-    }
-
-    function setEmployees() internal {
-        setEmployee(employeeCode1, "Mr.Smith");
-        setEmployee(employeeCode2, "Mrs.Smith");
-    }
-
-    function setProfiles() internal {
-        Skill[] memory skills = new Skill[](2);
-        skills[0] = Skill.JAVA;
-        skills[1] = Skill.JS;
-        setProfile(profileId++, employeeCode1, 'developerProile', skills);
-
-        Skill[] memory skills2 = new Skill[](2);
-        skills2[0] = Skill.JS;
-        skills2[1] = Skill.KOTLIN;
-        setProfile(profileId++, employeeCode2, 'developerProile', skills2);
-    }
-
-    function setEmployers() internal {
-        setEmployer(employerCode1, 'Optimus');
-        //setEmployer(employeeCode2, 'Maximus');
-    }
-
-    function setJobs() internal {
-        Skill[] memory skills = new Skill[](2);
-        skills[0] = Skill.JAVA;
-        skills[1] = Skill.MYSQL;
-        setJob(jobId++, employerCode1, 'SE', skills);
-
-        Skill[] memory skills2 = new Skill[](2);
-        skills2[0] = Skill.JS;
-        skills2[1] = Skill.MONGO;
-        setJob(jobId++, employerCode1, 'SSE', skills2);
+    function uintToSkill(uint _uint) view public returns(string skill) {
+        if(_uint == uint(Skill.JAVA))
+            return "JAVA";
+        if(_uint == uint(Skill.JS))
+            return "JS";
+        return "MONGO";
     }
 
 }
