@@ -3,7 +3,7 @@
 }
 
 .container1 {
-    max-width: 400px;
+   max-width: 400px;
    background-color:white ;
    padding: 20px;
    width: 50%;
@@ -17,7 +17,7 @@ width: 220px;
 height: 75px;
 margin-left: 300px;
 margin-top: 370px;
-background-color:#45BCCF;
+background-color:#D6DBDF;
 border-style: solid;
 border-width: 1px;
 color: #000000;
@@ -32,14 +32,14 @@ width: 220px;
 height: 75px;
 margin-left: 320px;
 margin-top: 370px;
-background-color:#45BCCF;
+background-color:#D6DBDF;
 border-style: solid;
 border-width: 1px;
 }
 .opbut{
   width: 120px;
   margin-left: 70px;
-  background-color:#45BCCF;
+  background-color:black;
   border-style: solid;
   border-width: 0.5px;
 
@@ -66,7 +66,7 @@ border-width: 1px;
     border-color:#D6DBDF  ;
 }
 ::-webkit-file-upload-button {
-  background: #45BCCF;
+  background: black;
   border: 1px solid grey;
   -webkit-border-radius: 5px;
   color:white;
@@ -118,7 +118,7 @@ margin-left: 20px;
 
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #45BCCF;
+    background-color: black;
 }
 
 body {
@@ -146,11 +146,11 @@ button {
     margin: 2em 0;
     padding: 1em 4em;
     display:block;
-    background-color:#45BCCF
+    background-color:black
 }
 
 .btn-primary{
-background-color:#45BCCF
+background-color:black
 }
 
 #instructor {

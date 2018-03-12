@@ -293,22 +293,22 @@ var EmployerContract = web3.eth.contract([
 var Employer = EmployerContract.at('0x516f5b882839ffbe3990aa9e920fd53a4ac841b7');
 var EmployerEvent = Employer.employerReg({},'latest');
 
-EmployerEvent.watch(function (err, result) {
-  if (!err)
-      {
-      if (result.blockHash != $("#instrans").html())
-            $("#loader").hide();
 
-            $("#insTrans").html('Block hash: ' +result.blockHash);
-            $("#dcountry").html("0"+result.args.country);
-            $("#fn").html(web3.toAscii(result.args.fName));
-            $("#ln").html(web3.toAscii(result.args.lName));
-      }
-  else
-      {
-      $("#loader").hide();
-      }
-});
+
+  Employees.getEmployee(web3.eth.defaultAccount,(error, result) => {
+              if(!error)
+                  {
+                      $("#emp_id").html("0"+result[0]);
+                      $("#emp_fn").html(web3.toAscii(result[1]));
+                      $("#emp_ln").html(web3.toAscii(result[2]));
+                      $("#mail").html(web3.toAscii(result[3]));
+                      $("#ph").html(web3.toAscii(result[4]));
+                  }
+              else
+                  console.error(error);
+          });
+
+
 
 $("#button1").click(function() {
 $("#loader").show();
@@ -318,6 +318,7 @@ $("#loader").show();
           $("#loader").hide();
        }
   });
+   window.location.replace("https://www.tutorialrepublic.com/");
 });
 
   var x="";
@@ -700,8 +701,8 @@ var Job = jobContract.at('0xa877b7519ab459f78eb1c1b39a64fb5672490b8c');
 
 $("#pbutton").click(function() {
 $("#loader").show();
-x="par";
-Job.setpostJob(web3.eth.defaultAccount, $("#erate").val(), $("#ejobtitle").val(), $("#edescrip").val(),x, (err, res) => {
+x="hash";
+Job.setpostJob(web3.eth.defaultAccount, $("#erate").val(), $("#ejobtitle").val(), $("#edescrip").val(),x,["java","PHP"], (err, res) => {
   if (err)
     {
         $("#loader").hide();
@@ -721,6 +722,18 @@ for (let i=0; i<7; i++){
           });
 }
 
+Job.getpostJob(1,(error, result) => {
+            if(!error)
+                {
+                    $("#j1").html(result[0];
+                    $("#j2").html(web3.toAscii(result[1]);
+                    $("#j3").html(web3.toAscii(result[2]);
+                    $("#j4").html(web3.toAscii(result[3]));
+                    $("#j5").html(web3.toAscii(result[5][0])+','+web3.toAscii(result[5][1]));
+                }
+            else
+                console.error(error);
+        });
 
 
 for (let i=0; i<7; i++){
@@ -769,11 +782,29 @@ for (let i=0; i<7; i++){
         });
     });
 }
+Job.getprofile(web3.eth.defaultAccount,(error, result) => {
+            if(!error)
+                {
+                   $("#a1").html("0"+result[0]);
+                   $("#a2").html(web3.toAscii(result[1]));
+                   $("#a3").html(web3.toAscii(result[2][0])+','+web3.toAscii(result[2][1]));
+                   $("#a4").html(web3.toAscii(result[3]));
 
-
-$("#sbutton").click(function() {
+                }
+            else
+                console.error(error);
+        });
+  $("#sbutton").click(function() {
+  $("#loader").show();
+  Job.setprofile(web3.eth.defaultAccount, $("#rate").val(), $("#description").val(),["java","PHP"],"ipfs", (err, res) => {
+    if (err) {
+        $("#loader").hide();
+    }
+    });
+  });
+$("#button").click(function() {
 $("#loader").show();
-Job.setprofile("0xf19a67c4b76efb014bc6a7df5f3e8cdde1ffeffb", $("#rate").val(), $("#description").val(),["java","PHP"],"ipfs", (err, res) => {
+Job.setprofile(web3.eth.defaultAccount, $("#rate").val(), $("#description").val(),["java","PHP"],"ipfs", (err, res) => {
   if (err) {
       $("#loader").hide();
   }

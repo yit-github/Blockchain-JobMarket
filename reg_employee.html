@@ -1,43 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="windows-1252">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sign up</title>
 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <script src="https://wzrd.in/standalone/buffer"></script>
+  <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+      integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+      crossorigin="anonymous"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="./node_modules/web3/dist/web3.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="main.css">
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="./node_modules/web3/dist/web3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="profile.css">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1018/styles/kendo.default-v2.min.css" />
+  <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/jquery.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/kendo.all.min.js"></script>
 </head>
 
 <body >
-<div class="container1" >
+  <nav class="navbar navbar-inverse">
+     <div class="container-fluid">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="list_job.html">FindWork</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container2" >
   <form class="form-horizontal" >
-    <legend><center><b>Sign up for free today!</b></center></legend>
+    <legend><center><b>Sign up</b></center></legend>
     <br>
     <center><img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
     <br>
-    <div class="form-group" id="user" >
-        <div class="col-md-4">
-        <div class="opbut">
-        <center><input type="radio" name="yes_no" checked>Freelancer</input></center>
-        </div>
-        </div>
-        <div class="col-md-4">
-        <div class="opbut">
-        <center><input id="" type="radio" name="yes_no">Employer</input></center>
-        </div>
-        </div>
-      </div>
+    <label class="col-md-4 " for="fName">Profile</label>
+    <br>
+    <div class="pro_pic">
+  <div class=row>
+      <div class="col-sm-8" >
+    <div class="profile">
+      <div class="photo">
+          <input type="file" accept="image/*">
+          <div class="photo__helper">
+              <div class="photo__frame photo__frame--circle">
+                  <canvas class="photo__canvas"></canvas>
+                  <div class="message is-empty">
+                      <p class="message--desktop">Drop your photo here or browse your computer.</p>
+                      <p class="message--mobile">Tap here to select your picture.</p>
+                  </div>
+                  <div class="message is-loading">
+                      <i class="fa fa-2x fa-spin fa-spinner"></i>
+                  </div>
+                  <div class="message is-dragover">
+                      <i class="fa fa-2x fa-cloud-upload"></i>
+                      <p>Drop your photo</p>
+                  </div>
+                  <div class="message is-wrong-file-type">
+                      <p>Only images allowed.</p>
+                      <p class="message--desktop">Drop your photo here or browse your computer.</p>
+                      <p class="message--mobile">Tap here to select your picture.</p>
+                  </div>
+                  <div class="message is-wrong-image-size">
+                      <p>Your photo must be larger than 350px.</p>
+                  </div>
+              </div>
+          </div>
 
-  <br>
+          <div class="photo__options hide">
+              <div class="photo__zoom">
+                  <input type="range" class="zoom-handler">
+              </div><a href="javascript:;" class="remove"><i class="fa fa-trash"></i></a>
+          </div>
+      </div>
+  </div>
+<div class="px">
+<button type="button" id="previewBtn" class="btn btn-primary" >Preview</button>
+  </div></div>
+    <div class="col-sm-4" >
+  <img src="" alt="" class="preview">
+  <img src="" alt="" class="preview preview--rounded">
+</div>
+</div>
+</div>
+<hr>
   <div class="form-group">
-    <label class="col-md-4 control-label" for="fName">First name</label>
+    <label class="col-md-4 " for="fName">First name</label>
     <div class="col-md-4">
     <input id="fName" name="fn" type="text" placeholder="first name" class="form-control input-md" required="">
 
@@ -46,7 +98,7 @@
 
   <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="lName">Last name</label>
+    <label class="col-md-4 " for="lName">Last name</label>
     <div class="col-md-4">
     <input id="lName" name="ln" type="text" placeholder="last name" class="form-control input-md" required="">
 
@@ -57,7 +109,7 @@
 
   <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="email">Email</label>
+    <label class="col-md-4 " for="email">Email</label>
     <div class="col-md-4">
     <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required="">
 
@@ -67,7 +119,7 @@
 
   <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="phone">PhoneNo</label>
+    <label class="col-md-4 " for="phone">PhoneNo</label>
     <div class="col-md-4">
     <input id="phone" name="phone" type="text" placeholder="Phone#" class="form-control input-md" required="">
 
@@ -75,8 +127,95 @@
   </div>
 
   <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 " for="job" >Personal Statement</label>
+    <br>
+    <textarea  id="description" class="form-control" rows="5" placeholder="type here.."></textarea>
+  </div>
 
 
+        <hr>
+
+        <div class="form-group">
+          <label class="col-md-4 " for="ln">Upload your CV</label>
+          <br><br>
+          <div class="row">
+          <div class="form-box1">
+            <div class="col-sm-8" >
+                <div class="xy">
+            <input type="file" name="photo" id="photo">
+                  </div>
+            </div>
+            <div class="col-sm-4" >
+              <div class="x">
+                <button type="button" onclick="upload()" class="btn btn-primary" >Upload</button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+          <hr>
+  <div class="form-group">
+    <label class="col-md-4 " for="rate">Skill</label>
+    <br>
+  <div id="skill" >
+    <br>
+    <div class="form-box">
+
+        <select id="products"></select>
+
+      <script>
+      $(document).ready(function() {
+       $("#products").kendoMultiSelect({
+           placeholder: "Select products...",
+           dataTextField: "ProductName",
+           dataValueField: "ProductID",
+           autoBind: false,
+           dataSource: {
+               type: "odata",
+               serverFiltering: true,
+               transport: {
+                   read: {
+                       url: "",
+                   }
+               }
+           },
+           value: [
+               { ProductName: "Java", ProductID: 2 },
+               { ProductName: "PHP", ProductID: 7 }
+
+           ]
+       });
+
+       $("#getMultiValues").on("click", function() {
+         var multi = $("#products").getKendoMultiSelect(),
+             multiDataItems = multi.dataItems(),
+             selectedProducts = [];
+
+         for(var i = 0; i < multiDataItems.length; i += 1) {
+           var currentProduct = multiDataItems[i];
+
+           selectedProducts.push({
+             ProductID: currentProduct.ProductID,
+             ProductName: currentProduct.ProductName
+           })
+         }
+
+         console.log(selectedProducts);
+       });
+     });
+     </script>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+      <label class="col-md-4 " for="ln">Hourly Rate</label>
+      <input id="rate" name="fn" type="text" placeholder="rate" class="form-control input-md">
+      <br>
+  </div>
 
 <center><button id="button" name="submit" class="btn btn-primary">SUBMIT</button></center>
 
@@ -88,6 +227,11 @@
 
 <br>
 <hr>
+<hr>
+   <a id="url"></a>
+   </br>
+   </br>
+   <img id="output">
 <br>
 <table style="width:100%">
  <tr>
@@ -110,6 +254,22 @@
    <td>phoneNo</td>
    <td id="ph"></td>
  </tr>
+ <tr>
+   <td>User type</td>
+   <td id="a1"></td>
+ </tr>
+ <tr>
+   <td>Firstname</td>
+   <td id="a2"></td>
+   </tr>
+ <tr>
+   <td>Lastname</td>
+   <td id="a3"></td>
+ </tr>
+ <tr>
+   <td>mail</td>
+   <td id="a4"></td>
+ </tr>
 
 <br>
 <br>
@@ -123,6 +283,7 @@
 
 
 </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
 <script src="app.js"></script>
+<script src="profile.js"></script>
 </html>
