@@ -103,15 +103,14 @@ App = {
             let account = accounts[0];
 
             App.contracts.Market.deployed().then(function(instance) {
+                console.log("setProfile")
                 marketInstance = instance;
                 return marketInstance.setProfile(profileName, skills, {from: account});
             }).then(function(result) {
-                console.log("getProfileIds");
-                return marketInstance.getProfileIds.call();
+                console.log("getAllProfileIds");
+                return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
-                for (i = 0; i < profileIds.length; i++) {
-                    console.log("Profile id: " + profileIds[i]);
-                }
+                console.log("Profile ids: " + profileIds);
             }).catch(function(err) {
                 console.error("Err while setProfile");
                 console.log(err.message);
