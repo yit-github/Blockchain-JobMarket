@@ -18,7 +18,7 @@ App = {
 
     initContract: function() {
         $.getJSON('Market.json', function(data) {
-            var MarketArtifact = data;
+            let MarketArtifact = data;
             App.contracts.Market = TruffleContract(MarketArtifact);
             App.contracts.Market.setProvider(App.web3Provider);
         });
@@ -33,10 +33,10 @@ App = {
     setEmployee: function(event) {
         event.preventDefault();
 
-        var employeeName = $("#employeeNameTextId").val().trim();
+        let employeeName = $("#employeeNameTextId").val().trim();
         console.log("Employee Name: " + employeeName);
 
-        var marketInstance;
+        let marketInstance;
 
         web3.eth.getAccounts(function(error, accounts) {
             if (error) {
@@ -44,7 +44,8 @@ App = {
                 console.log(error);
             }
 
-            var account = accounts[0];
+            let account = accounts[0];
+            let employeeCode;
 
             App.contracts.Market.deployed(
 
@@ -54,9 +55,11 @@ App = {
             }).then(function(result) {
                 return marketInstance.getEmployeeCodes.call();
             }).then(function (employeeCodes) {
-                for (i = 0; i < employeeCodes.length; i++) {
-                    console.log("Employee Code: " + employeeCodes[i]);
-                }
+                employeeCode = employeeCodes[employeeCodes.length-1];
+                return marketInstance.getEmployee(employeeCode);
+            }).then(function (employee) {
+                $("#registeredEmployeeCodeTextId").text(employeeCode);
+                $("#registeredEmployeeNameTextId").text(employee[0]);
             }).catch(function(err) {
                 console.error("Err while setEmployee");
                 console.log(err.message);
@@ -67,10 +70,10 @@ App = {
     setProfile: function(event) {
         event.preventDefault();
 
-        var profileName = $("#profileNameTextId").val().trim();
+        let profileName = $("#profileNameTextId").val().trim();
         console.log("Profile Name: " + profileName);
 
-        var marketInstance;
+        let marketInstance;
 
         web3.eth.getAccounts(function(error, accounts) {
             if (error) {
@@ -78,7 +81,7 @@ App = {
                 console.log(error);
             }
 
-            var account = accounts[0];
+            let account = accounts[0];
 
             App.contracts.Market.deployed().then(function(instance) {
                 marketInstance = instance;
@@ -93,7 +96,7 @@ App = {
     },
 
     getProileIds: function(a, account) {
-        var marketInstance;
+        let marketInstance;
 
         App.contracts.Market.deployed().then(function(instance) {
             marketInstance = instance;
