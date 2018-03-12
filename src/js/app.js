@@ -73,6 +73,20 @@ App = {
         let profileName = $("#profileNameTextId").val().trim();
         console.log("Profile Name: " + profileName);
 
+        let skills = [];
+        if($("#checkBoxJavaId").is(':checked') === true) {
+            skills.push(0);
+        }
+        if($("#checkBoxJsId").is(':checked') === true) {
+            skills.push(1);
+        }
+        if($("#checkBoxMySQLId").is(':checked') === true) {
+            skills.push(2);
+        }
+        if($("#checkBoxMongoId").is(':checked') === true) {
+            skills.push(3);
+        }
+
         let marketInstance;
 
         web3.eth.getAccounts(function(error, accounts) {
@@ -85,28 +99,18 @@ App = {
 
             App.contracts.Market.deployed().then(function(instance) {
                 marketInstance = instance;
-                return marketInstance.setProfile(profileName, [], {from: account});
+                return marketInstance.setProfile(profileName, skills, {from: account});
             }).then(function(result) {
-                return App.getProileIds();
+                console.log("getProfileIds");
+                return marketInstance.getProfileIds.call();
+            }).then(function (profileIds) {
+                for (i = 0; i < profileIds.length; i++) {
+                    console.log("Profile id: " + profileIds[i]);
+                }
             }).catch(function(err) {
                 console.error("Err while setProfile");
                 console.log(err.message);
             });
-        });
-    },
-
-    getProileIds: function(a, account) {
-        let marketInstance;
-
-        App.contracts.Market.deployed().then(function(instance) {
-            marketInstance = instance;
-            return marketInstance.getProileIds.call();
-        }).then(function(profileIds) {
-            for (i = 0; i < profileIds.length; i++) {
-                console.log("Profile id: " + profileIds[i]);
-            }
-        }).catch(function(err) {
-            console.log(err.message);
         });
     }
 

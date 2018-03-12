@@ -3,7 +3,7 @@ pragma solidity  ^0.4.18;
 contract Market {
 
     enum Status {ACTIVE, INACTIVE, VACANT, OFFERED, CANCELLED}
-    enum Skill {JAVA, JS, SCALA, KOTLIN, MYSQL, MONGO, OTHER}
+    enum Skill {JAVA, JS, MYSQL, MONGO, SCALA, KOTLIN, OTHER}
 
     uint profileId = 1;
     uint jobId = 1;
@@ -14,8 +14,8 @@ contract Market {
     mapping(address => Employer) employerMap;
     address[] employerCodes;
 
-    mapping(uint => Profile) proileMap;
-    uint[] profileIds;
+    mapping(uint => Profile) profileMap;
+    uint[] allProfileIds;
 
     mapping(uint => Job) jobMap;
     uint[] jobIds;
@@ -67,7 +67,7 @@ contract Market {
         Employee memory employee = employeeMap[_address];
         return(employee.name, employee.profileIds, employee.status);
     }
-    function getEmployeeCodes() view public returns(address[]) {
+    function getEmployeeCodes() view public returns(address[] employeeCodes) {
         return employeeCodes;
     }
 
@@ -91,6 +91,7 @@ contract Market {
         return employerCodes;
     }
 
+
     function setProfile(string _name, Skill[] _skills) public {
         address _employeeCode = msg.sender;
         setProfileWithAddress(_employeeCode, _name, _skills);
@@ -98,22 +99,22 @@ contract Market {
     function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills) public {
         //throw if employee not found
         uint _id = profileId++;
-        Profile storage profile = proileMap[_id];
+        Profile storage profile = profileMap[_id];
         profile.id = _id;
         profile.employeeCode = _employeeCode;
         profile.name = _name;
         profile.skills = _skills;
         profile.status = Status.ACTIVE;
-        profileIds.push(_id);
+        allProfileIds.push(_id);
         Employee storage employee = employeeMap[_employeeCode];
         employee.profileIds.push(_id);
     }
     function getProfile(uint _id) view public returns(address employeeCode, string name, Skill[] skills, Status status) {
-        Profile memory profile = proileMap[_id];
+        Profile memory profile = profileMap[_id];
         return(profile.employeeCode, profile.name, profile.skills, profile.status);
     }
-    function getProileIds() view public returns(uint[]) {
-        return profileIds;
+    function getAllProfileIds() view public returns(uint[] allProfileIds) {
+        return allProfileIds;
     }
 
     function setJob(string _name, Skill[] _requiredSkills) public {
@@ -141,4 +142,12 @@ contract Market {
         return jobIds;
     }
 
+
+    function uintToSkill(uint _uint) view public returns(string skill) {
+        if(_uint == uint(Skill.JAVA))
+            return "JAVA";
+        if(_uint == uint(Skill.JS))
+            return "JS";
+        return "MONGO";
+    }
 }
