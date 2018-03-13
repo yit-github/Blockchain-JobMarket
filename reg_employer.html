@@ -12,6 +12,7 @@
   <script src="./node_modules/web3/dist/web3.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="main.css">
+
 </head>
 <body>
   <nav class="navbar navbar-inverse">
@@ -25,22 +26,14 @@
     </div>
   </nav>
 
-<div id = "app1"></div>
 <div class="container1"  >
 
-<legend><center><b>Sign up for free today!</b></center></legend>
+<legend><center><b>Sign up</b></center></legend>
 
     <center><img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"></center>
 
   <form class="form-horizontal" >
-    <!-- Text input-->
-    <div class="form-group" >
-      <label class="col-md-4 control-label" for="e_id">EmployeeID</label>
-      <div class="col-md-4">
-      <input id="country" name="zip" type="text" placeholder="EmployeeID" class="form-control input-md" required="">
 
-      </div>
-    </div>
   <!-- Text input-->
   <div class="form-group">
     <label class="col-md-4 control-label" for="fName">First name</label>
@@ -60,7 +53,6 @@
   </div>
 
 
-
   <!-- Text input-->
   <div class="form-group">
     <label class="col-md-4 control-label" for="email">Email</label>
@@ -70,16 +62,32 @@
     </div>
   </div>
 
-
-
-  <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="ctry">Country</label>
+    <label class="col-md-4 control-label" for="email">Company</label>
     <div class="col-md-4">
-    <input id="ctry" name="ctry" type="text" placeholder="Country" class="form-control input-md" required="">
+    <input id="company" name="email" type="text" placeholder="company" class="form-control input-md" required="">
 
     </div>
   </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="ctry">Country</label>
+      <div class="col-md-4">
+      <input id="country" name="ctry" type="text" placeholder="Country" class="form-control input-md" required="">
+
+      </div>
+    </div>
+
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="email">Address</label>
+    <div class="col-md-4">
+    <input id="Address" name="email" type="text" placeholder="address" class="form-control input-md" required="">
+
+    </div>
+  </div>
+
 
   <!-- Button -->
   <div class="form-group">
@@ -104,28 +112,39 @@
 <br>
 <table style="width:100%">
  <tr>
-   <td>Country</td>
-   <td id="dcountry"></td>
+   <td></td>
+   <td id="#employer_add"></td>
  </tr>
  <tr>
-   <td>Firstname</td>
-   <td id="fn"></td>
+   <td></td>
+   <td id="#employer_country"></td>
    </tr>
  <tr>
-   <td>Lastname</td>
-   <td id="ln"></td>
+   <td></td>
+   <td id="#employer_type"></td>
  </tr>
-
+ <tr>
+   <td></td>
+   <td id="#employer_fn"></td>
+ </tr>
+ <tr>
+   <td></td>
+   <td id="#employer_ln"></td>
+ </tr>
+ <tr>
+   <td></td>
+   <td id="#employer_mail"></td>
+ </tr>
+ <tr>
+   <td></td>
+   <td id="#com"></td>
+ </tr>
 
 <br>
 <br>
 </table>
-<span id="countIns"></span>
 
-<span id="insTrans"></span>
-<h2 id="employee"></h2>
 
-    </div>
 
 
 

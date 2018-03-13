@@ -8,6 +8,7 @@ contract Job{
         bytes16 Description;
         address[] applyList ;
         address[] freelancerList ;
+        bytes32[] skill;
         bytes16 hash;
         bytes16 hashj;
     }
@@ -20,6 +21,7 @@ contract Job{
        uint256 hourlyRate,
        bytes16 JobTitle,
        bytes16 Description,
+       bytes32[] skill,
        bytes16 hashj
     );
 
@@ -32,26 +34,48 @@ contract Job{
     );
 
 
-   function setpostJob(address _address, uint256 _hourlyRate, bytes16 _JobTitle, bytes16 _Description,bytes16 hashj) public {
+   function setpostJob(address _address, uint256 _hourlyRate, bytes16 _JobTitle, bytes16 _Description,bytes32[] _skill,bytes16 hashj) public {
         var postJob = job[_address];
 
         postJob.hourlyRate = _hourlyRate;
         postJob.JobTitle = _JobTitle;
         postJob.Description = _Description;
         postJob.hashj = hashj;
+        for(uint i = 0; i <_skill.length; i++)
+           {
+               postJob.skill.push(_skill[i]);
+           }
 
         JobList.push(_address) -1;
-        PostJob(_hourlyRate,_JobTitle, _Description,hashj);
+        PostJob(_hourlyRate,_JobTitle, _Description,_skill,hashj);
+    }
+
+     function edit_postJob(address _address, uint256 _hourlyRate, bytes16 _JobTitle, bytes16 _Description,bytes32[] _skill,bytes16 hashj) public {
+        var postJob = job[_address];
+
+        postJob.hourlyRate = _hourlyRate;
+        postJob.JobTitle = _JobTitle;
+        postJob.Description = _Description;
+        postJob.hashj = hashj;
+        for(uint i = 0; i <_skill.length; i++)
+           {
+               postJob.skill.push(_skill[i]);
+           }
+
+        PostJob(_hourlyRate,_JobTitle, _Description,_skill,hashj);
     }
 
   function getpostJobs() view public returns(address[]) {
         return JobList;
     }
 
-    function getpostJob(uint256 i) view public returns (uint256, bytes16, bytes16,bytes16) {
-        return (job[JobList[i]].hourlyRate, job[JobList[i]].JobTitle, job[JobList[i]].Description,job[JobList[i]].hashj);
+    function getpostJob(uint256 i) view public returns (uint256, bytes16, bytes16,bytes16,bytes32[]) {
+        return (job[JobList[i]].hourlyRate, job[JobList[i]].JobTitle, job[JobList[i]].Description,job[JobList[i]].hashj,job[JobList[i]].skill);
     }
 
+ function getpostJob_add(address _address) view public returns (uint256, bytes16, bytes16,bytes16,bytes32[]) {
+        return (job[_address].hourlyRate, job[_address].JobTitle, job[_address].Description,job[_address].hashj,job[_address].skill);
+    }
     function ApplyJobs(uint256 i,address _employeeAddress, address[] list) public {
         var Apply_Job = job[JobList[i]];
 
@@ -107,6 +131,22 @@ contract Job{
            }
 
         profileList.push(_address) -1;
+        set_profile(_hourlyRate,_descrip, _skill,_hash);
+    }
+
+
+    function edit_profile(address _address, uint256 _hourlyRate, bytes16 _descrip, bytes32[] _skill, bytes16 _hash) public {
+
+        var profile = emp_pro[_address];
+
+        profile.hourlyRate = _hourlyRate;
+        profile.descrip = _descrip;
+        profile.hashp = _hash;
+        for(uint i = 0; i <_skill.length; i++)
+           {
+               profile.skills.push(_skill[i]);
+           }
+
         set_profile(_hourlyRate,_descrip, _skill,_hash);
     }
 
