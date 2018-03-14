@@ -150,12 +150,7 @@ App = {
             }).then(function (employerCodes) {
                 console.log("getEmployer, codes:" + employerCodes);
                 employerCode = employerCodes[employerCodes.length-1];
-                console.log("code: " + employerCode);
-                return marketInstance.getEmployer(employerCode);
-            }).then(function (employer) {
-                console.log("set html, employer: " + employer);
-                $("#registeredEmployerCodeTextId").text(employerCode);
-                $("#registeredEmployerNameTextId").text(employer[0]);
+                console.log("last code: " + employerCode);
             }).catch(function(err) {
                 console.error("Err while setEmployer");
                 console.log(err.message);
@@ -179,6 +174,9 @@ App = {
             return marketInstance.getEmployer(employerCode);
         }).then(function (employer) {
             console.log("employer: " + employer);
+            $("#retrievedEmployerNameTextId").text(employer[0]);
+            $("#retrievedEmployerJobIdsTextId").text(employer[1]);
+            $("#retrievedEmployerStatusTextId").text(employer[2]);
         }).catch(function(err) {
             console.error("Err while getEmployer");
             console.log(err.message);

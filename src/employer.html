@@ -10,7 +10,7 @@
 
 <body class="container">
 
-<h1>Employer Registration</h1>
+<h1>Register Employer</h1>
 
 <div class="table-responsive">
     <table class="table table-bordered">
@@ -24,27 +24,6 @@
 </div>
 
 <a href="#" id="employerRegistrationButtonId" class="btn btn-primary employerRegistrationButtonClass">Register</a>
-
-<br><br><br>
-
-<h3>Registered Employer</h3>
-
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Address</th>
-            <th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td id="registeredEmployerCodeTextId">address</td>
-            <td id="registeredEmployerNameTextId">name</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
 <br><br><br>
 
@@ -62,6 +41,25 @@
 </div>
 
 <a href="#" id="getEmployerButtonId" class="btn btn-primary">Get</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Job Ids</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="retrievedEmployerNameTextId">name</td>
+            <td id="retrievedEmployerJobIdsTextId">job ids</td>
+            <td id="retrievedEmployerStatusTextId">status</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
