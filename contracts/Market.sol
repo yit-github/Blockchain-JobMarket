@@ -142,6 +142,36 @@ contract Market {
         return allJobIds;
     }
 
+    function findJobs(uint _profileId) view public returns(uint[] jobIds) {
+        uint[] memory matchingJobIds;
+
+        Profile memory profile = profileMap[_profileId];
+        Skill[] memory skills = profile.skills;
+
+        uint jobCount = 0;
+        for(uint s=0; s<skills.length; s++) {
+            Skill skill = skills[s];
+
+            for(uint j=0; j<allJobIds.length; j++) {
+                uint jobId = allJobIds[j];
+                Job memory job = jobMap[jobId];
+
+                Skill[] memory requiredSkills = job.requiredSkills;
+                for(uint m=0; m<requiredSkills.length; m++) {
+                    Skill required = requiredSkills[m];
+
+                    if(skill == required) {
+                        matchingJobIds[jobCount++] = jobId;
+                        break;
+                    }
+
+                }
+
+            }
+        }
+        return matchingJobIds;
+    }
+
 
     function uintToSkill(uint _uint) pure public returns(string skill) {
         if(_uint == uint(Skill.JAVA))
