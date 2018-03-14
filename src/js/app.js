@@ -103,7 +103,7 @@ App = {
             let account = accounts[0];
 
             App.contracts.Market.deployed().then(function(instance) {
-                console.log("setProfile")
+                console.log("setProfile");
                 marketInstance = instance;
                 return marketInstance.setProfile(profileName, skills, {from: account});
             }).then(function(result) {

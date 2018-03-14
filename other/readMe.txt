@@ -1,3 +1,19 @@
+to update node
+http://www.hostingadvice.com/how-to/update-node-js-latest-version/
+
+install truffle
+npm install -g truffle
+
+install ganache-cli
+npm install ganache-cli
+npm install web3@0.20.2
+
+install testrpc
+npm install ethereumjs-testrpc -g
+
+start using testrpc
+------------
+
 ref
 http://truffleframework.com/tutorials/debugging-a-smart-contract
 
@@ -13,29 +29,36 @@ migrate
 
 Available Accounts
 ==================
-(0) 0x0936196b4638cff6b6feff8458d5402d95edaf29
-(1) 0xd68b0b2a70fe125eba7ceb7c75a630eace27e16d
-(2) 0x772cc947f14c8f2f45f03c7aa83241527f65b5ea
-(3) 0xabb338d1d65e71f8fc5d0e93c2c7953af2263378
-(4) 0xd279a4d7671bd02249171beb01d79797789e021c
-(5) 0xe7bca60d856ac2a0a2d0ed2859a368a84bd511d4
-(6) 0xfa0f0f951b72b64994a0ae572adbb34109635402
-(7) 0x47d13854fa07d96de01744eb5d79b732744423e0
-(8) 0x8ccadc04ee75761f1b7f7f047878e180837a681e
-(9) 0x8c27818f78c381b7df25fc11c348908230c79d1d
+(0) 0x12601e99d01ac4ecac589e50876a7ebff917b42f
+(1) 0x33d5e5c9b12a74a7f2ec5d35b9a68015321e92a9
+(2) 0xfa4b26fb075e2016bf9b129b38fb610445207c33
+(3) 0x6969e5f366fe626b67361f84c7658001efb4fff7
+(4) 0xcc687a226a7b8b33dfa3ca0dee9560c1e52d1e14
+(5) 0x17d40c63c7f01745b0c878d37a7c8465762f96e6
+(6) 0xcb09166d6605b0a840ab35fdfd549c52374754f5
+(7) 0x367bc7723ae8a4e2465435b6b4bc63ed078b1d3f
+(8) 0x57e5d9186374702c04be6ef03e23088599c6bb72
+(9) 0x517f8f847cc0cc73b38486aeb70bed055daa869a
 
 Private Keys
 ==================
-(0) 1a854a2565dac7fd5f6202ba77114d0a0eefc85602e6745627161ad002d598eb
-(1) b3f588bf6b2dd21e4a4b7f9b467f6b00fd45f8e17ffe3fdd54a70ea61eac7a51
-(2) f1349854c80260ad4daa36e76f10071dbaa8ce0c577503f3764f14b0e7d9dd28
-(3) 88a5860e77647ad9b4b1716c133f1ccea43a87c023f4951f12d9258e31867c17
-(4) 739e5db6072c9a4b6f3221aaeed313a2c6d76b49f5adc866ec4732ea7b4a004b
-(5) aadd156e93cefd5ae2148a765c1abe82b244becbe7c63cce8ccecc2f201618f0
-(6) 6f5a02b2dfc710b42ec14965b55300e60eb05f316a1075bdb9b3514b68e5b766
-(7) c20cef0d0be0b44b6f6a2a00451a2de618bb6e2e858d456849e8549764231a9b
-(8) c0f9e009047fb944d5e007966666af7e2a5aeb509642e89ee6173d93d05cb7ec
-(9) 886cd0af87051494487186ebe5d1501bd35431661e572c6df9c3ac2e78f36c2f
+(0) 714ec2b8df4065a8f3c973c3b2dc17fdfb3e9e9233becaa3d22ac3054cf518e2
+(1) e90a03bbdf2770da88a89e7e6d977f23a19a0554a6c2e1cf4c330b9ae98ef132
+(2) 45e91a0ae3001c6b71056d15a6962ea784ad42be5637e55597b5d4b357af8452
+(3) e51ef86aff76ceb72ece03f00f72bf26e677078944d2e827abd152c34d3c1dfa
+(4) bf84d0b5620d59a2c35b7083776eb10833dcdebf14e6d6dd85529efac69f8c9e
+(5) e5291d4a51c8fc3147fff000623135f5648b2713b29447f84004a47275821e91
+(6) 6033a9cb961d8e347a9c0e6159d7eaa17c7fc8d6b55e792368ff7e1e5aafe618
+(7) 522f2dc60163dcfdfa48f7d624f502e88f337d5461e2d30efe79c2008f794897
+(8) edb3306356d92b95a2f8333d56785f728009c6f950b4d78c68d08a32108493df
+(9) d154cb981304e39991ca1ce6a54d6d69f7d6c64dd8fa94a0eb786e4a0e0bcbc4
+
+HD Wallet
+==================
+Mnemonic:      cash absent either asthma fold water dad rib gift surge pigeon furnace
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Listening on localhost:8545
 
 
 Market.deployed().then(function(instance) {return instance.getEmployeeCodes.call();})
