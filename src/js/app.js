@@ -28,6 +28,8 @@ App = {
     bindEvents: function () {
         $(document).on('click', '.employeeRegistrationButtonClass', App.setEmployee);
         $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
+        $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
+        $(document).on('click', '#createJobButtonId', App.setJob);
     },
 
     setEmployee: function(event) {
@@ -110,9 +112,97 @@ App = {
                 console.log("getAllProfileIds");
                 return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
-                console.log("Profile ids: " + profileIds);
+                console.log("profileIds: " + profileIds);
             }).catch(function(err) {
                 console.error("Err while setProfile");
+                console.log(err.message);
+            });
+        });
+    },
+
+    setEmployer: function(event) {
+        event.preventDefault();
+
+        let employerName = $("#employerNameTextId").val().trim();
+        console.log("Employer Name: " + employerName);
+
+        let marketInstance;
+
+        web3.eth.getAccounts(function(error, accounts) {
+            if (error) {
+                console.error("Err while getting accounts");
+                console.log(error);
+            }
+
+            let account = accounts[0];
+            let employerCode;
+
+            App.contracts.Market.deployed(
+
+            ).then(function(instance) {
+                console.log("setEmployer");
+                marketInstance = instance;
+                return marketInstance.setEmployer(employerName, {from: account});
+            }).then(function(result) {
+                console.log("getEmployerCodes");
+                return marketInstance.getEmployerCodes.call();
+            }).then(function (employerCodes) {
+                console.log("getEmployer, codes:" + employerCodes);
+                employerCode = employerCodes[employerCodes.length-1];
+                console.log("code: " + employerCode);
+                return marketInstance.getEmployer(employerCode);
+            }).then(function (employer) {
+                console.log("set html, employer: " + employer);
+                $("#registeredEmployerCodeTextId").text(employerCode);
+                $("#registeredEmployerNameTextId").text(employer[0]);
+            }).catch(function(err) {
+                console.error("Err while setEmployer");
+                console.log(err.message);
+            });
+        });
+    },
+
+    setJob: function(event) {
+        event.preventDefault();
+
+        let jobName = $("#jobNameTextId").val().trim();
+        console.log("jobName:" + jobName);
+
+        let skills = [];
+        if($("#checkBoxJavaId").is(':checked') === true) {
+            skills.push(0);
+        }
+        if($("#checkBoxJsId").is(':checked') === true) {
+            skills.push(1);
+        }
+        if($("#checkBoxMySQLId").is(':checked') === true) {
+            skills.push(2);
+        }
+        if($("#checkBoxMongoId").is(':checked') === true) {
+            skills.push(3);
+        }
+
+        let marketInstance;
+
+        web3.eth.getAccounts(function(error, accounts) {
+            if (error) {
+                console.error("Err while getting accounts");
+                console.log(error);
+            }
+
+            let account = accounts[0];
+
+            App.contracts.Market.deployed().then(function(instance) {
+                console.log("setJob");
+                marketInstance = instance;
+                return marketInstance.setJob(jobName, skills, {from: account});
+            }).then(function(result) {
+                console.log("getAllJobIds");
+                return marketInstance.getAllJobIds.call();
+            }).then(function (jobIds) {
+                console.log("jobIds:" + jobIds);
+            }).catch(function(err) {
+                console.error("Err while setJob");
                 console.log(err.message);
             });
         });

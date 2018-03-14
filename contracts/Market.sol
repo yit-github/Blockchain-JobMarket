@@ -18,7 +18,7 @@ contract Market {
     uint[] allProfileIds;
 
     mapping(uint => Job) jobMap;
-    uint[] jobIds;
+    uint[] allJobIds;
 
     struct Employee {
         address code;
@@ -130,7 +130,7 @@ contract Market {
         job.requiredSkills = _requiredSkills;
         job.status = Status.VACANT;
         //appliedEmployeeCodes
-        jobIds.push(_id);
+        allJobIds.push(_id);
         Employer storage employer = employerMap[_employerCode];
         employer.jobIds.push(_id);
     }
@@ -138,16 +138,17 @@ contract Market {
         Job memory job = jobMap[_id];
         return(job.employerCode, job.name, job.requiredSkills, job.appliedEmployeeCodes, job.status);
     }
-    function getJobIds() view public returns(uint[]) {
-        return jobIds;
+    function getAllJobIds() view public returns(uint[] postedJobIds) {
+        return allJobIds;
     }
 
 
-    function uintToSkill(uint _uint) view public returns(string skill) {
+    function uintToSkill(uint _uint) pure public returns(string skill) {
         if(_uint == uint(Skill.JAVA))
             return "JAVA";
         if(_uint == uint(Skill.JS))
             return "JS";
         return "MONGO";
     }
+
 }
