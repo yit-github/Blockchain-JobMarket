@@ -172,27 +172,18 @@ App = {
 
         let marketInstance;
 
-        web3.eth.getAccounts(function(error, accounts) {
-            if (error) {
-                console.error("Err while getting accounts");
-                console.log(error);
-            }
-
-            let account = accounts[0];
-
-            App.contracts.Market.deployed(
-
-            ).then(function (instance) {
-                console.log("getEmployer");
-                marketInstance = instance;
-                return marketInstance.getEmployer(employerCode);
-            }).then(function (employer) {
-                console.log("employer: " + employer);
-            }).catch(function(err) {
-                console.error("Err while getEmployer");
-                console.log(err.message);
-            });
+        App.contracts.Market.deployed(
+        ).then(function (instance) {
+            console.log("getEmployer, instance:", instance);
+            marketInstance = instance;
+            return marketInstance.getEmployer(employerCode);
+        }).then(function (employer) {
+            console.log("employer: " + employer);
+        }).catch(function(err) {
+            console.error("Err while getEmployer");
+            console.log(err.message);
         });
+
     },
 
     setJob: function(event) {
