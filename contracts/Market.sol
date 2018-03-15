@@ -142,6 +142,35 @@ contract Market {
         return allJobIds;
     }
 
+    function findJobsByProfileId(uint _profileId) view public returns(uint[] matchingIds) {
+        uint noOfJobs = jobId -1;
+        Skill[] memory skills = profileMap[_profileId].skills;
+        uint[] memory matchingJobIds = new uint[](skills.length * noOfJobs);
+        uint index = 0;
+
+        for(uint s=0; s<skills.length; s++) {
+            Skill skill = skills[s];
+
+            for(uint j=1; j<=noOfJobs; j++) {
+                Job memory job = jobMap[j];
+
+                Skill[] memory requiredSkills = job.requiredSkills;
+                for(uint m=0; m<requiredSkills.length; m++) {
+                    Skill required = requiredSkills[m];
+
+                    if(skill == required) {
+                        matchingJobIds[index++] = j;
+                        break;
+                    }
+
+                }
+            }
+
+        }
+
+        return matchingJobIds;
+    }
+
     function findJobsBySkill(Skill _skill) view public returns(uint[] matchingIds) {
         uint noOfJobs = jobId -1;
 
@@ -230,7 +259,7 @@ contract Market {
         skills2[1] = Skill.MONGO;
 
         setProfileWithAddress(addressE1, "p1", skills1);
-        //setProfileWithAddress(addressE1, "p2", skills2);
+        setProfileWithAddress(addressE1, "p2", skills2);
 
         setJobWithAddress(addressR1, "j1", skills1);
         setJobWithAddress(addressR1, "j2", skills1);
