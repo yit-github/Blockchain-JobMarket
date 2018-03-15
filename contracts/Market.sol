@@ -142,7 +142,8 @@ contract Market {
         return allJobIds;
     }
 
-    function findJobsByProfileId(uint _profileId) view public returns(uint[] matchingIds) {
+    //has duplicates
+    function findJobsByProfile(uint _profileId) view public returns(uint[] matchingIds) {
         uint noOfJobs = jobId -1;
         Skill[] memory skills = profileMap[_profileId].skills;
         uint[] memory matchingJobIds = new uint[](skills.length * noOfJobs);

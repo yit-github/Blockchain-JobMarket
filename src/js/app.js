@@ -30,7 +30,7 @@ App = {
         $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
         $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
         $(document).on('click', '#createJobButtonId', App.setJob);
-        $(document).on('click', '#findJobsButtonId', App.findJobs);
+        $(document).on('click', '#findJobsByProfileButtonId', App.findJobsByProfile);
         $(document).on('click', '#getEmployerButtonId', App.getEmployer);
         $(document).on('click', '#setInitialDataButtonId', App.setInitialData);
     },
@@ -232,8 +232,8 @@ App = {
         });
     },
 
-    findJobs: function(event) {
-        console.log("findJobs");
+    findJobsByProfile: function(event) {
+        console.log("findJobsByProfile");
         event.preventDefault();
 
         let employeeProfileId = $("#employeeProfileIdTextId").val().trim();
@@ -245,7 +245,7 @@ App = {
         ).then(function (instance) {
             console.log("findJobs, instance:", instance);
             marketInstance = instance;
-            return marketInstance.findJobs(employeeProfileId);
+            return marketInstance.findJobsByProfile(employeeProfileId);
         }).then(function (jobIds) {
             console.log("jobIds: " + jobIds);
         }).catch(function(err) {
