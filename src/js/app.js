@@ -330,6 +330,7 @@ App = {
             return marketInstance.findJobsByProfile(employeeProfileId);
         }).then(function (jobIds) {
             console.log("jobIds: " + jobIds);
+            $("#retrievedJobIds").text(jobIds);
         }).catch(function(err) {
             console.error("Err while findJobs");
             console.log(err.message);
