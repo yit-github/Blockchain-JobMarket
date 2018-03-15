@@ -812,11 +812,11 @@ Employer.getemployer(web3.eth.defaultAccount,(error, result) => {
                   {
                     for (let j=0; j<7; j++){
                       var y=result[j];
-
+                      $("#j1"+j).html(""+y);
                     Employer.getpostJob(y,(error, result) => {
                                   if(!error)
                                       {
-                                          $("#j1"+j).html("0"+result[1]);
+                                          $("#j7"+j).html("0"+result[1]);
                                           $("#j2"+j).html(web3.toAscii(result[2]));
                                           $("#j3"+j).html(web3.toAscii(result[3]));
                                           $("#j4"+j).html(web3.toAscii(result[4]));
@@ -882,7 +882,7 @@ Employer.getemployer(web3.eth.defaultAccount,(error, result) => {
 $("#jeditbutton").click(function() {
 $("#loader").show();
 x="hash";
-Employer.edit_postJob(web3.eth.defaultAccount, $("#erate_e").val(), $("#ejobtitle_e").val(), $("#edescrip_e").val(),"hash",["java","PHP"], (err, res) => {
+Employer.edit_postJob($("#edit_id").val(), $("#erate_e").val(), $("#ejobtitle_e").val(), $("#edescrip_e").val(),"hash",["java","PHP"], (err, res) => {
   if (err)
     {
         $("#loader").hide();
