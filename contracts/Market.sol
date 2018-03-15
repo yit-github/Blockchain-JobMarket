@@ -211,10 +211,19 @@ contract Market {
 
     //test
     function testSetInitialData() public {
+
+        // testrpc
+        address addressE1 = 0x61fe45d1a17fac3a56da8fe26e79fd77955050ae;
+        address addressE2 = 0x313da5e9e6c0c93c9d584e850e6c8ca0d0e64d82;
+        address addressR1 = 0x93fc7d7a117628fb7cbb7c0a5445ba15522f2e18;
+        address addressR2 = 0xe24cd9308298d78267bd1dd0fb47aec25a388679;
+
+        /* remix
         address addressE1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
         address addressE2 = 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db;
         address addressR1 = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
         address addressR2 = 0x583031d1113ad414f02576bd6afabfb302140225;
+        */
 
         setEmployeeWithAddress(addressE1, "e1");
         setEmployerWithAddress(addressR1, "r1");

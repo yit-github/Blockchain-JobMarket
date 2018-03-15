@@ -30,7 +30,9 @@ App = {
         $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
         $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
         $(document).on('click', '#createJobButtonId', App.setJob);
+        $(document).on('click', '#findJobsButtonId', App.findJobs);
         $(document).on('click', '#getEmployerButtonId', App.getEmployer);
+        $(document).on('click', '#setInitialDataButtonId', App.setInitialData);
     },
 
     setEmployee: function(event) {
@@ -225,6 +227,56 @@ App = {
                 console.log("jobIds:" + jobIds);
             }).catch(function(err) {
                 console.error("Err while setJob");
+                console.log(err.message);
+            });
+        });
+    },
+
+    findJobs: function(event) {
+        console.log("findJobs");
+        event.preventDefault();
+
+        let employeeProfileId = $("#employeeProfileIdTextId").val().trim();
+        console.log("employeeProfileId:" + employeeProfileId);
+
+        let marketInstance;
+
+        App.contracts.Market.deployed(
+        ).then(function (instance) {
+            console.log("findJobs, instance:", instance);
+            marketInstance = instance;
+            return marketInstance.findJobs(employeeProfileId);
+        }).then(function (jobIds) {
+            console.log("jobIds: " + jobIds);
+        }).catch(function(err) {
+            console.error("Err while findJobs");
+            console.log(err.message);
+        });
+
+    },
+
+    setInitialData: function(event) {
+        console.log("setInitialData");
+        event.preventDefault();
+
+        let marketInstance;
+
+        web3.eth.getAccounts(function(error, accounts) {
+            if (error) {
+                console.error("Err while getting accounts");
+                console.log(error);
+            }
+
+            let account = accounts[0];
+
+            App.contracts.Market.deployed(
+
+            ).then(function(instance) {
+                console.log("testSetInitialData, instance:" + instance);
+                marketInstance = instance;
+                return marketInstance.testSetInitialData({from: account});
+            }).catch(function(err) {
+                console.error("Err while testSetInitialData");
                 console.log(err.message);
             });
         });

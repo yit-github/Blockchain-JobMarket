@@ -2,4 +2,16 @@
 
 web3.eth.getAccounts(function(err, accounts){console.log(accounts)});
 
-App.contracts.Market.deployed().then(function(instance){instance.setEmployee.call("e1", {from: 0xd136eceebace7bdf820e824dbe56b934b75d4e5c})}).then(function(codes){console.log("c" + codes)})
+let marketInstance;
+
+App.contracts.Market.deployed(
+).then(function (instance) {
+    console.log("findJobs, instance:", instance);
+    marketInstance = instance;
+    return marketInstance.findJobs(0);
+}).then(function (jobIds) {
+    console.log("jobIds: " + jobIds);
+}).catch(function(err) {
+    console.error("Err while findJobs");
+    console.log(err.message);
+});
