@@ -27,6 +27,7 @@ App = {
 
     bindEvents: function () {
         $(document).on('click', '.employeeRegistrationButtonClass', App.setEmployee);
+        $(document).on('click', '#viewEmployeeButtonId', App.getEmployee);
         $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
         $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
         $(document).on('click', '#createJobButtonId', App.setJob);
@@ -75,6 +76,31 @@ App = {
                 console.error("Err while setEmployee");
                 console.log(err.message);
             });
+        });
+    },
+
+    getEmployee: function(event) {
+        console.log("getEmployee");
+        event.preventDefault();
+
+        let employeeCode = $("#employeeCodeTextId").val().trim();
+        console.log("employeeCode:" + employeeCode);
+
+        let marketInstance;
+
+        App.contracts.Market.deployed(
+        ).then(function (instance) {
+            console.log("getEmployee, instance:", instance);
+            marketInstance = instance;
+            return marketInstance.getEmployee(employeeCode);
+        }).then(function (employee) {
+            console.log("employee: " + employee);
+            $("#retrievedEmployeeNameTextId").text(employee[0]);
+            $("#retrievedEmployeeProfileIdsTextId").text(employee[1]);
+            $("#retrievedEmployeeStatusTextId").text(employee[2]);
+        }).catch(function(err) {
+            console.error("Err while getEmployee");
+            console.log(err.message);
         });
     },
 

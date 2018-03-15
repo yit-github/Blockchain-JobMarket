@@ -27,20 +27,35 @@
 
 <br><br><br>
 
-<h3>Registered Employee</h3>
+<h1>View Employee</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Employee Code</td>
+            <td><input type="text" id="employeeCodeTextId" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="#" id="viewEmployeeButtonId" class="btn btn-primary">View</a>
 
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Address</th>
             <th>Name</th>
+            <th>Profile Ids</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td id="registeredEmployeeCodeTextId">address</td>
-            <td id="registeredEmployeeNameTextId">name</td>
+            <td id="retrievedEmployeeNameTextId">name</td>
+            <td id="retrievedEmployeeProfileIdsTextId">profile ids</td>
+            <td id="retrievedEmployeeStatusTextId">status</td>
         </tr>
         </tbody>
     </table>
