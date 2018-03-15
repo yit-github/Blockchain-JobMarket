@@ -30,6 +30,7 @@ App = {
         $(document).on('click', '#viewEmployeeButtonId', App.getEmployee);
         $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
         $(document).on('click', '#viewProfileButtonId', App.getProfile);
+        $(document).on('click', '#findEmployeeProfilesByJobButtonId', App.findEmployeeProfilesByJob);
         $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
         $(document).on('click', '#createJobButtonId', App.setJob);
         $(document).on('click', '#viewJobButtonId', App.getJob);
@@ -336,6 +337,29 @@ App = {
             console.log(err.message);
         });
 
+    },
+
+    findEmployeeProfilesByJob: function(event) {
+        console.log("findEmployeeProfilesByJob");
+        event.preventDefault();
+
+        let jobId = $("#jobIdTextId").val().trim();
+        console.log("jobId:" + jobId);
+
+        let marketInstance;
+
+        App.contracts.Market.deployed(
+        ).then(function (instance) {
+            console.log("findEmployeeProfiles, instance:", instance);
+            marketInstance = instance;
+            return marketInstance.findEmployeeProfilesByJob(jobId);
+        }).then(function (profileIds) {
+            console.log("profileIds: " + profileIds);
+            $("#retrievedProfileIds").text(profileIds);
+        }).catch(function(err) {
+            console.error("Err while findEmployeeProfilesByJob");
+            console.log(err.message);
+        });
     },
 
     setInitialData: function(event) {
