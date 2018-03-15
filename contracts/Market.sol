@@ -142,36 +142,97 @@ contract Market {
         return allJobIds;
     }
 
-    function findJobs(uint _profileId) view public returns(uint[] jobIds) {
+    function findJobs(Skill skill) view public returns(uint[] jobIds) {
         uint[] memory matchingJobIds;
-
-        Profile memory profile = profileMap[_profileId];
-        Skill[] memory skills = profile.skills;
+        uint matchingJobId;
 
         uint jobCount = 0;
-        for(uint s=0; s<skills.length; s++) {
-            Skill skill = skills[s];
+        for(uint j=0; j<allJobIds.length; j++) {
+            uint thisJobId = allJobIds[j];
+            Job memory job = jobMap[thisJobId];
 
-            for(uint j=0; j<allJobIds.length; j++) {
-                uint jobId = allJobIds[j];
-                Job memory job = jobMap[jobId];
+            Skill[] memory requiredSkills = job.requiredSkills;
+            for(uint m=0; m<requiredSkills.length; m++) {
+                Skill required = requiredSkills[m];
 
-                Skill[] memory requiredSkills = job.requiredSkills;
-                for(uint m=0; m<requiredSkills.length; m++) {
-                    Skill required = requiredSkills[m];
+                if(skill == required) {
 
-                    if(skill == required) {
-                        matchingJobIds[jobCount++] = jobId;
-                        break;
-                    }
-
+                    matchingJobId = thisJobId;
+                    matchingJobIds[jobCount++] = thisJobId;
+                    break;
                 }
 
             }
+
         }
+
+        //matchingJobIds[0] = matchingJobId;
+        //return matchingJobIds;
+        //uint storage x = 11;
         return matchingJobIds;
     }
 
+    // function findJobs(uint _profileId) view public returns(uint jobIds) {
+    //     uint[] memory matchingJobIds;
+    //     //uint matchingJobId;
+
+    //     Profile memory profile = profileMap[_profileId];
+    //     Skill[] memory skills = profile.skills;
+
+    //     uint jobCount = 0;
+    //     for(uint s=0; s<skills.length; s++) {
+    //         Skill skill = skills[s];
+
+    //         for(uint j=0; j<allJobIds.length; j++) {
+    //             uint thisJobId = allJobIds[j];
+    //             Job memory job = jobMap[thisJobId];
+
+    //             Skill[] memory requiredSkills = job.requiredSkills;
+    //             for(uint m=0; m<requiredSkills.length; m++) {
+    //                 Skill required = requiredSkills[m];
+
+    //                 if(skill == required) {
+
+    //                     matchingJobId = thisJobId;
+    //                     //matchingJobIds[jobCount++] = thisJobId;
+    //                     //break;
+    //                 }
+
+    //             }
+
+    //         }
+    //     }
+    //     //matchingJobIds[0] = matchingJobId;
+    //     //return matchingJobIds;
+    //     //uint storage x = 11;
+    //     return 11;
+    // }
+
+
+    //test
+    function testSetInitialData() public {
+        address addressE1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
+        address addressE2 = 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db;
+        address addressR1 = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
+        address addressR2 = 0x583031d1113ad414f02576bd6afabfb302140225;
+
+        setEmployeeWithAddress(addressE1, "e1");
+        setEmployerWithAddress(addressR1, "r1");
+
+        Skill[] memory skills1 = new Skill[](2);
+        skills1[0] = Skill.JAVA;
+        skills1[1] = Skill.MYSQL;
+
+        Skill[] memory skills2 = new Skill[](2);
+        skills2[0] = Skill.JS;
+        skills2[1] = Skill.MONGO;
+
+        setProfileWithAddress(addressE1, "p1", skills1);
+        setProfileWithAddress(addressE1, "p2", skills2);
+
+        setJobWithAddress(addressR1, "j1", skills1);
+        setJobWithAddress(addressR1, "j2", skills1);
+    }
 
     function uintToSkill(uint _uint) pure public returns(string skill) {
         if(_uint == uint(Skill.JAVA))
