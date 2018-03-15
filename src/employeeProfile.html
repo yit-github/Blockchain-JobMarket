@@ -42,6 +42,44 @@
 
 <a href="#" id="profileRegistrationButtonId" class="btn btn-primary profileRegistrationButtonClass">Create</a>
 
+<br><br><br>
+
+<h1>View Profile</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Profile Id</td>
+            <td><input type="text" id="profileIdTextId"/></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="#" id="viewProfileButtonId" class="btn btn-primary">View</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Employee Code</th>
+            <th>Profile Name</th>
+            <th>Skills</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="retrievedProfileEmployeeCodeTextId">code</td>
+            <td id="retrievedProfileNameTextId">name</td>
+            <td id="retrievedProfileSkillsTextId">skills</td>
+            <td id="retrievedProfileStatusTextId">status</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/web3.min.js"></script>

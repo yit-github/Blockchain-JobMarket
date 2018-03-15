@@ -29,6 +29,7 @@ App = {
         $(document).on('click', '.employeeRegistrationButtonClass', App.setEmployee);
         $(document).on('click', '#viewEmployeeButtonId', App.getEmployee);
         $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
+        $(document).on('click', '#viewProfileButtonId', App.getProfile);
         $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
         $(document).on('click', '#createJobButtonId', App.setJob);
         $(document).on('click', '#viewJobButtonId', App.getJob);
@@ -147,6 +148,32 @@ App = {
                 console.error("Err while setProfile");
                 console.log(err.message);
             });
+        });
+    },
+
+    getProfile: function(event) {
+        console.log("getProfile");
+        event.preventDefault();
+
+        let profileId = $("#profileIdTextId").val().trim();
+        console.log("profileId:" + profileId);
+
+        let marketInstance;
+
+        App.contracts.Market.deployed(
+        ).then(function (instance) {
+            console.log("getProfile, instance:", instance);
+            marketInstance = instance;
+            return marketInstance.getProfile(profileId);
+        }).then(function (profile) {
+            console.log("profile: " + profile);
+            $("#retrievedProfileEmployeeCodeTextId").text(profile[0]);
+            $("#retrievedProfileNameTextId").text(profile[1]);
+            $("#retrievedProfileSkillsTextId").text(profile[2]);
+            $("#retrievedProfileStatusTextId").text(profile[3]);
+        }).catch(function(err) {
+            console.error("Err while getProfile");
+            console.log(err.message);
         });
     },
 
