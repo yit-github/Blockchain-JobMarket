@@ -142,33 +142,26 @@ contract Market {
         return allJobIds;
     }
 
-    function findJobs(Skill skill) view public returns(uint[] jobIds) {
-        uint[] memory matchingJobIds;
-        uint matchingJobId;
+    function findJobsBySkill(Skill _skill) view public returns(uint[] matchingIds) {
+        uint noOfJobs = jobId -1;
 
-        uint jobCount = 0;
-        for(uint j=0; j<allJobIds.length; j++) {
-            uint thisJobId = allJobIds[j];
-            Job memory job = jobMap[thisJobId];
+        uint[] memory matchingJobIds = new uint[](noOfJobs);
+
+        uint index = 0;
+        for(uint j=1; j<=noOfJobs; j++) {
+            Job memory job = jobMap[j];
 
             Skill[] memory requiredSkills = job.requiredSkills;
             for(uint m=0; m<requiredSkills.length; m++) {
                 Skill required = requiredSkills[m];
 
-                if(skill == required) {
-
-                    matchingJobId = thisJobId;
-                    matchingJobIds[jobCount++] = thisJobId;
+                if(_skill == required) {
+                    matchingJobIds[index++] = j;
                     break;
                 }
 
             }
-
         }
-
-        //matchingJobIds[0] = matchingJobId;
-        //return matchingJobIds;
-        //uint storage x = 11;
         return matchingJobIds;
     }
 
@@ -213,10 +206,10 @@ contract Market {
     function testSetInitialData() public {
 
         // testrpc
-        address addressE1 = 0x61fe45d1a17fac3a56da8fe26e79fd77955050ae;
-        address addressE2 = 0x313da5e9e6c0c93c9d584e850e6c8ca0d0e64d82;
-        address addressR1 = 0x93fc7d7a117628fb7cbb7c0a5445ba15522f2e18;
-        address addressR2 = 0xe24cd9308298d78267bd1dd0fb47aec25a388679;
+        address addressE1 = 0x5f0e611dbcb5a4a1dc8ec4c7e1a02a8eb60182f3;
+        address addressE2 = 0xcea3b456c72dae97a256199c24dab28fb4863ed1;
+        address addressR1 = 0x38921ab62710300785722cfc538b3cabefb12845;
+        address addressR2 = 0xda93fc20797a06d7273335788a4914a89d3bedaf;
 
         /* remix
         address addressE1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
@@ -225,8 +218,8 @@ contract Market {
         address addressR2 = 0x583031d1113ad414f02576bd6afabfb302140225;
         */
 
-        setEmployeeWithAddress(addressE1, "e1");
-        setEmployerWithAddress(addressR1, "r1");
+        //setEmployeeWithAddress(addressE1, "e1");
+        //setEmployerWithAddress(addressR1, "r1");
 
         Skill[] memory skills1 = new Skill[](2);
         skills1[0] = Skill.JAVA;
@@ -237,7 +230,7 @@ contract Market {
         skills2[1] = Skill.MONGO;
 
         setProfileWithAddress(addressE1, "p1", skills1);
-        setProfileWithAddress(addressE1, "p2", skills2);
+        //setProfileWithAddress(addressE1, "p2", skills2);
 
         setJobWithAddress(addressR1, "j1", skills1);
         setJobWithAddress(addressR1, "j2", skills1);
