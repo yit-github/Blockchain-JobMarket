@@ -197,12 +197,36 @@ Employees.getEmployee(web3.eth.defaultAccount,(error, result) => {
 var EmployerContract = web3.eth.contract([
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "getprofiles",
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getApplications",
 		"outputs": [
 			{
 				"name": "",
 				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "employerList",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -230,17 +254,12 @@ var EmployerContract = web3.eth.contract([
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "employerList",
+		"inputs": [],
+		"name": "getprofiles",
 		"outputs": [
 			{
 				"name": "",
-				"type": "address"
+				"type": "address[]"
 			}
 		],
 		"payable": false,
@@ -298,237 +317,6 @@ var EmployerContract = web3.eth.contract([
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"name": "_hourlyRate",
-				"type": "uint256"
-			},
-			{
-				"name": "_descrip",
-				"type": "bytes16"
-			},
-			{
-				"name": "_skill",
-				"type": "bytes32[]"
-			},
-			{
-				"name": "_hash",
-				"type": "bytes16"
-			}
-		],
-		"name": "edit_profile",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "i",
-				"type": "uint256"
-			},
-			{
-				"name": "_employeeAddress",
-				"type": "address"
-			},
-			{
-				"name": "list",
-				"type": "address[]"
-			}
-		],
-		"name": "ApplyJobs",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getemployers",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "uint256"
-			},
-			{
-				"name": "i",
-				"type": "uint256"
-			},
-			{
-				"name": "_list",
-				"type": "address[]"
-			}
-		],
-		"name": "AcceptJobs",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "getJobId",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"name": "_usertype",
-				"type": "uint256"
-			},
-			{
-				"name": "_fName",
-				"type": "bytes16"
-			},
-			{
-				"name": "_lName",
-				"type": "bytes16"
-			},
-			{
-				"name": "_email",
-				"type": "bytes16"
-			},
-			{
-				"name": "_company",
-				"type": "bytes16"
-			},
-			{
-				"name": "_country",
-				"type": "bytes16"
-			},
-			{
-				"name": "_add",
-				"type": "bytes16"
-			}
-		],
-		"name": "setEmployer",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"name": "_hourlyRate",
-				"type": "uint256"
-			},
-			{
-				"name": "_descrip",
-				"type": "bytes16"
-			},
-			{
-				"name": "_skill",
-				"type": "bytes32[]"
-			},
-			{
-				"name": "_hash",
-				"type": "bytes16"
-			}
-		],
-		"name": "setprofile",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getpostJobs",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "getApplications",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "getAcepptedFreelancers",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": true,
 		"inputs": [
 			{
@@ -557,6 +345,24 @@ var EmployerContract = web3.eth.contract([
 			{
 				"name": "",
 				"type": "bytes16"
+			},
+			{
+				"name": "",
+				"type": "bytes32[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getemployers",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
 			}
 		],
 		"payable": false,
@@ -607,6 +413,137 @@ var EmployerContract = web3.eth.contract([
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getJobId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getAcepptedFreelancers",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getpostJobs",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "freelancerList",
+				"type": "address[]"
+			}
+		],
+		"name": "AcceptFreelancers",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "employer_address",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "hourlyRate",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "JobTitle",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "Description",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "hashj",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "skill",
+				"type": "bytes32[]"
+			}
+		],
+		"name": "PostJob",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"name": "_hourlyRate",
+				"type": "uint256"
+			},
+			{
+				"name": "_descrip",
+				"type": "bytes16"
+			},
+			{
+				"name": "_skill",
+				"type": "bytes32[]"
+			},
+			{
+				"name": "_hash",
+				"type": "bytes16"
+			}
+		],
+		"name": "setprofile",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -639,6 +576,89 @@ var EmployerContract = web3.eth.contract([
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"name": "i",
+				"type": "uint256"
+			},
+			{
+				"name": "_list",
+				"type": "address[]"
+			}
+		],
+		"name": "AcceptJobs",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "applyList",
+				"type": "address[]"
+			}
+		],
+		"name": "ApplyJob",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "i",
+				"type": "uint256"
+			},
+			{
+				"name": "_employeeAddress",
+				"type": "address"
+			},
+			{
+				"name": "list",
+				"type": "address[]"
+			}
+		],
+		"name": "ApplyJobs",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "hourlyRate",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "descrip",
+				"type": "bytes16"
+			},
+			{
+				"indexed": false,
+				"name": "skills",
+				"type": "bytes32[]"
+			},
+			{
+				"indexed": false,
+				"name": "hashp",
+				"type": "bytes16"
+			}
+		],
+		"name": "set_profile",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -683,96 +703,118 @@ var EmployerContract = web3.eth.contract([
 		"type": "event"
 	},
 	{
-		"anonymous": false,
+		"constant": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "employer_address",
+				"name": "_address",
 				"type": "address"
 			},
 			{
-				"indexed": false,
-				"name": "hourlyRate",
+				"name": "_id",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
-				"name": "JobTitle",
+				"name": "_hourlyRate",
+				"type": "uint256"
+			},
+			{
+				"name": "_JobTitle",
 				"type": "bytes16"
 			},
 			{
-				"indexed": false,
-				"name": "Description",
+				"name": "_Description",
 				"type": "bytes16"
 			},
 			{
-				"indexed": false,
 				"name": "hashj",
 				"type": "bytes16"
 			},
 			{
-				"indexed": false,
-				"name": "skill",
+				"name": "_skill",
 				"type": "bytes32[]"
 			}
 		],
-		"name": "PostJob",
-		"type": "event"
+		"name": "edit_postJob",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
-		"anonymous": false,
+		"constant": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"name": "applyList",
-				"type": "address[]"
-			}
-		],
-		"name": "ApplyJob",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
+				"name": "_address",
+				"type": "address"
+			},
 			{
-				"indexed": false,
-				"name": "freelancerList",
-				"type": "address[]"
-			}
-		],
-		"name": "AcceptFreelancers",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "hourlyRate",
+				"name": "_hourlyRate",
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
-				"name": "descrip",
+				"name": "_descrip",
 				"type": "bytes16"
 			},
 			{
-				"indexed": false,
-				"name": "skills",
+				"name": "_skill",
 				"type": "bytes32[]"
 			},
 			{
-				"indexed": false,
-				"name": "hashp",
+				"name": "_hash",
 				"type": "bytes16"
 			}
 		],
-		"name": "set_profile",
-		"type": "event"
+		"name": "edit_profile",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"name": "_usertype",
+				"type": "uint256"
+			},
+			{
+				"name": "_fName",
+				"type": "bytes16"
+			},
+			{
+				"name": "_lName",
+				"type": "bytes16"
+			},
+			{
+				"name": "_email",
+				"type": "bytes16"
+			},
+			{
+				"name": "_company",
+				"type": "bytes16"
+			},
+			{
+				"name": "_country",
+				"type": "bytes16"
+			},
+			{
+				"name": "_add",
+				"type": "bytes16"
+			}
+		],
+		"name": "setEmployer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ]
 );
-var Employer = EmployerContract.at('0xa94b60110929dc588bdeb1852dcb6cdc1cad5274');
+var Employer = EmployerContract.at('0x3f39ef29412214f5ebfbd98f83d9eb6f81355e68');
 var EmployerEvent = Employer.employerReg({},'latest');
 
 $("#button1").click(function() {
@@ -838,12 +880,13 @@ Employer.getemployer(web3.eth.defaultAccount,(error, result) => {
                   {
           for (let i=0; i<7; i++){
               var z=result[i];
+              $("#application"+i+"5").html(""+z);
           Employer.getApplications(z,(error, result) => {
                       if(!error)
                           {
                           for (let j=0; j<7; j++){
                             var x=result[j];
-                        Employer.getprofile(x,(error, result) => {
+                          Employer.getprofile(x,(error, result) => {
                                       if(!error)
                                           {
                                              $("#application"+j+"1").html("0"+result[0]);
@@ -882,7 +925,7 @@ Employer.getemployer(web3.eth.defaultAccount,(error, result) => {
 $("#jeditbutton").click(function() {
 $("#loader").show();
 x="hash";
-Employer.edit_postJob($("#edit_id").val(), $("#erate_e").val(), $("#ejobtitle_e").val(), $("#edescrip_e").val(),"hash",["java","PHP"], (err, res) => {
+Employer.edit_postJob(web3.eth.defaultAccount,$("#edit_id").val(), $("#erate_e").val(), $("#ejobtitle_e").val(), $("#edescrip_e").val(),"hash",["java","PHP"], (err, res) => {
   if (err)
     {
         $("#loader").hide();

@@ -124,6 +124,24 @@ contract Employers is Owned {
     }
 
 
+   function edit_postJob(address _address,uint _id, uint256 _hourlyRate, bytes16 _JobTitle, bytes16 _Description,bytes16 hashj, bytes32[] _skill) onlyOwner public {
+
+        var postJob = job[_id];
+
+        postJob.employer_address=_address;
+        postJob.hourlyRate = _hourlyRate;
+        postJob.JobTitle = _JobTitle;
+        postJob.Description = _Description;
+        postJob.hashj = hashj;
+        for(uint i = 0; i <_skill.length; i++)
+           {
+               postJob.skill.push(_skill[i]);
+           }
+
+        PostJob(_address,_hourlyRate,_JobTitle, _Description,hashj,_skill);
+    }
+
+
     function getpostJobs() view public returns(uint[]) {
         return JobList;
     }
