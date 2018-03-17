@@ -1,3 +1,11 @@
+const IPFS = require('./ipfs');
+
+$(function() {
+    $(window).load(function() {
+        App.init();
+    });
+});
+
 App = {
     web3Provider: null,
     contracts: {},
@@ -391,8 +399,3 @@ App = {
 
 };
 
-$(function() {
-    $(window).load(function() {
-        App.init();
-    });
-});
