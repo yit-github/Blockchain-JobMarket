@@ -7,6 +7,9 @@
 // const ipfs = new ipfsApi('localhost', '5001', {protocol:'http'});
 // export default ipfs;
 
+// const ipfsAPI = require('ipfs-api');
+// const iipfs = IpfsApi('/ip4/127.0.0.1/tcp/5001');
+
 $(function() {
     $(window).load(function() {
         App.init();
@@ -51,6 +54,7 @@ App = {
         $(document).on('click', '#viewJobButtonId', App.getJob);
         $(document).on('click', '#findJobsByProfileButtonId', App.findJobsByProfile);
         $(document).on('click', '#getEmployerButtonId', App.getEmployer);
+        // $(document).on('click', '#uploadButtonId', App.upload);
         $(document).on('click', '#setInitialDataButtonId', App.setInitialData);
     },
 
@@ -375,6 +379,29 @@ App = {
             console.error("Err while findEmployeeProfilesByJob");
             console.log(err.message);
         });
+    },
+
+    upload: function () {
+        console.log("upload");
+
+        const reader = new FileReader();
+        reader.onloadend = function () {
+            const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
+            const buf = buffer.Buffer(reader.result) // Convert data into buffer
+            ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                let url = `https://ipfs.io/ipfs/${result[0].hash}`
+                console.log(`Url --> ${url}`)
+                document.getElementById("url").innerHTML = url
+                document.getElementById("url").href = url
+                document.getElementById("output").src = url
+            })
+        }
+        const photo = document.getElementById("photo");
+        reader.readAsArrayBuffer(photo.files[0]); // Read Provided File
     },
 
     setInitialData: function(event) {
