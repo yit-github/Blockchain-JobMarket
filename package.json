@@ -1,19 +1,23 @@
 {
-  "name": "pet-shop",
+  "name": "blockchain-jobmarket",
   "version": "1.0.0",
   "description": "",
-  "main": "truffle.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "truffle-config.js",
   "scripts": {
     "dev": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yit-github/Blockchain-JobMarket.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yit-github/Blockchain-JobMarket/issues"
+  },
+  "homepage": "https://github.com/yit-github/Blockchain-JobMarket#readme",
   "devDependencies": {
-    "ipfs-api": "^18.2.0",
     "lite-server": "^2.3.0"
   }
 }
