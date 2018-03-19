@@ -1,6 +1,18 @@
 $(function() {
     $(window).load(function() {
         App.init();
+
+        $("#registerEmployeeButtonId").click(App.setEmployee);
+        $("#viewEmployeeButtonId").click(App.getEmployee);
+        $("#registerProfileButtonId").click(App.setProfile);
+        $("#viewProfileButtonId").click(App.getProfile);
+        $("#registerEmployerButtonId").click(App.setEmployer);
+        $("#viewEmployerButtonId").click(App.getEmployer);
+        $("#createJobButtonId").click(App.setJob);
+        $("#viewJobButtonId").click(App.getJob);
+        $("#findEmployeeProfilesByJobButtonId").click(App.findEmployeeProfilesByJob);
+        $("#findJobsByProfileButtonId").click(App.findJobsByProfile);
+        $("#setInitialDataButtonId").click(App.setInitialData);
     });
 });
 
@@ -28,22 +40,6 @@ App = {
             App.contracts.Market = TruffleContract(MarketArtifact);
             App.contracts.Market.setProvider(App.web3Provider);
         });
-        return App.bindEvents();
-    },
-
-    bindEvents: function () {
-        $(document).on('click', '.employeeRegistrationButtonClass', App.setEmployee);
-        $(document).on('click', '#viewEmployeeButtonId', App.getEmployee);
-        $(document).on('click', '.profileRegistrationButtonClass', App.setProfile);
-        $(document).on('click', '#viewProfileButtonId', App.getProfile);
-        $(document).on('click', '#findEmployeeProfilesByJobButtonId', App.findEmployeeProfilesByJob);
-        $(document).on('click', '.employerRegistrationButtonClass', App.setEmployer);
-        $(document).on('click', '#createJobButtonId', App.setJob);
-        $(document).on('click', '#viewJobButtonId', App.getJob);
-        $(document).on('click', '#findJobsByProfileButtonId', App.findJobsByProfile);
-        $(document).on('click', '#getEmployerButtonId', App.getEmployer);
-        // $(document).on('click', '#uploadButtonId', App.upload);
-        $(document).on('click', '#setInitialDataButtonId', App.setInitialData);
     },
 
     setEmployee: function(event) {
