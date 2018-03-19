@@ -15,9 +15,5 @@
   "devDependencies": {
     "ipfs-api": "^18.2.0",
     "lite-server": "^2.3.0"
-  },
-  "dependencies": {
-    "browserify": "^16.1.1",
-    "truffle": "^4.1.3"
   }
 }
