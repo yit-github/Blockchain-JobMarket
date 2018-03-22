@@ -66,6 +66,7 @@
             <th>Employer code</th>
             <th>Name</th>
             <th>Required skills</th>
+            <th>Applied employees</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -74,6 +75,7 @@
             <td id="retrievedJobEmployerCodeTextId">Name</td>
             <td id="retrievedJobNameTextId">job name</td>
             <td id="retrievedJobRequiredSkillsTextId">required skills</td>
+            <td id="retrievedJobAppliedEmployeesTextId">applied employees</td>
             <td id="retrievedJobStatusTextId">status</td>
         </tr>
         </tbody>
@@ -84,18 +86,19 @@
 
 <h1>Find Jobs</h1>
 
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <tbody>
-        <tr>
-            <td>Employee Profile Id</td>
-            <td><input type="text" id="employeeProfileIdTextId" /></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<a href="#" id="findJobsByProfileButtonId" class="btn btn-primary">Find Jobs by profile</a>
-<br><br>
+<!--<div class="table-responsive">-->
+    <!--<table class="table table-bordered">-->
+        <!--<tbody>-->
+        <!--<tr>-->
+            <!--<td>Employee Profile Id</td>-->
+            <!--<td><input type="text" id="employeeProfileIdTextId" /></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+<!--<a href="#" id="findJobsByProfileButtonId" class="btn btn-primary">Find Jobs by profile</a>-->
+<!--<br>-->
+<br>
 
 <a href="#" id="findJobsByEmployeeButtonId" class="btn btn-primary">Find Jobs By Employee</a>
 
@@ -113,6 +116,23 @@
         </tbody>
     </table>
 </div>
+
+<br>
+
+<h1>Apply Job</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Job Id</td>
+            <td><input type="text" id="appliedJobIdTextId" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="#" id="applyJobButtonId" class="btn btn-primary">apply</a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

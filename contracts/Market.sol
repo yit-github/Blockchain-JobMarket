@@ -140,6 +140,10 @@ contract Market {
         Employer storage employer = employerMap[_employerCode];
         employer.jobIds.push(_id);
     }
+    function updateJobAppliedEmployees(uint _jobId) public {
+        Job storage job = jobMap[_jobId];
+        job.appliedEmployeeCodes.push(msg.sender);
+    }
     function getJob(uint _id) view public returns(address employerCode, string name, Skill[] requiredSkills, address[] appliedEmployeeCodes, Status status) {
         Job memory job = jobMap[_id];
         return(job.employerCode, job.name, job.requiredSkills, job.appliedEmployeeCodes, job.status);

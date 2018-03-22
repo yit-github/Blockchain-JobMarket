@@ -13,6 +13,7 @@ $(function() {
         $("#findEmployeeProfilesByJobButtonId").click(App.findEmployeeProfilesByJob);
         $("#findJobsByProfileButtonId").click(App.findJobsByProfile);
         $("#findJobsByEmployeeButtonId").click(App.findJobsByEmployee);
+        $("#applyJobButtonId").click(App.updateJobAppliedEmployees);
         $("#setInitialDataButtonId").click(App.setInitialData);
     });
 });
@@ -389,27 +390,31 @@ App = {
         });
     },
 
-    upload: function () {
-        console.log("upload");
+    updateJobAppliedEmployees: function(event) {
+        event.preventDefault();
 
-        const reader = new FileReader();
-        reader.onloadend = function () {
-            const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
-            const buf = buffer.Buffer(reader.result) // Convert data into buffer
-            ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
-                if (err) {
-                    console.error(err)
-                    return
-                }
-                let url = `https://ipfs.io/ipfs/${result[0].hash}`
-                console.log(`Url --> ${url}`)
-                document.getElementById("url").innerHTML = url
-                document.getElementById("url").href = url
-                document.getElementById("output").src = url
-            })
-        }
-        const photo = document.getElementById("photo");
-        reader.readAsArrayBuffer(photo.files[0]); // Read Provided File
+        let jobId = $("#appliedJobIdTextId").val().trim();
+        console.log("jobId:" + jobId);
+
+        let marketInstance;
+
+        web3.eth.getAccounts(function(error, accounts) {
+            if (error) {
+                console.error("Err while getting accounts");
+                console.log(error);
+            }
+
+            let account = accounts[0];
+
+            App.contracts.Market.deployed().then(function(instance) {
+                console.log("updateJobAppliedEmployees");
+                marketInstance = instance;
+                return marketInstance.updateJobAppliedEmployees(jobId, {from: account});
+            }).catch(function(err) {
+                console.error("Err while updateJobAppliedEmployees");
+                console.log(err.message);
+            });
+        });
     },
 
     setInitialData: function(event) {
