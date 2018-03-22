@@ -12,6 +12,7 @@ $(function() {
         $("#viewJobButtonId").click(App.getJob);
         $("#findEmployeeProfilesByJobButtonId").click(App.findEmployeeProfilesByJob);
         $("#findJobsByProfileButtonId").click(App.findJobsByProfile);
+        $("#findJobsByEmployeeButtonId").click(App.findJobsByEmployee);
         $("#setInitialDataButtonId").click(App.setInitialData);
     });
 });
@@ -343,6 +344,26 @@ App = {
             console.log(err.message);
         });
 
+    },
+
+    findJobsByEmployee: function(event) {
+        console.log("findJobsByEmployee");
+        event.preventDefault();
+
+        let marketInstance;
+
+        App.contracts.Market.deployed(
+        ).then(function (instance) {
+            console.log("findJobsByEmployee, instance:", instance);
+            marketInstance = instance;
+            return marketInstance.findJobsByEmployee();
+        }).then(function (jobIds) {
+            console.log("jobIds: " + jobIds);
+            $("#retrievedJobIds").text(jobIds);
+        }).catch(function(err) {
+            console.error("Err while findJobsByEmployee");
+            console.log(err.message);
+        });
     },
 
     findEmployeeProfilesByJob: function(event) {
