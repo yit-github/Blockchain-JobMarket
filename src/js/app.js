@@ -115,6 +115,9 @@ App = {
         let profileName = $("#profileNameTextId").val().trim();
         console.log("Profile Name: " + profileName);
 
+        let cvHashId = $("#cvHashId").val().trim();
+        console.log("cvHashId: " + cvHashId);
+
         let skills = [];
         if($("#checkBoxJavaId").is(':checked') === true) {
             skills.push(0);
