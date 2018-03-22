@@ -314,7 +314,7 @@ App = {
             $("#retrievedJobEmployerCodeTextId").text(job[0]);
             $("#retrievedJobNameTextId").text(job[1]);
             $("#retrievedJobRequiredSkillsTextId").text(job[2]);
-            //appliedEmployeeCodes
+            $("#retrievedJobAppliedEmployeesTextId").text(job[3]);
             $("#retrievedJobStatusTextId").text(job[4]);
         }).catch(function(err) {
             console.error("Err while getJob");

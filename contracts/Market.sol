@@ -144,7 +144,7 @@ contract Market {
         Job storage job = jobMap[_jobId];
         job.appliedEmployeeCodes.push(msg.sender);
     }
-    function getJob(uint _id) view public returns(address employerCode, string name, Skill[] requiredSkills, address[] appliedEmployeeCodes, Status status) {
+    function getJob(uint _id) view public returns(address, string, Skill[], address[], Status) {
         Job memory job = jobMap[_id];
         return(job.employerCode, job.name, job.requiredSkills, job.appliedEmployeeCodes, job.status);
     }
