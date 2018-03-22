@@ -72,11 +72,6 @@ App = {
                 console.log("getEmployee, codes:" + employeeCodes);
                 employeeCode = employeeCodes[employeeCodes.length-1];
                 console.log("code: " + employeeCode);
-                return marketInstance.getEmployee(employeeCode);
-            }).then(function (employee) {
-                console.log("set html, employee: " + employee);
-                $("#registeredEmployeeCodeTextId").text(employeeCode);
-                $("#registeredEmployeeNameTextId").text(employee[0]);
             }).catch(function(err) {
                 console.error("Err while setEmployee");
                 console.log(err.message);
@@ -115,8 +110,8 @@ App = {
         let profileName = $("#profileNameTextId").val().trim();
         console.log("Profile Name: " + profileName);
 
-        let cvHashId = $("#cvHashId").val().trim();
-        console.log("cvHashId: " + cvHashId);
+        let cvHash = $("#cvHashId").text().trim();
+        console.log("cvHash: " + cvHash);
 
         let skills = [];
         if($("#checkBoxJavaId").is(':checked') === true) {
@@ -145,7 +140,7 @@ App = {
             App.contracts.Market.deployed().then(function(instance) {
                 console.log("setProfile");
                 marketInstance = instance;
-                return marketInstance.setProfile(profileName, skills, {from: account});
+                return marketInstance.setProfile(profileName, skills, cvHash, {from: account});
             }).then(function(result) {
                 console.log("getAllProfileIds");
                 return marketInstance.getAllProfileIds.call();
@@ -177,7 +172,8 @@ App = {
             $("#retrievedProfileEmployeeCodeTextId").text(profile[0]);
             $("#retrievedProfileNameTextId").text(profile[1]);
             $("#retrievedProfileSkillsTextId").text(profile[2]);
-            $("#retrievedProfileStatusTextId").text(profile[3]);
+            $("#retrievedProfileCvHashTextId").text(profile[3]);
+            $("#retrievedProfileStatusTextId").text(profile[4]);
         }).catch(function(err) {
             console.error("Err while getProfile");
             console.log(err.message);

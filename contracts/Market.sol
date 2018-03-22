@@ -38,6 +38,7 @@ contract Market {
         uint id;
         address employeeCode;
         string name;
+        string cvHash;
         Skill[] skills;
         Status status;
     }
@@ -92,11 +93,11 @@ contract Market {
     }
 
 
-    function setProfile(string _name, Skill[] _skills) public {
-        address _employeeCode = msg.sender;
-        setProfileWithAddress(_employeeCode, _name, _skills);
+    function setProfile(string _name, Skill[] _skills, string _cvHash) public {
+            address _employeeCode = msg.sender;
+            setProfileWithAddress(_employeeCode, _name, _skills, _cvHash);
     }
-    function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills) public {
+    function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills, string _cvHash) public {
         //throw if employee not found
         uint _id = profileId++;
         Profile storage profile = profileMap[_id];
@@ -104,14 +105,15 @@ contract Market {
         profile.employeeCode = _employeeCode;
         profile.name = _name;
         profile.skills = _skills;
+        profile.cvHash = _cvHash;
         profile.status = Status.ACTIVE;
         allProfileIds.push(_id);
         Employee storage employee = employeeMap[_employeeCode];
         employee.profileIds.push(_id);
     }
-    function getProfile(uint _id) view public returns(address employeeCode, string name, Skill[] skills, Status status) {
+    function getProfile(uint _id) view public returns(address, string, Skill[], string, Status) {
         Profile memory profile = profileMap[_id];
-        return(profile.employeeCode, profile.name, profile.skills, profile.status);
+        return(profile.employeeCode, profile.name, profile.skills, profile.cvHash, profile.status);
     }
     function getAllProfileIds() view public returns(uint[] ids) {
         return allProfileIds;
@@ -285,8 +287,8 @@ contract Market {
         skills2[0] = Skill.JS;
         skills2[1] = Skill.MONGO;
 
-        setProfileWithAddress(addressE1, "p1", skills1);
-        setProfileWithAddress(addressE1, "p2", skills2);
+        //setProfileWithAddress(addressE1, "p1", skills1);
+        //setProfileWithAddress(addressE1, "p2", skills2);
 
         setJobWithAddress(addressR1, "j1", skills1);
         setJobWithAddress(addressR1, "j2", skills1);
