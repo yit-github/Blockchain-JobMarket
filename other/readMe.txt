@@ -28,6 +28,8 @@ truffle develop
 >
 migrate
 
+truffle compile && truffle migrate --reset
+
 
 Available Accounts
 ==================
