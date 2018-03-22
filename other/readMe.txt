@@ -149,3 +149,7 @@ ipfs
 https://github.com/ipfs/js-ipfs-api
 
 
+ipfs daemon
+ipfs add
+
+
