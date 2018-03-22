@@ -24,6 +24,7 @@ contract Market {
         address code;
         string name;
         uint[] profileIds;
+        uint defaultProfileId;
         Status status;
     }
 
@@ -64,9 +65,9 @@ contract Market {
         employee.status = Status.ACTIVE;
         employeeCodes.push(_address);
     }
-    function getEmployee(address _address) view public returns(string name, uint[] ids, Status status) {
+    function getEmployee(address _address) view public returns(string, uint[], uint, Status) {
         Employee memory employee = employeeMap[_address];
-        return(employee.name, employee.profileIds, employee.status);
+        return(employee.name, employee.profileIds, employee.defaultProfileId, employee.status);
     }
     function getEmployeeCodes() view public returns(address[] codes) {
         return employeeCodes;
@@ -93,11 +94,11 @@ contract Market {
     }
 
 
-    function setProfile(string _name, Skill[] _skills, string _cvHash) public {
+    function setProfile(string _name, Skill[] _skills, string _cvHash, bool _defaultProfile) public {
             address _employeeCode = msg.sender;
-            setProfileWithAddress(_employeeCode, _name, _skills, _cvHash);
+            setProfileWithAddress(_employeeCode, _name, _skills, _cvHash, _defaultProfile);
     }
-    function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills, string _cvHash) public {
+    function setProfileWithAddress(address _employeeCode, string _name, Skill[] _skills, string _cvHash, bool _defaultProfile) public {
         //throw if employee not found
         uint _id = profileId++;
         Profile storage profile = profileMap[_id];
@@ -110,6 +111,9 @@ contract Market {
         allProfileIds.push(_id);
         Employee storage employee = employeeMap[_employeeCode];
         employee.profileIds.push(_id);
+        if(_defaultProfile) {
+            employee.defaultProfileId = _id;
+        }
     }
     function getProfile(uint _id) view public returns(address, string, Skill[], string, Status) {
         Profile memory profile = profileMap[_id];

@@ -97,7 +97,8 @@ App = {
             console.log("employee: " + employee);
             $("#retrievedEmployeeNameTextId").text(employee[0]);
             $("#retrievedEmployeeProfileIdsTextId").text(employee[1]);
-            $("#retrievedEmployeeStatusTextId").text(employee[2]);
+            $("#retrievedEmployeeDefaultProfileIdTextId").text(employee[2]);
+            $("#retrievedEmployeeStatusTextId").text(employee[3]);
         }).catch(function(err) {
             console.error("Err while getEmployee");
             console.log(err.message);
@@ -127,6 +128,9 @@ App = {
             skills.push(3);
         }
 
+        let defaultProfile = $("#defaultProfileCheckId").is(':checked');
+        console.log("defaultProfile: " + defaultProfile);
+
         let marketInstance;
 
         web3.eth.getAccounts(function(error, accounts) {
@@ -140,7 +144,7 @@ App = {
             App.contracts.Market.deployed().then(function(instance) {
                 console.log("setProfile");
                 marketInstance = instance;
-                return marketInstance.setProfile(profileName, skills, cvHash, {from: account});
+                return marketInstance.setProfile(profileName, skills, cvHash, defaultProfile, {from: account});
             }).then(function(result) {
                 console.log("getAllProfileIds");
                 return marketInstance.getAllProfileIds.call();
