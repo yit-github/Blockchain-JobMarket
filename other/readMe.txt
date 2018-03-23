@@ -153,3 +153,46 @@ ipfs daemon
 ipfs add
 
 
+aws ------
+
+npm i -g ganache-cli
+
+start:
+ganache-cli
+default port: 8545
+
+jana@janaPc:~/installs/idea/idea2016$ ganache-cli
+Ganache CLI v6.1.0 (ganache-core: 2.1.0)
+
+Available Accounts
+==================
+(0) 0x492fb7b9ea5557c807ab7f892bd9a9ef373d9eb6
+(1) 0xe914d537883e9d71d3cd991fa4a8083554206423
+(2) 0x643b2a6a336f982fc96620851e3df0ddb04f9db8
+(3) 0xfffc26bffec702bc8e51e0ac12e72e2179b3d9a0
+(4) 0xd3e276b6e5e8c18827010b1f8687bd96f5180eec
+(5) 0xd159cf8ef5c120ff15854aa39a479c0c0c87d7c8
+(6) 0x4ae377123365538ff565d25b48dcd53520a00000
+(7) 0x8d9873d1a17e8f30ee88f5d07cffa35d8e3e7b8d
+(8) 0x566aacdc0b200ec28c6b8b7b27f9df6e2d265795
+(9) 0x10acbc6b993d5d5465ddb30e6258536c742ef300
+
+Private Keys
+==================
+(0) 16642fd49c0f017ee4e85dd5df47fe4cae93db558559519dbb03b7abbba3bd0b
+(1) f7c81a0db5fab3f20d08f91627866c7d58e6c97e8f25e64ee300bc47443eef6d
+(2) 839365eb8736f80c079e4bff58757eada543ce621c513d3ca28a72f3cdd95fab
+(3) 632c4958ca5a9f40b113405651eb8fb5dfb0c8382a7c8dccc78903fbb465856d
+(4) 3a1af4b24231b1ed1582a34d1bee5869919e66e83bb7aa177efa3af533d590d8
+(5) 1d416432077bb133219d5c4d70db7fb41143c7c6c8c02f4ecc5d452f9ea98185
+(6) f07f183bf0a5be0b5b50b49e5f17245282319e25355b5525cba7701ace1b3e10
+(7) 1add707d912f4b17530a621c3a25d12d48fceb483b08aefb7afb9634da722614
+(8) ac7c4063657ee5f31383fa1bdd30a9f8d2d3fb78e030bf28b09edb45c27eeb68
+(9) 25d932a01261e7603ee6c5443780af2aa102ef0c297f0649bf26d5d7e1288b7a
+
+HD Wallet
+==================
+Mnemonic:      change day render desert shell hurry advice escape peasant pet avoid boil
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Listening on localhost:8545
