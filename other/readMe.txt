@@ -196,3 +196,60 @@ Mnemonic:      change day render desert shell hurry advice escape peasant pet av
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 
 Listening on localhost:8545
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
+
+root@ip-172-31-39-171:/home/ubuntu# ganache-cli
+Ganache CLI v6.1.0 (ganache-core: 2.1.0)
+
+Available Accounts
+==================
+(0) 0x0043a1274cb2b9b7dee5f377c9c039a26b7bb823
+(1) 0x1e4ddcc39c4e9b5bc4ae39b953655d831da16f9a
+(2) 0xc12d2110a3e81acd3feaf6e9fe892fffbc01f48c
+(3) 0xc06bb3f8580fc80d0875b803d6296cebcd14e0bc
+(4) 0x0133ebb91528e0f397554ec91b1598071394903b
+(5) 0xa6983a651401d731b2f1b3a040c731b9b0ea316d
+(6) 0x52a4f8372c652e1fe57eb7b2056c0fe3e00ae5b1
+(7) 0x3bb13a258f7cd4da726c2800a8655c16b5e58b05
+(8) 0x754143343d7d23a877fa6356537796d07fd7579c
+(9) 0x558f73653d917788d056d29f07eb132da03e327e
+
+Private Keys
+==================
+(0) e1c34287d0825c9977e189de980453cb9c0210004d164e47dee7b846f8809e0e
+(1) d59b35a332d389748e1a1fcc2893e801e8e61e460f4d496ee55b30a1949b0d3b
+(2) eb072cd9b03edb6d910f5f94b0cff95bdf8c429b6bc112a67b83538c2890e907
+(3) cd60764d973ea37c1d02c4a4559ff7db1e8b0b646eb7b5c0dc6740f6fffb078e
+(4) c65ffd9c2b36fe4d4a4f1a4149993ead3b616c3512f3dab184e3e579b70fb48d
+(5) dc69a01799813b7b9d7669a4ce2fc18bdfc24dab8341144dffdb7af20d89e3f1
+(6) 40d82eee793b928a6e1d657df3d6d29db3845d15efa4b5a651f1a3ca6844c40f
+(7) 852edba2148bab5ea314524063429d10339941b808c70c33a1da6e7349eb880f
+(8) 8ea08114ecd9bf6b8cc9962eba3524537a5468e40d5c63b1087cad962dd6c99f
+(9) 7f72beba3a3482727c4fa69fda06d44cfeaf9d89cf5a9a0c6a29f4c91e924fea
+
+HD Wallet
+==================
+Mnemonic:      venue goat mouse talent click recycle hood share essay glow bag moment
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Listening on localhost:8545
