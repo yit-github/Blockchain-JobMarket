@@ -29,6 +29,7 @@ STEPS
 	> testrpc
 
    It'll give output similar to 
+
 		Available Accounts
 		==================
 		(0) 0x1c789a3b1895c831771f1a6b666d353774d107a9
@@ -89,7 +90,9 @@ STEPS
 5. Start IPFS
         > ipfs init
 	> ipfs daemon
-        stop ipfs daemon by ctr+C
+
+          stop ipfs daemon by ctr+C
+
         > ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods ‘[“PUT”, “GET”, “POST”, “OPTIONS”]’
 	> ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin ‘[“*”]’
 	> ipfs daemon
@@ -97,10 +100,12 @@ STEPS
 
 
 Reference:
+
 	http://truffleframework.com/tutorials/pet-shop
 
 
 Optional for TestRPC (Ganache is rebrand of TestRPC )
+
 	> npm i -g ganache-cli
 	> ganache-cli
 
