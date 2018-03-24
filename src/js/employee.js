@@ -1,39 +1,13 @@
 $(function() {
     $(window).load(function() {
-        App.init();
-
-        $("#registerEmployeeButtonId").click(App.setEmployee);
-        $("#viewEmployeeButtonId").click(App.getEmployee);
-        $("#registerProfileButtonId").click(App.setProfile);
-        $("#viewProfileButtonId").click(App.getProfile);
+        $("#registerEmployeeButtonId").click(Employee.setEmployee);
+        $("#viewEmployeeButtonId").click(Employee.getEmployee);
+        $("#registerProfileButtonId").click(Employee.setProfile);
+        $("#viewProfileButtonId").click(Employee.getProfile);
     });
 });
 
-App = {
-    web3Provider: null,
-    contracts: {},
-
-    init: function() {
-        return App.initWeb3();
-    },
-
-    initWeb3: function () {
-        if (typeof web3 !== 'undefined') {
-            App.web3Provider = web3.currentProvider;
-        } else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
-        }
-        web3 = new Web3(App.web3Provider);
-        return App.initContract();
-    },
-
-    initContract: function() {
-        $.getJSON('Market.json', function(data) {
-            let MarketArtifact = data;
-            App.contracts.Market = TruffleContract(MarketArtifact);
-            App.contracts.Market.setProvider(App.web3Provider);
-        });
-    },
+Employee = {
 
     setEmployee: function(event) {
         event.preventDefault();

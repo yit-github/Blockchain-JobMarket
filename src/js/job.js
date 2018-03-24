@@ -1,41 +1,15 @@
 $(function() {
     $(window).load(function() {
-        App.init();
-
-        $("#createJobButtonId").click(App.setJob);
-        $("#viewJobButtonId").click(App.getJob);
-        $("#findEmployeeProfilesByJobButtonId").click(App.findEmployeeProfilesByJob);
-        $("#findJobsByProfileButtonId").click(App.findJobsByProfile);
-        $("#findJobsByEmployeeButtonId").click(App.findJobsByEmployee);
-        $("#applyJobButtonId").click(App.updateJobAppliedEmployees);
+        $("#createJobButtonId").click(Job.setJob);
+        $("#viewJobButtonId").click(Job.getJob);
+        $("#findEmployeeProfilesByJobButtonId").click(Job.findEmployeeProfilesByJob);
+        $("#findJobsByProfileButtonId").click(Job.findJobsByProfile);
+        $("#findJobsByEmployeeButtonId").click(Job.findJobsByEmployee);
+        $("#applyJobButtonId").click(Job.updateJobAppliedEmployees);
     });
 });
 
-App = {
-    web3Provider: null,
-    contracts: {},
-
-    init: function() {
-        return App.initWeb3();
-    },
-
-    initWeb3: function () {
-        if (typeof web3 !== 'undefined') {
-            App.web3Provider = web3.currentProvider;
-        } else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
-        }
-        web3 = new Web3(App.web3Provider);
-        return App.initContract();
-    },
-
-    initContract: function() {
-        $.getJSON('Market.json', function(data) {
-            let MarketArtifact = data;
-            App.contracts.Market = TruffleContract(MarketArtifact);
-            App.contracts.Market.setProvider(App.web3Provider);
-        });
-    },
+Job = {
 
     setJob: function(event) {
         event.preventDefault();
