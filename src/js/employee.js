@@ -2,7 +2,7 @@ $(function() {
     $(window).load(function() {
         $("#registerEmployeeButtonId").click(Employee.setEmployee);
         $("#viewEmployeeButtonId").click(Employee.getEmployee);
-        $("#registerProfileButtonId").click(Employee.setProfile);
+        $("#registerEmployeeButtonId").click(Employee.setProfile);
         $("#viewProfileButtonId").click(Employee.getProfile);
     });
 });
@@ -152,4 +152,3 @@ Employee = {
     },
 
 };
-
