@@ -17,6 +17,12 @@ Job = {
         let jobName = $("#jobNameTextId").val().trim();
         console.log("jobName:" + jobName);
 
+        let jobDescription = $("#jobDescriptionTextId").val().trim();
+        console.log("jobDescription:" + jobDescription);
+
+        let jobRate = $("#jobRateTextId").val().trim();
+        console.log("jobRate:" + jobRate);
+
         let skills = [];
         if($("#checkBoxJavaId").is(':checked') === true) {
             skills.push(0);
@@ -44,7 +50,7 @@ Job = {
             App.contracts.Market.deployed().then(function(instance) {
                 console.log("setJob");
                 marketInstance = instance;
-                return marketInstance.setJob(jobName, skills, {from: account});
+                return marketInstance.setJob(jobName,skills,jobRate,jobDescription, {from: account});
             }).then(function(result) {
                 console.log("getAllJobIds");
                 return marketInstance.getAllJobIds.call();
@@ -180,4 +186,3 @@ Job = {
     }
 
 };
-

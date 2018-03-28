@@ -15,6 +15,18 @@ Employee = {
         let employeeName = $("#employeeNameTextId").val().trim();
         console.log("Employee Name: " + employeeName);
 
+        let employeeEmail = $("#employeeEmailTextId").val().trim();
+        console.log("Employee Email: " + employeeEmail);
+
+        let employeePhoneNo = $("#employeePhoneTextId").val().trim();
+        console.log("Employee PhoneNo: " + employeePhoneNo);
+
+        let employeeStatement = $("#employeeStatementsTextId").val().trim();
+        console.log("Employee Statement: " + employeeStatement);
+
+        let employeeRate = $("#employeeRateTextId").val().trim();
+        console.log("Employee Rate: " + employeeRate);
+
         let marketInstance;
 
         web3.eth.getAccounts(function(error, accounts) {
@@ -31,7 +43,7 @@ Employee = {
             ).then(function(instance) {
                 console.log("setEmployee");
                 marketInstance = instance;
-                return marketInstance.setEmployee(employeeName, {from: account});
+                return marketInstance.setEmployee(employeeName,employeeEmail,employeePhoneNo,employeeStatement,employeeRate, {from: account});
             }).then(function(result) {
                 console.log("getEmployeeCodes");
                 return marketInstance.getEmployeeCodes.call();
@@ -63,9 +75,13 @@ Employee = {
         }).then(function (employee) {
             console.log("employee: " + employee);
             $("#retrievedEmployeeNameTextId").text(employee[0]);
-            $("#retrievedEmployeeProfileIdsTextId").text(employee[1]);
-            $("#retrievedEmployeeDefaultProfileIdTextId").text(employee[2]);
-            $("#retrievedEmployeeStatusTextId").text(employee[3]);
+            $("#retrievedEmployeeEmailTextId").text(employee[1]);
+            $("#retrievedEmployeePhoneNoTextId").text(employee[2]);
+            $("#retrievedEmployeeStatementTextId").text(employee[3]);
+            $("#retrievedEmployeeHourlyRateTextId").text(employee[4]);
+            $("#retrievedEmployeeProfileIdsTextId").text(employee[5]);
+            $("#retrievedEmployeeDefaultProfileIdTextId").text(employee[6]);
+            $("#retrievedEmployeeStatusTextId").text(employee[7]);
         }).catch(function(err) {
             console.error("Err while getEmployee");
             console.log(err.message);

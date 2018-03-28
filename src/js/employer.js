@@ -13,6 +13,18 @@ Employer = {
         let employerName = $("#employerNameTextId").val().trim();
         console.log("Employer Name: " + employerName);
 
+        let employerEmail = $("#employerEmailTextId").val().trim();
+        console.log("Employer Email: " + employerEmail);
+
+        let employerCompany = $("#employerCompanyTextId").val().trim();
+        console.log("Employer Company: " + employerCompany);
+
+        let employerAddress = $("#employerAddressTextId").val().trim();
+        console.log("Employer Address: " + employerAddress);
+
+        let employerCountry = $("#employerCountryTextId").val().trim();
+        console.log("Employer Country: " + employerCountry);
+
         let marketInstance;
 
         web3.eth.getAccounts(function(error, accounts) {
@@ -29,7 +41,7 @@ Employer = {
             ).then(function(instance) {
                 console.log("setEmployer");
                 marketInstance = instance;
-                return marketInstance.setEmployer(employerName, {from: account});
+                return marketInstance.setEmployer(employerName, employerEmail,employerCompany,employerAddress,employerCountry,{from: account});
             }).then(function(result) {
                 console.log("getEmployerCodes");
                 return marketInstance.getEmployerCodes.call();
@@ -61,8 +73,12 @@ Employer = {
         }).then(function (employer) {
             console.log("employer: " + employer);
             $("#retrievedEmployerNameTextId").text(employer[0]);
-            $("#retrievedEmployerJobIdsTextId").text(employer[1]);
-            $("#retrievedEmployerStatusTextId").text(employer[2]);
+            $("#retrievedEmployerEmailTextId").text(employer[1]);
+            $("#retrievedEmployerCompanyTextId").text(employer[2]);
+            $("#retrievedEmployerAddressTextId").text(employer[3]);
+            $("#retrievedEmployerCountryTextId").text(employer[4]);
+            $("#retrievedEmployerJobIdsTextId").text(employer[5]);
+            $("#retrievedEmployerStatusTextId").text(employer[6]);
         }).catch(function(err) {
             console.error("Err while getEmployer");
             console.log(err.message);
@@ -71,4 +87,3 @@ Employer = {
     }
 
 };
-
