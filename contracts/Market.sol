@@ -61,7 +61,7 @@ contract Market {
         address[] appliedEmployeeCodes;
         Status status;
         string JobTitle;
-        uint hourlyRate;
+        string hourlyRate;
         string Description;
     }
 
@@ -152,6 +152,8 @@ contract Market {
         job.id = _id;
         job.employerCode = _employerCode;
         job.JobTitle = _JobTitle;
+        job.hourlyRate= _hourlyRate;
+        job.Description=_Description;
         job.requiredSkills = _requiredSkills;
         job.status = Status.VACANT;
         //appliedEmployeeCodes
@@ -163,9 +165,9 @@ contract Market {
         Job storage job = jobMap[_jobId];
         job.appliedEmployeeCodes.push(msg.sender);
     }
-    function getJob(uint _id) view public returns(address, string, Skill[], address[], Status) {
+    function getJob(uint _id) view public returns(address, string, Skill[],string,string, address[], Status) {
         Job memory job = jobMap[_id];
-        return(job.employerCode, job.JobTitle, job.requiredSkills, job.appliedEmployeeCodes, job.status);
+        return(job.employerCode, job.JobTitle, job.requiredSkills,job.hourlyRate,job.Description, job.appliedEmployeeCodes, job.status);
     }
     function getAllJobIds() view public returns(uint[] postedJobIds) {
         return allJobIds;

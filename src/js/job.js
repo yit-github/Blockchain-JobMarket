@@ -82,8 +82,10 @@ Job = {
             $("#retrievedJobEmployerCodeTextId").text(job[0]);
             $("#retrievedJobNameTextId").text(job[1]);
             $("#retrievedJobRequiredSkillsTextId").text(job[2]);
-            $("#retrievedJobAppliedEmployeesTextId").text(job[3]);
-            $("#retrievedJobStatusTextId").text(job[4]);
+            $("#retrievedJobRateTextId").text(job[3]);
+            $("#retrievedJobDescriptionTextId").text(job[4]);
+            $("#retrievedJobAppliedEmployeesTextId").text(job[5]);
+            $("#retrievedJobStatusTextId").text(job[6]);
         }).catch(function(err) {
             console.error("Err while getJob");
             console.log(err.message);
