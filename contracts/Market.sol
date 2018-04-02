@@ -167,7 +167,7 @@ contract Market {
     }
     function getJob(uint _id) view public returns(address, string, Skill[],string,string, address[], Status) {
         Job memory job = jobMap[_id];
-        return(job.employerCode, job.JobTitle, job.requiredSkills,job.hourlyRate,job.Description, job.appliedEmployeeCodes, job.status);
+        return(job.employerCode, job.JobTitle, job.requiredSkills, job.hourlyRate, job.Description, job.appliedEmployeeCodes, job.status);
     }
     function getAllJobIds() view public returns(uint[] postedJobIds) {
         return allJobIds;

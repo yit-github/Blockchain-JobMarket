@@ -41,7 +41,7 @@ Employer = {
             ).then(function(instance) {
                 console.log("setEmployer");
                 marketInstance = instance;
-                return marketInstance.setEmployer(employerName, employerEmail,employerCompany,employerAddress,employerCountry,{from: account});
+                return marketInstance.setEmployer(employerName, employerEmail, employerCompany, employerAddress, employerCountry, {from: account});
             }).then(function(result) {
                 console.log("getEmployerCodes");
                 return marketInstance.getEmployerCodes.call();

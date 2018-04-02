@@ -85,7 +85,7 @@ Job = {
             $("#retrievedJobRateTextId").text(job[3]);
             $("#retrievedJobDescriptionTextId").text(job[4]);
             $("#retrievedJobAppliedEmployeesTextId").text(job[5]);
-            $("#retrievedJobStatusTextId").text(job[6]);
+            $("#retrievedJobStatusTextId").text(job[7]);
         }).catch(function(err) {
             console.error("Err while getJob");
             console.log(err.message);
