@@ -97,6 +97,7 @@ contract Market {
     function setEmployerWithAddress(address _address, string _name, string _email, string _company, string _add, string _country) public {
         Employer storage employer = employerMap[_address];
         employer.code = _address;
+        employer.name = _name;
         employer.email = _email;
         employer.company = _company;
         employer.add = _add;
@@ -106,7 +107,7 @@ contract Market {
     }
     function getEmployer(address _address) view public returns(string name,string email, string company, string add, string country, uint[] jobIds, Status status) {
         Employer memory employer = employerMap[_address];
-        return (employer.name,employer.email,employer.company,employer.add,employer.country, employer.jobIds, employer.status);
+        return (employer.name, employer.email, employer.company, employer.add, employer.country, employer.jobIds, employer.status);
     }
     function getEmployerCodes() view public returns(address[]) {
         return employerCodes;
