@@ -320,46 +320,6 @@ contract Market {
     // }
 
 
-    //test
-    function testSetInitialData() public {
 
-        // testrpc
-        address addressE1 = 0x5f0e611dbcb5a4a1dc8ec4c7e1a02a8eb60182f3;
-        address addressE2 = 0xcea3b456c72dae97a256199c24dab28fb4863ed1;
-        address addressR1 = 0x38921ab62710300785722cfc538b3cabefb12845;
-        address addressR2 = 0xda93fc20797a06d7273335788a4914a89d3bedaf;
-
-        /* remix
-        address addressE1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
-        address addressE2 = 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db;
-        address addressR1 = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
-        address addressR2 = 0x583031d1113ad414f02576bd6afabfb302140225;
-        */
-
-        //setEmployeeWithAddress(addressE1, "e1");
-        //setEmployerWithAddress(addressR1, "r1");
-
-        Skill[] memory skills1 = new Skill[](2);
-        skills1[0] = Skill.JAVA;
-        skills1[1] = Skill.MYSQL;
-
-        Skill[] memory skills2 = new Skill[](2);
-        skills2[0] = Skill.JS;
-        skills2[1] = Skill.MONGO;
-
-        //setProfileWithAddress(addressE1, "p1", skills1);
-        //setProfileWithAddress(addressE1, "p2", skills2);
-
-       // setJobWithAddress(addressR1, "j1", skills1);
-       // setJobWithAddress(addressR1, "j2", skills1);
-    }
-
-    function uintToSkill(uint _uint) pure public returns(string skill) {
-        if(_uint == uint(Skill.JAVA))
-            return "JAVA";
-        if(_uint == uint(Skill.JS))
-            return "JS";
-        return "MONGO";
-    }
 
 }
