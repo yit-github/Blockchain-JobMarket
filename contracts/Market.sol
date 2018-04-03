@@ -26,7 +26,7 @@ contract Market {
         string email;
         string phoneNo;
         string statement;
-        string rate;
+        uint rate;
         uint[] profileIds;
         uint defaultProfileId;
         uint id;
@@ -61,16 +61,16 @@ contract Market {
         address[] appliedEmployeeCodes;
         Status status;
         string JobTitle;
-        string hourlyRate;
+        uint hourlyRate;
         string Description;
     }
 
 
-    function setEmployee(string _name, string _email, string _phoneNo, string _statement, string _rate) public {
+    function setEmployee(string _name, string _email, string _phoneNo, string _statement, uint _rate) public {
         address _address = msg.sender;
         setEmployeeWithAddress(_address, _name, _email, _phoneNo, _statement, _rate);
     }
-    function setEmployeeWithAddress(address _address, string _name, string _email, string _phoneNo, string _statement, string _rate) public {
+    function setEmployeeWithAddress(address _address, string _name, string _email, string _phoneNo, string _statement, uint _rate) public {
         Employee storage employee = employeeMap[_address];
         employee.code = _address;
         employee.name = _name;
@@ -81,7 +81,7 @@ contract Market {
         employee.status = Status.ACTIVE;
         employeeCodes.push(_address);
     }
-    function getEmployee(address _address) view public returns(string,string,string,string,string, uint[], uint, Status) {
+    function getEmployee(address _address) view public returns(string,string,string,string,uint, uint[], uint, Status) {
         Employee memory employee = employeeMap[_address];
         return(employee.name,employee.email,employee.phoneNo,employee.statement,employee.rate, employee.profileIds, employee.defaultProfileId, employee.status);
     }
@@ -97,7 +97,6 @@ contract Market {
     function setEmployerWithAddress(address _address, string _name, string _email, string _company, string _add, string _country) public {
         Employer storage employer = employerMap[_address];
         employer.code = _address;
-        employer.name = _name;
         employer.email = _email;
         employer.company = _company;
         employer.add = _add;
@@ -107,7 +106,7 @@ contract Market {
     }
     function getEmployer(address _address) view public returns(string name,string email, string company, string add, string country, uint[] jobIds, Status status) {
         Employer memory employer = employerMap[_address];
-        return (employer.name, employer.email, employer.company, employer.add, employer.country, employer.jobIds, employer.status);
+        return (employer.name,employer.email,employer.company,employer.add,employer.country, employer.jobIds, employer.status);
     }
     function getEmployerCodes() view public returns(address[]) {
         return employerCodes;
@@ -143,11 +142,11 @@ contract Market {
         return allProfileIds;
     }
 
-    function setJob(string _JobTitle, Skill[] _requiredSkills, string _hourlyRate, string _Description) public {
+    function setJob(string _JobTitle, Skill[] _requiredSkills, uint _hourlyRate, string _Description) public {
         address _employerCode = msg.sender;
         setJobWithAddress(_employerCode, _JobTitle, _requiredSkills,_hourlyRate,_Description);
     }
-    function setJobWithAddress(address _employerCode, string _JobTitle, Skill[] _requiredSkills, string _hourlyRate, string _Description) public {
+    function setJobWithAddress(address _employerCode, string _JobTitle, Skill[] _requiredSkills, uint _hourlyRate, string _Description) public {
         uint _id = jobId++;
         Job storage job = jobMap[_id];
         job.id = _id;
@@ -162,11 +161,12 @@ contract Market {
         Employer storage employer = employerMap[_employerCode];
         employer.jobIds.push(_id);
     }
+
     function updateJobAppliedEmployees(uint _jobId) public {
         Job storage job = jobMap[_jobId];
         job.appliedEmployeeCodes.push(msg.sender);
     }
-    function getJob(uint _id) view public returns(address, string, Skill[],string,string, address[], Status) {
+    function getJob(uint _id) view public returns(address, string, Skill[], uint, string, address[], Status) {
         Job memory job = jobMap[_id];
         return(job.employerCode, job.JobTitle, job.requiredSkills, job.hourlyRate, job.Description, job.appliedEmployeeCodes, job.status);
     }
@@ -318,6 +318,41 @@ contract Market {
     //     //uint storage x = 11;
     //     return 11;
     // }
+
+
+    //test
+    function testSetInitialData() public {
+
+        // testrpc
+        address addressE1 = 0x5f0e611dbcb5a4a1dc8ec4c7e1a02a8eb60182f3;
+        address addressE2 = 0xcea3b456c72dae97a256199c24dab28fb4863ed1;
+        address addressR1 = 0x38921ab62710300785722cfc538b3cabefb12845;
+        address addressR2 = 0xda93fc20797a06d7273335788a4914a89d3bedaf;
+
+        /* remix
+        address addressE1 = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
+        address addressE2 = 0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db;
+        address addressR1 = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
+        address addressR2 = 0x583031d1113ad414f02576bd6afabfb302140225;
+        */
+
+        //setEmployeeWithAddress(addressE1, "e1");
+        //setEmployerWithAddress(addressR1, "r1");
+
+        Skill[] memory skills1 = new Skill[](2);
+        skills1[0] = Skill.JAVA;
+        skills1[1] = Skill.MYSQL;
+
+        Skill[] memory skills2 = new Skill[](2);
+        skills2[0] = Skill.JS;
+        skills2[1] = Skill.MONGO;
+
+        //setProfileWithAddress(addressE1, "p1", skills1);
+        //setProfileWithAddress(addressE1, "p2", skills2);
+
+       // setJobWithAddress(addressR1, "j1", skills1);
+       // setJobWithAddress(addressR1, "j2", skills1);
+    }
 
     function uintToSkill(uint _uint) pure public returns(string skill) {
         if(_uint == uint(Skill.JAVA))

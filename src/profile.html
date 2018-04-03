@@ -28,6 +28,57 @@
       </div>
     </nav>
 
+    <h1>Create Profile</h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="profileNameTextId" /></td>
+            </tr>
+            <tr>
+                <td>Skills</td>
+                <td>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="checkBoxJavaId" value="0">Java</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="checkBoxJsId" value="1">JavaScript</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="checkBoxMySQLId" value="2">MySQL</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="checkBoxMongoId" value="3">Mongo</label>
+                    </div>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td>CV</td>
+                        <td>
+                            <form action="/">
+                                <fieldset>
+                                    <input type="file" name="cvInputName" id="cvInputId">
+                                    <button type="button" onclick="upload()">Upload CV</button>
+                                </fieldset>
+                            </form>
+                            <a id="cvHashId"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Default Profile</td>
+                        <td><input type="checkbox" id="defaultProfileCheckId" value="3"></td>
+                    </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <a href="#" id="registerProfileButtonId" class="btn btn-primary">Create</a>
+
+    <br><br><br>
 
 <h1>View Employee</h1>
 

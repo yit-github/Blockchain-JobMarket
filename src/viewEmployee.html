@@ -20,39 +20,44 @@
       </ul>
     </div>
   </nav>
-<h1>Register Employer</h1>
+
+<br><br><br>
+<h1>View Employer</h1>
 
 <div class="table-responsive">
     <table class="table table-bordered">
         <tbody>
         <tr>
-            <td>Name</td>
-            <td><input type="text" id="employerNameTextId" /></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" id="employerEmailTextId" /></td>
-        </tr>
-        <tr>
-            <td>Company</td>
-            <td><input type="text" id="employerCompanyTextId" /></td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td><input type="text" id="employerAddressTextId" /></td>
-        </tr>
-        <tr>
-            <td>Country</td>
-            <td><input type="text" id="employerCountryTextId" /></td>
+            <td>Employer Code</td>
+            <td><input type="text" id="employerCodeTextId" /></td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<a href="#" id="registerEmployerButtonId" class="btn btn-primary">Register</a>
+<a href="#" id="viewEmployerButtonId" class="btn btn-primary">Get</a>
 
-<br><br><br>
-
+<div class="table-responsive">
+  <br>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Job Ids</th>
+            <th>Status</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="retrievedEmployerNameTextId">name</td>
+            <td id="retrievedEmployerJobIdsTextId">job ids</td>
+            <td id="retrievedEmployerStatusTextId">status</td>
+            <td id="retrievedEmployerEmailTextId">mail</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
