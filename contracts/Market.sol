@@ -283,43 +283,12 @@ contract Market {
         return matchingJobIds;
     }
 
-    // function findJobs(uint _profileId) view public returns(uint jobIds) {
-    //     uint[] memory matchingJobIds;
-    //     //uint matchingJobId;
-
-    //     Profile memory profile = profileMap[_profileId];
-    //     Skill[] memory skills = profile.skills;
-
-    //     uint jobCount = 0;
-    //     for(uint s=0; s<skills.length; s++) {
-    //         Skill skill = skills[s];
-
-    //         for(uint j=0; j<allJobIds.length; j++) {
-    //             uint thisJobId = allJobIds[j];
-    //             Job memory job = jobMap[thisJobId];
-
-    //             Skill[] memory requiredSkills = job.requiredSkills;
-    //             for(uint m=0; m<requiredSkills.length; m++) {
-    //                 Skill required = requiredSkills[m];
-
-    //                 if(skill == required) {
-
-    //                     matchingJobId = thisJobId;
-    //                     //matchingJobIds[jobCount++] = thisJobId;
-    //                     //break;
-    //                 }
-
-    //             }
-
-    //         }
-    //     }
-    //     //matchingJobIds[0] = matchingJobId;
-    //     //return matchingJobIds;
-    //     //uint storage x = 11;
-    //     return 11;
-    // }
-
-
-
+    function uintToSkill(uint _uint) pure public returns(string skill) {
+        if(_uint == uint(Skill.JAVA))
+            return "JAVA";
+        if(_uint == uint(Skill.JS))
+            return "JS";
+        return "MONGO";
+    }
 
 }
