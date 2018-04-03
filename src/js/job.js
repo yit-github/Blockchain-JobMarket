@@ -50,7 +50,7 @@ Job = {
             App.contracts.Market.deployed().then(function(instance) {
                 console.log("setJob");
                 marketInstance = instance;
-                return marketInstance.setJob(jobName,skills,jobRate,jobDescription, {from: account});
+                return marketInstance.setJob(jobName, skills, jobRate, jobDescription, {from: account});
             }).then(function(result) {
                 console.log("getAllJobIds");
                 return marketInstance.getAllJobIds.call();

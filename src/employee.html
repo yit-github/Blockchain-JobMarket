@@ -54,11 +54,23 @@
           <td><input type="text" id="employeeRateTextId"/></td>
         </tr>
 
-        <tr>
-            <td>Profile Name</td>
-            <td><input type="text" id="ProfileNameTextId"/></td>
-        </tr>
+        </tbody>
+    </table>
+</div>
 
+<a href="#" id="registerEmployeeButtonId" class="btn btn-primary">Register</a>
+
+
+<br><br><br>
+<h1>Create Profile</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" id="profileNameTextId" /></td>
+        </tr>
         <tr>
             <td>Skills</td>
             <td>
@@ -76,32 +88,31 @@
                 </div>
             </td>
         </tr>
-        <tr>
-            <td>Default Profile</td>
-            <td><input type="checkbox" id="defaultProfileCheckId" value="3"></td>
-        </tr>
 
-        <tr>
-            <td>CV</td>
-            <td>
-                <form action="/">
-                    <fieldset>
-                        <input type="file" name="cvInputName" id="cvInputId">
-                        <button type="button" onclick="upload()">Upload CV</button>
-                    </fieldset>
-                </form>
-                <a id="cvHashId"></a>
-            </td>
-        </tr>
+                <tr>
+                    <td>CV</td>
+                    <td>
+                        <form action="/">
+                            <fieldset>
+                                <input type="file" name="cvInputName" id="cvInputId">
+                                <button type="button" onclick="upload()">Upload CV</button>
+                            </fieldset>
+                        </form>
+                        <a id="cvHashId"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default Profile</td>
+                    <td><input type="checkbox" id="defaultProfileCheckId" value="3"></td>
+                </tr>
+
         </tbody>
     </table>
 </div>
 
-<a href="#" id="registerEmployeeButtonId" class="btn btn-primary">Register</a>
-
+<a href="#" id="registerProfileButtonId" class="btn btn-primary">Create</a>
 
 <br><br><br>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
 <script src="lib/web3.min.js"></script>

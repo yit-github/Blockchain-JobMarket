@@ -2,7 +2,7 @@ $(function() {
     $(window).load(function() {
         $("#registerEmployeeButtonId").click(Employee.setEmployee);
         $("#viewEmployeeButtonId").click(Employee.getEmployee);
-        $("#registerEmployeeButtonId").click(Employee.setProfile);
+        $("#registerProfileButtonId").click(Employee.setProfile);
         $("#viewProfileButtonId").click(Employee.getProfile);
     });
 });
@@ -43,7 +43,7 @@ Employee = {
             ).then(function(instance) {
                 console.log("setEmployee");
                 marketInstance = instance;
-                return marketInstance.setEmployee(employeeName,employeeEmail,employeePhoneNo,employeeStatement,employeeRate, {from: account});
+                return marketInstance.setEmployee(employeeName, employeeEmail, employeePhoneNo, employeeStatement, employeeRate, {from: account});
             }).then(function(result) {
                 console.log("getEmployeeCodes");
                 return marketInstance.getEmployeeCodes.call();

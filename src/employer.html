@@ -52,7 +52,41 @@
 <a href="#" id="registerEmployerButtonId" class="btn btn-primary">Register</a>
 
 <br><br><br>
+<h1>View Employer</h1>
 
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Employer Code</td>
+            <td><input type="text" id="employerCodeTextId" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="#" id="viewEmployerButtonId" class="btn btn-primary">Get</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Job Ids</th>
+            <th>Status</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="retrievedEmployerNameTextId">name</td>
+            <td id="retrievedEmployerJobIdsTextId">job ids</td>
+            <td id="retrievedEmployerStatusTextId">status</td>
+            <td id="retrievedEmployerEmailTextId">mail</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
