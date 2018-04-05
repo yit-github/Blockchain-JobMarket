@@ -7,6 +7,8 @@ $(function() {
     });
 });
 
+web3.eth.defaultAccount = web3.eth.accounts[0];
+
 Employee = {
 
     setEmployee: function(event) {
@@ -159,7 +161,12 @@ Employee = {
             $("#retrievedProfileEmployeeCodeTextId").text(profile[0]);
             $("#retrievedProfileNameTextId").text(profile[1]);
             $("#retrievedProfileSkillsTextId").text(profile[2]);
-            $("#retrievedProfileCvHashTextId").text(profile[3]);
+
+            let url = `https://ipfs.io/ipfs/${profile[3]}`
+            console.log(`Url --> ${url}`)
+            document.getElementById("retrievedProfileCvHash").innerHTML= url
+            document.getElementById("retrievedProfileCvHash").href= url
+
             $("#retrievedProfileStatusTextId").text(profile[4]);
         }).catch(function(err) {
             console.error("Err while getProfile");

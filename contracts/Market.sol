@@ -97,6 +97,7 @@ contract Market {
     function setEmployerWithAddress(address _address, string _name, string _email, string _company, string _add, string _country) public {
         Employer storage employer = employerMap[_address];
         employer.code = _address;
+        employer.name = _name;
         employer.email = _email;
         employer.company = _company;
         employer.add = _add;
@@ -170,6 +171,11 @@ contract Market {
         Job memory job = jobMap[_id];
         return(job.employerCode, job.JobTitle, job.requiredSkills, job.hourlyRate, job.Description, job.appliedEmployeeCodes, job.status);
     }
+
+    function getJobIdFromAddress(address _address) view public returns (uint[]) {
+        return (employerMap[_address].jobIds);
+    }
+
     function getAllJobIds() view public returns(uint[] postedJobIds) {
         return allJobIds;
     }
