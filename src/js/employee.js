@@ -134,7 +134,6 @@ Employee = {
                 return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
                 console.log("profileIds: " + profileIds);
-                window.location="http://localhost:3003/searchJob.html";
             }).catch(function(err) {
                 console.error("Err while setProfile");
                 console.log(err.message);

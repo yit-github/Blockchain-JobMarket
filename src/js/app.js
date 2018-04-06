@@ -31,4 +31,3 @@ App = {
     }
 
 };
-//web3.eth.defaultAccount = web3.eth.accounts[0];
