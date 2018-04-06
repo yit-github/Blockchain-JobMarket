@@ -56,6 +56,7 @@ Job = {
                 return marketInstance.getAllJobIds.call();
             }).then(function (jobIds) {
                 console.log("jobIds:" + jobIds);
+                window.location="http://localhost:3003/myJob.html";
             }).catch(function(err) {
                 console.error("Err while setJob");
                 console.log(err.message);

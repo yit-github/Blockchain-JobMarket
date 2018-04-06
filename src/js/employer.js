@@ -49,12 +49,14 @@ Employer = {
                 console.log("getEmployer, codes:" + employerCodes);
                 employerCode = employerCodes[employerCodes.length-1];
                 console.log("last code: " + employerCode);
+                window.location="http://localhost:3003/postJob.html";
             }).catch(function(err) {
                 console.error("Err while setEmployer");
                 console.log(err.message);
             });
         });
     },
+
 
     getEmployer: function(event) {
         console.log("getEmployer");
@@ -83,7 +85,5 @@ Employer = {
             console.error("Err while getEmployer");
             console.log(err.message);
         });
-
     }
-
 };
