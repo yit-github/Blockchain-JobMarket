@@ -51,8 +51,8 @@ Employee = {
                 console.log("getEmployee, codes:" + employeeCodes);
                 employeeCode = employeeCodes[employeeCodes.length-1];
                 console.log("code: " + employeeCode);
-                window.location="http://localhost:3003/setProfile.html";
-            }).catch(function(err) {
+                window.location.href = '/setProfile.html';
+                }).catch(function(err) {
                 console.error("Err while setEmployee");
                 console.log(err.message);
             });
@@ -134,8 +134,8 @@ Employee = {
                 return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
                 console.log("profileIds: " + profileIds);
-                window.location="http://localhost:3003/searchJob.html";
-            }).catch(function(err) {
+                  window.location.href = '/searchJob.html';
+                }).catch(function(err) {
                 console.error("Err while setProfile");
                 console.log(err.message);
             });
