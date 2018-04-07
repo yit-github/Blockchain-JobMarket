@@ -4,7 +4,7 @@ $(function() {
         $("#viewEmployerButtonId").click(Employer.getEmployer);
     });
 });
-
+web3.eth.defaultAccount = web3.eth.accounts[0];
 Employer = {
 
     setEmployer: function(event) {
