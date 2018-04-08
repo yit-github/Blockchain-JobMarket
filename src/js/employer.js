@@ -49,7 +49,7 @@ Employer = {
                 console.log("getEmployer, codes:" + employerCodes);
                 employerCode = employerCodes[employerCodes.length-1];
                 console.log("last code: " + employerCode);
-                window.location.href = '/postJob.html';
+                window.location.href = 'postJob.html';
                 }).catch(function(err) {
                 console.error("Err while setEmployer");
                 console.log(err.message);

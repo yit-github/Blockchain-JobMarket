@@ -56,7 +56,7 @@ Job = {
                 return marketInstance.getAllJobIds.call();
             }).then(function (jobIds) {
                 console.log("jobIds:" + jobIds);
-                window.location.href = '/myJob.html';
+                window.location.href = 'myJob.html';
                 }).catch(function(err) {
                 console.error("Err while setJob");
                 console.log(err.message);
