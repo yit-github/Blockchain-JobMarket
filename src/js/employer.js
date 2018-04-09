@@ -1,10 +1,13 @@
 $(function() {
     $(window).load(function() {
+        $("#loader").hide();
         $("#registerEmployerButtonId").click(Employer.setEmployer);
         $("#viewEmployerButtonId").click(Employer.getEmployer);
     });
 });
+
 web3.eth.defaultAccount = web3.eth.accounts[0];
+
 Employer = {
 
     setEmployer: function(event) {
@@ -49,6 +52,7 @@ Employer = {
                 console.log("getEmployer, codes:" + employerCodes);
                 employerCode = employerCodes[employerCodes.length-1];
                 console.log("last code: " + employerCode);
+                $("#loader").show();
                 window.location.href = 'postJob.html';
                 }).catch(function(err) {
                 console.error("Err while setEmployer");

@@ -1,5 +1,6 @@
 $(function() {
     $(window).load(function() {
+        $("#loader").hide();
         $("#registerEmployeeButtonId").click(Employee.setEmployee);
         $("#viewEmployeeButtonId").click(Employee.getEmployee);
         $("#registerProfileButtonId").click(Employee.setProfile);
@@ -51,6 +52,7 @@ Employee = {
                 console.log("getEmployee, codes:" + employeeCodes);
                 employeeCode = employeeCodes[employeeCodes.length-1];
                 console.log("code: " + employeeCode);
+                $("#loader").show();
                 window.location.href = 'setProfile.html';
                 }).catch(function(err) {
                 console.error("Err while setEmployee");
@@ -134,6 +136,7 @@ Employee = {
                 return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
                 console.log("profileIds: " + profileIds);
+                  $("#loader").show();
                   window.location.href = 'searchJob.html';
                 }).catch(function(err) {
                 console.error("Err while setProfile");

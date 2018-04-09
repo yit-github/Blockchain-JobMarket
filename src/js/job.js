@@ -1,5 +1,6 @@
 $(function() {
     $(window).load(function() {
+        $("#loader").hide();
         $("#createJobButtonId").click(Job.setJob);
         $("#viewJobButtonId").click(Job.getJob);
         $("#findEmployeeProfilesByJobButtonId").click(Job.findEmployeeProfilesByJob);
@@ -56,6 +57,7 @@ Job = {
                 return marketInstance.getAllJobIds.call();
             }).then(function (jobIds) {
                 console.log("jobIds:" + jobIds);
+                $("#loader").show();
                 window.location.href = 'myJob.html';
                 }).catch(function(err) {
                 console.error("Err while setJob");
