@@ -1,6 +1,7 @@
 $(function() {
     $(window).load(function() {
         $("#loader").hide();
+        $("#progress").css('visibility','hidden');
         $("#createJobButtonId").click(Job.setJob);
         $("#viewJobButtonId").click(Job.getJob);
         $("#findEmployeeProfilesByJobButtonId").click(Job.findEmployeeProfilesByJob);
@@ -57,6 +58,7 @@ Job = {
                 return marketInstance.getAllJobIds.call();
             }).then(function (jobIds) {
                 console.log("jobIds:" + jobIds);
+                $("#progress").css('visibility','visible');
                 $("#loader").show();
                 window.location.href = 'myJob.html';
                 }).catch(function(err) {

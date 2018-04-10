@@ -1,6 +1,7 @@
 $(function() {
     $(window).load(function() {
         $("#loader").hide();
+        $("#progress").css('visibility','hidden');
         $("#registerEmployerButtonId").click(Employer.setEmployer);
         $("#viewEmployerButtonId").click(Employer.getEmployer);
     });
@@ -52,6 +53,7 @@ Employer = {
                 console.log("getEmployer, codes:" + employerCodes);
                 employerCode = employerCodes[employerCodes.length-1];
                 console.log("last code: " + employerCode);
+                $("#progress").css('visibility','visible');
                 $("#loader").show();
                 window.location.href = 'postJob.html';
                 }).catch(function(err) {

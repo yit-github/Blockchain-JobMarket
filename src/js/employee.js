@@ -1,6 +1,7 @@
 $(function() {
     $(window).load(function() {
         $("#loader").hide();
+        $("#progress").css('visibility','hidden');
         $("#registerEmployeeButtonId").click(Employee.setEmployee);
         $("#viewEmployeeButtonId").click(Employee.getEmployee);
         $("#registerProfileButtonId").click(Employee.setProfile);
@@ -45,13 +46,14 @@ Employee = {
                 console.log("setEmployee");
                 marketInstance = instance;
                 return marketInstance.setEmployee(employeeName, employeeEmail, employeePhoneNo, employeeStatement, employeeRate, {from: account});
-            }).then(function(result) {
+                }).then(function(result) {
                 console.log("getEmployeeCodes");
                 return marketInstance.getEmployeeCodes.call();
             }).then(function (employeeCodes) {
                 console.log("getEmployee, codes:" + employeeCodes);
                 employeeCode = employeeCodes[employeeCodes.length-1];
                 console.log("code: " + employeeCode);
+                $("#progress").css('visibility','visible');
                 $("#loader").show();
                 window.location.href = 'setProfile.html';
                 }).catch(function(err) {
@@ -137,6 +139,7 @@ Employee = {
                 return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
                 console.log("profileIds: " + profileIds);
+                  $("#progress").css('visibility','visible');
                   $("#loader").show();
                   window.location.href = 'searchJob.html';
                 }).catch(function(err) {
