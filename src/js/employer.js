@@ -55,6 +55,7 @@ Employer = {
                 $("#loader").show();
                 window.location.href = 'postJob.html';
                 }).catch(function(err) {
+                alert("Something went wrong,Check the setup. Reason:"+err.message);
                 console.error("Err while setEmployer");
                 console.log(err.message);
             });

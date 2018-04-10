@@ -55,6 +55,7 @@ Employee = {
                 $("#loader").show();
                 window.location.href = 'setProfile.html';
                 }).catch(function(err) {
+                alert("Something went wrong,Check the setup. Reason:"+err.message);
                 console.error("Err while setEmployee");
                 console.log(err.message);
             });
@@ -139,6 +140,7 @@ Employee = {
                   $("#loader").show();
                   window.location.href = 'searchJob.html';
                 }).catch(function(err) {
+                alert("Something went wrong,Check the setup. Reason:"+err.message);
                 console.error("Err while setProfile");
                 console.log(err.message);
             });

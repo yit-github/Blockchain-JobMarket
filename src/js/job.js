@@ -60,6 +60,7 @@ Job = {
                 $("#loader").show();
                 window.location.href = 'myJob.html';
                 }).catch(function(err) {
+                alert("Something went wrong,Check the setup. Reason:"+err.message);
                 console.error("Err while setJob");
                 console.log(err.message);
             });
@@ -90,6 +91,7 @@ Job = {
             $("#retrievedJobAppliedEmployeesTextId").text(job[5]);
             $("#retrievedJobStatusTextId").text(job[7]);
         }).catch(function(err) {
+            alert("Something went wrong,Check the setup. Reason:"+err.message);
             console.error("Err while getJob");
             console.log(err.message);
         });
