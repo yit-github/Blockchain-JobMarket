@@ -53,6 +53,7 @@ Employee = {
                 console.log("getEmployee, codes:" + employeeCodes);
                 employeeCode = employeeCodes[employeeCodes.length-1];
                 console.log("code: " + employeeCode);
+                $('#registerEmployeeButtonId').prop("disabled", true);
                 $("#progress").css('visibility','visible');
                 $("#loader").show();
                 window.location.href = 'setProfile.html';
@@ -139,6 +140,7 @@ Employee = {
                 return marketInstance.getAllProfileIds.call();
             }).then(function (profileIds) {
                 console.log("profileIds: " + profileIds);
+                  $('#registerProfileButtonId').prop("disabled", true);
                   $("#progress").css('visibility','visible');
                   $("#loader").show();
                   window.location.href = 'searchJob.html';

@@ -53,6 +53,7 @@ Employer = {
                 console.log("getEmployer, codes:" + employerCodes);
                 employerCode = employerCodes[employerCodes.length-1];
                 console.log("last code: " + employerCode);
+                $('#registerEmployerButtonId').prop("disabled", true);
                 $("#progress").css('visibility','visible');
                 $("#loader").show();
                 window.location.href = 'postJob.html';

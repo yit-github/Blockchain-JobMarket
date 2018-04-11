@@ -58,6 +58,7 @@ Job = {
                 return marketInstance.getAllJobIds.call();
             }).then(function (jobIds) {
                 console.log("jobIds:" + jobIds);
+                $('#createJobButtonId').prop("disabled", true);
                 $("#progress").css('visibility','visible');
                 $("#loader").show();
                 window.location.href = 'myJob.html';
