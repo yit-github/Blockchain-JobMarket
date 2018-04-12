@@ -43,6 +43,7 @@ Employer = {
             App.contracts.Market.deployed(
 
             ).then(function(instance) {
+                $("#loader").show();
                 console.log("setEmployer");
                 marketInstance = instance;
                 return marketInstance.setEmployer(employerName, employerEmail, employerCompany, employerAddress, employerCountry, {from: account});
@@ -55,7 +56,6 @@ Employer = {
                 console.log("last code: " + employerCode);
                 $('#registerEmployerButtonId').prop("disabled", true);
                 $("#progress").css('visibility','visible');
-                $("#loader").show();
                 window.location.href = 'postJob.html';
                 }).catch(function(err) {
                 alert("Something went wrong,Check the setup. Reason:"+err.message);

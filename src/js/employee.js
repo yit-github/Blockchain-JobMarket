@@ -45,6 +45,7 @@ Employee = {
             ).then(function(instance) {
                 console.log("setEmployee");
                 marketInstance = instance;
+                $("#loader").show();
                 return marketInstance.setEmployee(employeeName, employeeEmail, employeePhoneNo, employeeStatement, employeeRate, {from: account});
                 }).then(function(result) {
                 console.log("getEmployeeCodes");
@@ -55,7 +56,6 @@ Employee = {
                 console.log("code: " + employeeCode);
                 $('#registerEmployeeButtonId').prop("disabled", true);
                 $("#progress").css('visibility','visible');
-                $("#loader").show();
                 window.location.href = 'setProfile.html';
                 }).catch(function(err) {
                 alert("Something went wrong,Check the setup. Reason:"+err.message);
@@ -132,6 +132,7 @@ Employee = {
             let account = accounts[0];
 
             App.contracts.Market.deployed().then(function(instance) {
+                $("#loader").show();
                 console.log("setProfile");
                 marketInstance = instance;
                 return marketInstance.setProfile(profileName, skills, cvHash, defaultProfile, {from: account});
@@ -142,7 +143,6 @@ Employee = {
                 console.log("profileIds: " + profileIds);
                   $('#registerProfileButtonId').prop("disabled", true);
                   $("#progress").css('visibility','visible');
-                  $("#loader").show();
                   window.location.href = 'searchJob.html';
                 }).catch(function(err) {
                 alert("Something went wrong,Check the setup. Reason:"+err.message);

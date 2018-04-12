@@ -50,6 +50,7 @@ Job = {
             let account = accounts[0];
 
             App.contracts.Market.deployed().then(function(instance) {
+                $("#loader").show();
                 console.log("setJob");
                 marketInstance = instance;
                 return marketInstance.setJob(jobName, skills, jobRate, jobDescription, {from: account});
@@ -60,7 +61,6 @@ Job = {
                 console.log("jobIds:" + jobIds);
                 $('#createJobButtonId').prop("disabled", true);
                 $("#progress").css('visibility','visible');
-                $("#loader").show();
                 window.location.href = 'myJob.html';
                 }).catch(function(err) {
                 alert("Something went wrong,Check the setup. Reason:"+err.message);
